@@ -2,7 +2,6 @@ from typing import ClassVar
 
 from invenio_rest.errors import RESTException
 
-
 class ResourceAccessTokenError(RESTException):
     code: ClassVar[int]
 

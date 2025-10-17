@@ -1,4 +1,5 @@
-from typing import Iterator, Protocol, overload
+from collections.abc import Iterator
+from typing import Protocol, overload
 
 class HasTypeId(Protocol):
     type_id: str

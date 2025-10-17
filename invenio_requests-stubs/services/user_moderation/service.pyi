@@ -1,7 +1,7 @@
-from typing import Any, Dict, List, Optional, Type
+from typing import Any
 
 from flask_principal import Identity
-from invenio_db.uow import UnitOfWork, dummy_uow
+from invenio_db.uow import UnitOfWork
 from invenio_requests.customizations.user_moderation.user_moderation import (
     UserModerationRequest as UserModerationRequest,
 )
@@ -21,24 +21,24 @@ class UserModerationRequestService:
     requests_service: RequestsService
     def __init__(self, requests_service: RequestsService) -> None: ...
     @property
-    def request_type_cls(self) -> Type[Any]: ...
+    def request_type_cls(self) -> type[Any]: ...
     @property
-    def expandable_fields(self) -> List[EntityResolverExpandableField]: ...
+    def expandable_fields(self) -> list[EntityResolverExpandableField]: ...
     def _create_request(
         self,
         identity: Identity,
         user_id: str,
         creator: str,
         receiver: str,
-        data: Dict[str, Any],
+        data: dict[str, Any],
         uow: UnitOfWork,
     ) -> RequestItem: ...
-    def _exists(self, identity: Identity, user_id: str) -> Optional[str]: ...
+    def _exists(self, identity: Identity, user_id: str) -> str | None: ...
     def request_moderation(
         self,
         identity: Identity,
         user_id: str,
-        data: Optional[Dict[str, Any]] = None,
-        uow: UnitOfWork = dummy_uow,
+        data: dict[str, Any] | None = None,
+        uow: UnitOfWork = ...,
         **kwargs: Any,
     ) -> RequestItem: ...

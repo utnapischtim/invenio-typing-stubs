@@ -8,6 +8,6 @@ class RequestStatusField(SystemField):  # type: ignore[misc]
     def __get__(self, instance: None, owner: type[Request]) -> Self: ...  # type: ignore # keep typing tighter
     @overload
     def __get__(  # type: ignore # keep typing tighter
-        self, instance: Request, owner: type[Request]
+        self, instance: Request, owner: type[Request],
     ) -> str: ...
     def __set__(self, instance: Request, value: str) -> None: ...  # type: ignore[override]

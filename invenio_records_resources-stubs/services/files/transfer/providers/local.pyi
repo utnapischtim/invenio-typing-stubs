@@ -4,8 +4,6 @@ from io import (
 )
 from typing import (
     ClassVar,
-    Optional,
-    Union,
 )
 
 from invenio_records_resources.services.files.transfer.base import Transfer
@@ -16,6 +14,6 @@ class LocalTransfer(Transfer):
 
     def set_file_content(
         self,
-        stream: Union[BytesIO, BufferedReader, LimitedStream],
-        content_length: Optional[int],
+        stream: BytesIO | BufferedReader | LimitedStream,
+        content_length: int | None,
     ) -> None: ...

@@ -1,5 +1,5 @@
 from collections.abc import Generator
-from typing import Any, Dict, List, Optional, Union
+from typing import Any
 
 from flask_principal import Identity
 from flask_sqlalchemy.pagination import QueryPagination
@@ -16,15 +16,15 @@ class CommunityListResult(RecordList):
         service: CommunityService,
         identity: Identity,
         results: QueryPagination,
-        params: Optional[Dict[str, Union[str, int]]] = None,
-        links_tpl: Optional[LinksTemplate] = None,
-        links_item_tpl: Optional[CommunityLinksTemplate] = None,
-        schema: Optional[ServiceSchemaWrapper] = None,
-        expandable_fields: Optional[List[EntityResolverExpandableField]] = None,
+        params: dict[str, str | int] | None = None,
+        links_tpl: LinksTemplate | None = None,
+        links_item_tpl: CommunityLinksTemplate | None = None,
+        schema: ServiceSchemaWrapper | None = None,
+        expandable_fields: list[EntityResolverExpandableField] | None = None,
         expand: bool = False,
     ) -> None: ...
     @property
-    def hits(self) -> Generator[Dict[str, Any], None, None]: ...
+    def hits(self) -> Generator[dict[str, Any]]: ...
 
 class CommunityFeaturedList(CommunityListResult):
     def __len__(self) -> int: ...
@@ -32,11 +32,11 @@ class CommunityFeaturedList(CommunityListResult):
     @property
     def total(self) -> int: ...
     @property
-    def hits(self) -> Generator[Dict[str, Any], None, None]: ...
+    def hits(self) -> Generator[dict[str, Any]]: ...
 
 class CommunityItem(RecordItem):
     @property
-    def links(self) -> Dict[str, str]: ...
-    def to_dict(self) -> Dict[str, Any]: ...
+    def links(self) -> dict[str, str]: ...
+    def to_dict(self) -> dict[str, Any]: ...
 
 class FeaturedCommunityItem(CommunityItem): ...

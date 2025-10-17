@@ -1,9 +1,9 @@
-from typing import Any, Dict, Generic, List, Optional, Type, TypeVar, Union
+from typing import Any, Generic, TypeVar
 from uuid import UUID
 
 from _typeshed import Incomplete
 from flask_principal import Identity
-from invenio_db.uow import UnitOfWork, dummy_uow
+from invenio_db.uow import UnitOfWork
 from invenio_records_resources.services import RecordService
 from invenio_records_resources.services.records.results import RecordItem, RecordList
 from invenio_requests.customizations import CommentEventType as CommentEventType
@@ -20,31 +20,35 @@ C = TypeVar("C", bound=RequestEventsServiceConfig)
 
 class RequestEventsService(RecordService[C], Generic[C]):
     @property
-    def expandable_fields(self) -> List[EntityResolverExpandableField]: ...
+    def expandable_fields(self) -> list[EntityResolverExpandableField]: ...
     def _get_creator(
-        self, identity: Identity, request: Optional[Request] = ...
-    ) -> Dict[str, Any]: ...
+        self,
+        identity: Identity,
+        request: Request | None = ...,
+    ) -> dict[str, Any]: ...
     def _get_event(
-        self, event_id: Union[str, int], with_deleted: bool = ...
+        self,
+        event_id: str | int,
+        with_deleted: bool = ...,
     ) -> RequestEvent: ...
-    def _get_request(self, request_id: Union[str, int]) -> Request: ...
+    def _get_request(self, request_id: str | int) -> Request: ...
     def create(  # type: ignore[override]
         self,
         identity: Identity,
-        request_id: Union[str, int, UUID],
-        data: Dict[str, Any],
+        request_id: str | int | UUID,
+        data: dict[str, Any],
         event_type: Incomplete,
-        uow: UnitOfWork = dummy_uow,
+        uow: UnitOfWork = ...,
         expand: bool = False,
         notify: bool = True,
     ) -> RecordItem: ...
     def search(  # type: ignore[override]
         self,
         identity: Identity,
-        request_id: Union[str, int],
-        params: Optional[Dict[str, Any]] = None,
-        search_preference: Optional[str] = None,
+        request_id: str | int,
+        params: dict[str, Any] | None = None,
+        search_preference: str | None = None,
         **kwargs: Any,
     ) -> RecordList: ...
     @property
-    def request_cls(self) -> Type[Request]: ...
+    def request_cls(self) -> type[Request]: ...

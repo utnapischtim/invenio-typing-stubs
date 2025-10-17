@@ -1,4 +1,4 @@
-from typing import Any, Dict
+from typing import Any
 
 from invenio_administration.views.base import (
     AdminResourceDetailView,
@@ -12,7 +12,7 @@ class CommunityListView(AdminResourceListView):
     api_endpoint: str
     name: str
     resource_config: str
-    search_request_headers: Dict[str, str]  # HTTP headers dict
+    search_request_headers: dict[str, str]  # HTTP headers dict
     title: str
     menu_label: str
     category: str
@@ -23,8 +23,8 @@ class CommunityListView(AdminResourceListView):
     display_delete: bool
     display_create: bool
     display_edit: bool
-    item_field_list: Dict[str, Dict[str, Any]]  # Field configuration dict
-    actions: Dict[str, Dict[str, Any]]  # Actions configuration dict
+    item_field_list: dict[str, dict[str, Any]]  # Field configuration dict
+    actions: dict[str, dict[str, Any]]  # Actions configuration dict
     search_config_name: str
     search_facets_config_name: str
     search_sort_config_name: str
@@ -41,6 +41,6 @@ class CommunityDetailView(AdminResourceDetailView):
     display_edit: bool
     list_view_name: str
     pid_path: str
-    request_headers: Dict[str, str]  # HTTP headers dict
-    actions: Dict[str, Dict[str, Any]]  # Actions configuration dict
-    item_field_list: Dict[str, Dict[str, Any]]  # Field configuration dict
+    request_headers: dict[str, str]  # HTTP headers dict
+    actions: dict[str, dict[str, Any]]  # Actions configuration dict
+    item_field_list: dict[str, dict[str, Any]]  # Field configuration dict

@@ -15,12 +15,11 @@ def get_file_list(package):
         # sort file list to keep the files in packages together
         file_list.sort(key=lambda x: (x.count("/"), x))
         return pkg_path.relative_to(Path.cwd()), file_list
-    else:
-        # Single-file module; emulate a one-file "package"
-        pkg_file = Path(pkg.__file__)
-        pkg_path = pkg_file.parent
-        file_list = [pkg_file.name]
-        return pkg_path.relative_to(Path.cwd()), file_list
+    # Single-file module; emulate a one-file "package"
+    pkg_file = Path(pkg.__file__)
+    pkg_path = pkg_file.parent
+    file_list = [pkg_file.name]
+    return pkg_path.relative_to(Path.cwd()), file_list
 
 
 def stubs_path(package):
@@ -123,7 +122,7 @@ def create_prompt(package):
         print(
             f"It seems that the task has been completed. "
             f"Please run the mypy on the whole {stub_dir} directory to verify that everything is fine."
-            "Thank you!"
+            "Thank you!",
         )
         return
 

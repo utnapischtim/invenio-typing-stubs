@@ -1,4 +1,5 @@
-from typing import Any, Callable, ClassVar
+from collections.abc import Callable
+from typing import Any, ClassVar
 
 from flask import Response
 from flask_resources import HTTPJSONException
@@ -19,7 +20,7 @@ class HTTPJSONSearchRequestError(HTTPJSONException):
 class ErrorHandlersMixin:
     error_handlers: ClassVar[
         dict[
-            int | type[HTTPException] | type[BaseException],
+            type[HTTPException | BaseException] | int,
             Callable[[Exception], Response],
         ]
     ]

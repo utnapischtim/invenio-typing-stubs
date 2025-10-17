@@ -1,5 +1,4 @@
 from io import BytesIO
-from typing import Union
 
 from flask_principal import (
     Identity,
@@ -17,7 +16,7 @@ class FileMultipartContentComponent(FileServiceComponent):
         id_: str,
         file_key: str,
         part: int,
-        stream: Union[LimitedStream, BytesIO],
+        stream: LimitedStream | BytesIO,
         content_length: int,
         record: Record,
     ): ...

@@ -1,5 +1,4 @@
 from datetime import datetime
-from typing import Optional
 from uuid import UUID
 
 from invenio_records.models import RecordMetadata
@@ -13,8 +12,8 @@ class _Model: ...
 class RequestMetadata(_Model, RecordMetadata):
     __tablename__: str
     id: Mapped[UUID]
-    number: Optional[str]
-    expires_at: Optional[datetime]
+    number: str | None
+    expires_at: datetime | None
 
 class RequestEventModel(_Model, RecordMetadata):
     __tablename__: str

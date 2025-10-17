@@ -1,8 +1,7 @@
-from typing import Dict
 
 from invenio_records_resources.services.custom_fields.base import BaseListCF
 
 class BooleanCF(BaseListCF):
     def __init__(self, name: str, **kwargs): ...
     @property
-    def mapping(self) -> Dict[str, str]: ...
+    def mapping(self) -> dict[str, str]: ...

@@ -1,4 +1,5 @@
-from typing import Any, Iterator
+from collections.abc import Iterator
+from typing import Any
 
 from flask_principal import Identity
 from invenio_records_resources.services.base.results import (

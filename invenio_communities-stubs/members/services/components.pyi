@@ -1,4 +1,3 @@
-from typing import Optional, Union
 
 from flask_principal import Identity
 from invenio_communities.communities.records.api import Community
@@ -12,37 +11,37 @@ from ...utils import on_user_membership_change as on_user_membership_change
 class CommunityMemberCachingComponent(ServiceComponent):
     def _member_changed(
         self,
-        member: Union[MemberMixin, dict[str, str]],
-        community: Optional[Community] = ...,
+        member: MemberMixin | dict[str, str],
+        community: Community | None = ...,
     ) -> None: ...
     def accept_invite(
         self,
         identity: Identity,
-        record: Optional[MemberMixin] = ...,
+        record: MemberMixin | None = ...,
         data: None = ...,
         **kwargs,
     ) -> None: ...
     def members_add(
         self,
         identity: Identity,
-        record: Optional[dict[str, str]] = ...,
-        community: Optional[Community] = ...,
+        record: dict[str, str] | None = ...,
+        community: Community | None = ...,
         data: None = ...,
         **kwargs,
     ) -> None: ...
     def members_delete(
         self,
         identity: Identity,
-        record: Optional[Union[MemberMixin, dict[str, str]]] = ...,
-        community: Optional[Community] = ...,
+        record: MemberMixin | dict[str, str] | None = ...,
+        community: Community | None = ...,
         data: None = ...,
         **kwargs,
     ) -> None: ...
     def members_update(
         self,
         identity: Identity,
-        record: Optional[Union[MemberMixin, dict[str, str]]] = ...,
-        community: Optional[Community] = ...,
+        record: MemberMixin | dict[str, str] | None = ...,
+        community: Community | None = ...,
         data: None = ...,
         **kwargs,
     ) -> None: ...

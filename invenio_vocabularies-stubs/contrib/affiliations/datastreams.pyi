@@ -1,4 +1,4 @@
-from typing import Any, Dict
+from typing import Any
 
 from invenio_vocabularies.contrib.affiliations.config import (
     affiliation_edmo_country_mappings as affiliation_edmo_country_mappings,
@@ -15,11 +15,11 @@ from invenio_vocabularies.datastreams.writers import ServiceWriter as ServiceWri
 
 class AffiliationsServiceWriter(ServiceWriter):
     def __init__(self, *args, **kwargs) -> None: ...
-    def _entry_id(self, entry: Dict[str, Any]): ...
+    def _entry_id(self, entry: dict[str, Any]): ...
 
 class AffiliationsRORTransformer(RORTransformer):
     def __init__(
-        self, *args, vocab_schemes=None, funder_fundref_doi_prefix=None, **kwargs
+        self, *args, vocab_schemes=None, funder_fundref_doi_prefix=None, **kwargs,
     ) -> None: ...
 
 class OpenAIREOrganizationTransformer(BaseTransformer):
@@ -27,15 +27,15 @@ class OpenAIREOrganizationTransformer(BaseTransformer):
 
 class OpenAIREAffiliationsServiceWriter(ServiceWriter):
     def __init__(self, *args, **kwargs) -> None: ...
-    def _entry_id(self, entry: Dict[str, Any]): ...
-    def _do_update(self, entry: Dict[str, Any]) -> StreamEntry: ...
+    def _entry_id(self, entry: dict[str, Any]): ...
+    def _do_update(self, entry: dict[str, Any]) -> StreamEntry: ...
 
 class EDMOOrganizationTransformer(BaseTransformer):
     def apply(self, stream_entry: StreamEntry, **kwargs: Any) -> StreamEntry: ...
 
-VOCABULARIES_DATASTREAM_READERS: Dict[str, type]
-VOCABULARIES_DATASTREAM_WRITERS: Dict[str, type]
-VOCABULARIES_DATASTREAM_TRANSFORMERS: Dict[str, type]
-DATASTREAM_CONFIG: Dict[str, Any]
-DATASTREAM_CONFIG_OPENAIRE: Dict[str, Any]
-DATASTREAM_CONFIG_EDMO: Dict[str, Any]
+VOCABULARIES_DATASTREAM_READERS: dict[str, type]
+VOCABULARIES_DATASTREAM_WRITERS: dict[str, type]
+VOCABULARIES_DATASTREAM_TRANSFORMERS: dict[str, type]
+DATASTREAM_CONFIG: dict[str, Any]
+DATASTREAM_CONFIG_OPENAIRE: dict[str, Any]
+DATASTREAM_CONFIG_EDMO: dict[str, Any]

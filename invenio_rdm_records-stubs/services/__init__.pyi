@@ -35,17 +35,17 @@ from invenio_rdm_records.services.requests import (
 from invenio_rdm_records.services.services import RDMRecordService as RDMRecordService
 
 __all__ = (
+    "CommunityRecordsService",
     "IIIFService",
+    "RDMCommunityRecordsConfig",
     "RDMFileDraftServiceConfig",
     "RDMFileRecordServiceConfig",
+    "RDMRecordCommunitiesConfig",
+    "RDMRecordMediaFilesServiceConfig",
     "RDMRecordPermissionPolicy",
+    "RDMRecordRequestsConfig",
     "RDMRecordService",
     "RDMRecordServiceConfig",
     "RecordAccessService",
-    "RDMRecordCommunitiesConfig",
-    "RDMCommunityRecordsConfig",
-    "CommunityRecordsService",
-    "RDMRecordRequestsConfig",
     "RecordRequestsService",
-    "RDMRecordMediaFilesServiceConfig",
 )

@@ -8,4 +8,4 @@ from invenio_vocabularies.services.custom_fields.vocabulary import (
     VocabularyCF as VocabularyCF,
 )
 
-__all__ = ["VocabularyCF", "SUBJECT_FIELDS_UI", "SUBJECT_FIELDS"]
+__all__ = ["SUBJECT_FIELDS", "SUBJECT_FIELDS_UI", "VocabularyCF"]

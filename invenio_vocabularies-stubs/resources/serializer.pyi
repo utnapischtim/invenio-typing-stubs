@@ -1,4 +1,5 @@
-from typing import Any, Callable
+from collections.abc import Callable
+from typing import Any
 
 from flask_resources import BaseListSchema as BaseListSchema
 from flask_resources import BaseObjectSchema

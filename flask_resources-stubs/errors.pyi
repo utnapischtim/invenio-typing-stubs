@@ -1,4 +1,3 @@
-from __future__ import annotations
 
 from collections.abc import Callable, Mapping, Sequence
 from typing import Any, ClassVar
@@ -19,13 +18,13 @@ class HTTPJSONException(HTTPException):
     def name(self) -> str: ...
     def get_errors(self) -> list[Mapping[str, Any]] | None: ...
     def get_description(
-        self, environ: Any | None = ..., scope: Mapping[str, Any] | None = ...
+        self, environ: Any | None = ..., scope: Mapping[str, Any] | None = ...,
     ) -> str: ...
     def get_headers(
-        self, environ: Any | None = ..., scope: Mapping[str, Any] | None = ...
+        self, environ: Any | None = ..., scope: Mapping[str, Any] | None = ...,
     ) -> list[tuple[str, str]]: ...
     def get_body(
-        self, environ: Any | None = ..., scope: Mapping[str, Any] | None = ...
+        self, environ: Any | None = ..., scope: Mapping[str, Any] | None = ...,
     ) -> str: ...
 
 class MIMETypeException(HTTPJSONException):
@@ -33,7 +32,7 @@ class MIMETypeException(HTTPJSONException):
     allowed_mimetypes: Sequence[str] | None
 
     def __init__(
-        self, allowed_mimetypes: Sequence[str] | None = ..., **kwargs: Any
+        self, allowed_mimetypes: Sequence[str] | None = ..., **kwargs: Any,
     ) -> None: ...
 
 class MIMETypeNotAccepted(MIMETypeException):

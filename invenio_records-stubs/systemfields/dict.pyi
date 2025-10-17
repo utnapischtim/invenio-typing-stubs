@@ -1,4 +1,4 @@
-from typing import Any, Optional, Self, overload
+from typing import Any, Self, overload
 
 from invenio_records.api import Record
 from invenio_records.systemfields.base import SystemField
@@ -9,7 +9,7 @@ class DictField(SystemField):  # type: ignore[misc]
 
     def __init__(
         self,
-        key: Optional[str] = ...,
+        key: str | None = ...,
         clear_none: bool = ...,
         create_if_missing: bool = ...,
     ): ...
@@ -17,6 +17,6 @@ class DictField(SystemField):  # type: ignore[misc]
     def __get__(self, instance: None, owner: type[Record]) -> Self: ...  # type: ignore # keep typing tighter
     @overload
     def __get__(  # type: ignore # keep typing tighter
-        self, instance: Record, owner: type[Record]
+        self, instance: Record, owner: type[Record],
     ) -> dict[str, Any]: ...
     def __set__(self, instance: Record, value: dict[str, Any]) -> None: ...  # type: ignore[override]

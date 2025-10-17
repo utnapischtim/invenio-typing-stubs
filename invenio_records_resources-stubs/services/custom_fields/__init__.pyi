@@ -21,8 +21,8 @@ __all__ = (
     "CustomFieldsSchemaUI",
     "DoubleCF",
     "EDTFDateStringCF",
-    "IntegerCF",
     "ISODateStringCF",
+    "IntegerCF",
     "KeywordCF",
     "TextCF",
 )

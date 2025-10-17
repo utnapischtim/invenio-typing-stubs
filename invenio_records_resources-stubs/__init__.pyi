@@ -4,4 +4,4 @@ from invenio_records_resources.ext import (
 
 __version__: str
 
-__all__: tuple[str, str] = ("__version__", "InvenioRecordsResources")
+__all__: tuple[str, str] = ("InvenioRecordsResources", "__version__")

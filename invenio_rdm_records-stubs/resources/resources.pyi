@@ -1,4 +1,5 @@
-from typing import Any, Callable, Generic, ParamSpec, TypeAlias, TypeVar
+from collections.abc import Callable
+from typing import Any, Generic, ParamSpec, TypeVar
 
 from invenio_rdm_records.resources.config import (
     RDMCommunityRecordsResourceConfig,
@@ -26,8 +27,8 @@ from invenio_records_resources.services.records.service import RecordService
 
 P = ParamSpec("P")
 R = TypeVar("R")
-Decorator: TypeAlias = Callable[[Callable[P, R]], Callable[P, R]]
-AnyDecorator: TypeAlias = Callable[[Callable[..., Any]], Callable[..., Any]]
+type Decorator[**P, R] = Callable[[Callable[P, R]], Callable[P, R]]
+type AnyDecorator = Callable[[Callable[..., Any]], Callable[..., Any]]
 
 # Typed alias for the response_handler decorator factory to avoid Any; keep simple
 response_handler: Callable[..., AnyDecorator]
@@ -134,7 +135,7 @@ CParentLinks = TypeVar("CParentLinks", bound=RDMParentRecordLinksResourceConfig)
 SParentLinks = TypeVar("SParentLinks", bound=RecordService)
 
 class RDMParentRecordLinksResource(
-    RecordResource[CParentLinks, SParentLinks], Generic[CParentLinks, SParentLinks]
+    RecordResource[CParentLinks, SParentLinks], Generic[CParentLinks, SParentLinks],
 ):
     def create_url_rules(self) -> list[dict[str, Any]]: ...
     @request_view_args
@@ -160,7 +161,7 @@ CParentGrants = TypeVar("CParentGrants", bound=RDMParentGrantsResourceConfig)
 SParentGrants = TypeVar("SParentGrants", bound=RecordAccessService)
 
 class RDMParentGrantsResource(
-    RecordResource[CParentGrants, SParentGrants], Generic[CParentGrants, SParentGrants]
+    RecordResource[CParentGrants, SParentGrants], Generic[CParentGrants, SParentGrants],
 ):
     def create_url_rules(self) -> list[dict[str, Any]]: ...
     @request_extra_args
@@ -194,7 +195,7 @@ CGrantsAccess = TypeVar("CGrantsAccess", bound=RecordResourceConfig)
 SGrantsAccess = TypeVar("SGrantsAccess", bound=RecordAccessService)
 
 class RDMGrantsAccessResource(
-    RecordResource[CGrantsAccess, SGrantsAccess], Generic[CGrantsAccess, SGrantsAccess]
+    RecordResource[CGrantsAccess, SGrantsAccess], Generic[CGrantsAccess, SGrantsAccess],
 ):
     def create_url_rules(self) -> list[dict[str, Any]]: ...
     @request_extra_args
@@ -215,7 +216,7 @@ class RDMGrantsAccessResource(
     def partial_update(self) -> tuple[dict[str, Any], int]: ...
 
 CCommunityRecords = TypeVar(
-    "CCommunityRecords", bound=RDMCommunityRecordsResourceConfig
+    "CCommunityRecords", bound=RDMCommunityRecordsResourceConfig,
 )
 SCommunityRecords = TypeVar("SCommunityRecords", bound=CommunityRecordsService)
 

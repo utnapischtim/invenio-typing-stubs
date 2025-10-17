@@ -1,4 +1,4 @@
-from typing import Any, Dict, Optional
+from typing import Any
 
 from flask_principal import Identity
 from invenio_records_resources.pagination import Pagination
@@ -9,14 +9,14 @@ from invenio_requests.records.api import Request
 class RequestLinksTemplate(LinksTemplate):
     def __init__(
         self,
-        links: Dict[str, "RequestLink"],
-        action_link: "RequestLink",
-        context: Optional[Dict[str, Any]] = None,
+        links: dict[str, RequestLink],
+        action_link: RequestLink,
+        context: dict[str, Any] | None = None,
     ) -> None: ...
     def expand(
-        self, identity: Identity, obj: Record | FileRecord | Pagination | Any
-    ) -> Dict[str, str]: ...
+        self, identity: Identity, obj: Record | FileRecord | Pagination | Any,
+    ) -> dict[str, str]: ...
 
 class RequestLink(Link):
     @staticmethod
-    def vars(record: Request, vars: Dict[str, Any]) -> None: ...
+    def vars(record: Request, vars: dict[str, Any]) -> None: ...

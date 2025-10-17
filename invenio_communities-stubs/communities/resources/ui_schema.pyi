@@ -1,4 +1,4 @@
-from typing import Any, Dict, List
+from typing import Any
 
 from flask_principal import Identity
 from flask_resources import BaseObjectSchema
@@ -10,7 +10,7 @@ from marshmallow import Schema, fields
 
 def mask_removed_by(obj): ...
 def _community_permission_check(
-    action: str, community: Dict[str, Any], identity: Identity
+    action: str, community: dict[str, Any], identity: Identity,
 ) -> bool: ...
 
 FormatEDTF: Any
@@ -36,11 +36,11 @@ class UICommunitySchema(BaseObjectSchema):
     theme: fields.Nested
     custom_fields: fields.Nested
     permissions: fields.Method
-    def get_organizations(self, obj: Dict[str, Any]) -> List[Any]: ...
-    def get_permissions(self, obj: Dict[str, Any]) -> Dict[str, bool]: ...
+    def get_organizations(self, obj: dict[str, Any]) -> list[Any]: ...
+    def get_permissions(self, obj: dict[str, Any]) -> dict[str, bool]: ...
     def post_dump(
-        self, data: Dict[str, Any], original: Dict[str, Any], many: bool, **kwargs: Any
-    ) -> Dict[str, Any]: ...
+        self, data: dict[str, Any], original: dict[str, Any], many: bool, **kwargs: Any,
+    ) -> dict[str, Any]: ...
 
 class TypesSchema(Schema):
     types: fields.List

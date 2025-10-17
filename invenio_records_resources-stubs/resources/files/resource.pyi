@@ -12,7 +12,8 @@
 
 """Invenio Record File Resources."""
 
-from typing import Any, Callable, Generic, ParamSpec, TypeAlias, TypeVar
+from collections.abc import Callable
+from typing import Any, Generic, ParamSpec, TypeVar
 
 from flask.wrappers import Response
 from flask_resources import Resource
@@ -22,7 +23,7 @@ from invenio_records_resources.services.files.service import FileService
 
 P = ParamSpec("P")
 R = TypeVar("R")
-Decorator: TypeAlias = Callable[[Callable[P, R]], Callable[P, R]]
+type Decorator[**P, R] = Callable[[Callable[P, R]], Callable[P, R]]
 
 def set_max_content_length(func: Callable[P, R]) -> Callable[P, R]: ...
 

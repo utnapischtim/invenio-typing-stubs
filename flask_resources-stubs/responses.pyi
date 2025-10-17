@@ -1,7 +1,6 @@
-from __future__ import annotations
 
 from collections.abc import Callable, Mapping
-from typing import Any, ParamSpec, Protocol, TypeAlias
+from typing import Any, ParamSpec, Protocol
 
 from flask import Response
 
@@ -11,9 +10,9 @@ class SerializerProtocol(Protocol):
     def serialize_object(self, obj: Any) -> str: ...
     def serialize_object_list(self, obj_list: Any) -> str: ...
 
-HeadersFactory = Callable[[Any, int, bool], Mapping[str, str]]
+type HeadersFactory = Callable[[Any, int, bool], Mapping[str, str]]
 
-ResponseTuple: TypeAlias = (
+type ResponseTuple = (
     tuple[Any, int]
     | tuple[Any, int, Mapping[str, str]]
     | tuple[Response, int]
@@ -40,5 +39,5 @@ class ResponseHandler:
         many: bool = False,
     ) -> Mapping[str, str]: ...
     def make_response(
-        self, obj_or_list: Any, code: int, many: bool = False
+        self, obj_or_list: Any, code: int, many: bool = False,
     ) -> Response: ...

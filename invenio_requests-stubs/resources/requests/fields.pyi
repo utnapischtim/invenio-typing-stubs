@@ -1,17 +1,18 @@
-from typing import Any, Dict, Mapping, Optional
+from collections.abc import Mapping
+from typing import Any
 
 from marshmallow import fields
 
 class ReferenceString(fields.Field):
-    default_error_messages: Dict[str, str]
+    default_error_messages: dict[str, str]
 
     def _deserialize(
         self,
-        value: Optional[str],
-        attr: Optional[str],
-        data: Optional[Mapping[str, Any]],
+        value: str | None,
+        attr: str | None,
+        data: Mapping[str, Any] | None,
         **kwargs: Any,
-    ) -> Optional[Dict[str, str]]: ...
+    ) -> dict[str, str] | None: ...
     def _serialize(
-        self, value: Any, attr: Optional[str], obj: Any, **kwargs: Any
+        self, value: Any, attr: str | None, obj: Any, **kwargs: Any,
     ) -> str: ...

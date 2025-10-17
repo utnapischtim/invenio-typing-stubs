@@ -28,7 +28,7 @@ from invenio_records_resources.services.files.components.processor import (
 __all__ = (
     "FileContentComponent",
     "FileMetadataComponent",
+    "FileMultipartContentComponent",
     "FileProcessorComponent",
     "FileServiceComponent",
-    "FileMultipartContentComponent",
 )

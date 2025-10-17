@@ -1,4 +1,4 @@
-from typing import Any, Dict, Generic, Optional, Type, TypeVar
+from typing import Any, Generic, TypeVar
 
 from flask_principal import Identity
 from invenio_communities.communities import CommunityService
@@ -8,7 +8,7 @@ from invenio_communities.subcommunities.services.config import (
     SubCommunityServiceConfig,
 )
 from invenio_communities.subcommunities.services.request import SubCommunityRequest
-from invenio_db.uow import UnitOfWork, dummy_uow
+from invenio_db.uow import UnitOfWork
 from invenio_records_resources.services.base import Service
 from invenio_records_resources.services.records.schema import ServiceSchemaWrapper
 from invenio_requests.services.requests.results import RequestItem
@@ -20,7 +20,7 @@ C = TypeVar("C", bound=SubCommunityServiceConfig)
 class SubCommunityService(Service[C], Generic[C]):
     def _is_owner_of(self, identity: Identity, community: str) -> Any: ...
     @property
-    def request_cls(self) -> Type[SubCommunityRequest]: ...
+    def request_cls(self) -> type[SubCommunityRequest]: ...
     @property
     def schema(self) -> ServiceSchemaWrapper: ...
     @property
@@ -31,15 +31,15 @@ class SubCommunityService(Service[C], Generic[C]):
         self,
         identity: Identity,
         id_: str,
-        data: Dict[str, Any],
-        uow: Optional[UnitOfWork] = ...,
+        data: dict[str, Any],
+        uow: UnitOfWork | None = ...,
     ) -> RequestItem: ...
     def create_subcommunity_invitation_request(
         self,
         identity: Identity,
         parent_community_id: str,
         child_community_id: str,
-        data: Dict[str, Any],
-        expires_at: Optional[Any] = None,
-        uow: UnitOfWork = dummy_uow,
+        data: dict[str, Any],
+        expires_at: Any | None = None,
+        uow: UnitOfWork = ...,
     ) -> None: ...

@@ -1,4 +1,4 @@
-from typing import Any, Dict, Generic, List, TypeVar
+from typing import Any, Generic, TypeVar
 
 from flask_principal import Identity
 from invenio_db.uow import UnitOfWork
@@ -18,21 +18,21 @@ class CommunityRecordsService(RecordService[C], Generic[C]):
         self,
         identity: Identity,
         community_id: str,
-        params: Dict[str, Any] | None = ...,
+        params: dict[str, Any] | None = ...,
         search_preference: str | None = ...,
         extra_filter: Any | None = ...,
         scan: bool = ...,
-        scan_params: Dict[str, Any] | None = ...,
+        scan_params: dict[str, Any] | None = ...,
         **kwargs: Any,
     ) -> RecordList: ...
     def _remove(
-        self, community: Any, record: Any, identity: Identity
-    ) -> List[Dict[str, Any]]: ...
+        self, community: Any, record: Any, identity: Identity,
+    ) -> list[dict[str, Any]]: ...
     def delete(  # type: ignore[override]
         self,
         identity: Identity,
         community_id: str,
-        data: Dict[str, Any],
+        data: dict[str, Any],
         revision_id: int | None = ...,
         uow: UnitOfWork | None = None,
-    ) -> List[Dict[str, Any]]: ...
+    ) -> list[dict[str, Any]]: ...

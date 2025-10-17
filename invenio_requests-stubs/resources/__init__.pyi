@@ -10,8 +10,8 @@ from invenio_requests.resources.requests import (
 )
 
 __all__ = [
-    "RequestsResource",
-    "RequestsResourceConfig",
     "RequestCommentsResource",
     "RequestCommentsResourceConfig",
+    "RequestsResource",
+    "RequestsResourceConfig",
 ]

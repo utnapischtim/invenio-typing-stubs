@@ -1,3 +1,4 @@
-from .actions import on_block as on_block, on_restore as on_restore
+from .actions import on_block as on_block
+from .actions import on_restore as on_restore
 
-__all__ = ['on_block', 'on_restore']
+__all__ = ["on_block", "on_restore"]

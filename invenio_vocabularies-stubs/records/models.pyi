@@ -1,4 +1,4 @@
-from typing import TYPE_CHECKING, ClassVar, Optional
+from typing import TYPE_CHECKING, ClassVar
 
 # Note: db.Model is used as a base class in the source. We intentionally
 # avoid importing a specific db type here and instead declare a loose name
@@ -15,7 +15,6 @@ if TYPE_CHECKING:
 class _Model:
     """Placeholder SQLAlchemy model base for stubs."""
 
-    ...
 
 class VocabularyType(_Model):
     __tablename__: ClassVar[str]
@@ -25,12 +24,12 @@ class VocabularyType(_Model):
     def create(cls, **data) -> VocabularyType: ...
     @classmethod
     def dump_obj(
-        cls, field: RelatedModelField, record: Vocabulary, obj: VocabularyType
+        cls, field: RelatedModelField, record: Vocabulary, obj: VocabularyType,
     ) -> None: ...
     @classmethod
     def load_obj(
-        cls, field: RelatedModelField, record: Vocabulary
-    ) -> Optional[VocabularyType]: ...
+        cls, field: RelatedModelField, record: Vocabulary,
+    ) -> VocabularyType | None: ...
 
 class VocabularyMetadata(RecordMetadata):
     ...

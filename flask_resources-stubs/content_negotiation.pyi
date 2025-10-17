@@ -1,7 +1,6 @@
-from __future__ import annotations
 
 from collections.abc import Callable, Iterable, Mapping
-from typing import Any, ParamSpec, Protocol, TypeAlias, TypeVar
+from typing import Any, ParamSpec, Protocol, TypeVar
 
 from flask import Response
 from flask_resources.config import ConfigAttrValue
@@ -12,10 +11,10 @@ R = TypeVar("R")
 
 class ResponseHandlerProtocol(Protocol):
     def make_response(
-        self, obj_or_list: Any, code: int, many: bool = False
+        self, obj_or_list: Any, code: int, many: bool = False,
     ) -> Response: ...
 
-ResponseHandlersResolvable: TypeAlias = (
+type ResponseHandlersResolvable = (
     ConfigAttrValue[Mapping[str, ResponseHandlerProtocol]]
     | Mapping[str, ResponseHandlerProtocol]
     | None
@@ -40,7 +39,7 @@ class ContentNegotiator:
     ) -> str | None: ...
     @classmethod
     def match_by_format(
-        cls, formats_map: Mapping[str, str], fmt: str | None
+        cls, formats_map: Mapping[str, str], fmt: str | None,
     ) -> str | None: ...
 
 def with_content_negotiation(

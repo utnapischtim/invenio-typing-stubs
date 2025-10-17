@@ -24,11 +24,11 @@ from invenio_records_resources.services.records.components.relations import (
 )
 
 __all__ = (
-    "ServiceComponent",
+    "BaseRecordFilesComponent",
+    "ChangeNotificationsComponent",
     "DataComponent",
+    "FilesComponent",
     "MetadataComponent",
     "RelationsComponent",
-    "ChangeNotificationsComponent",
-    "BaseRecordFilesComponent",
-    "FilesComponent",
+    "ServiceComponent",
 )

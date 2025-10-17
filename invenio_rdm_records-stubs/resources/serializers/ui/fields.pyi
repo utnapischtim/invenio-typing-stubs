@@ -1,4 +1,5 @@
-from typing import Any, Mapping, Optional
+from collections.abc import Mapping
+from typing import Any
 
 from marshmallow import fields
 
@@ -17,12 +18,12 @@ class UIObjectAccessStatus(UIAccessStatus):
     """Record or draft access status UI properties."""
 
     def __init__(
-        self, record_access_dict: Mapping[str, Any], has_files: bool
+        self, record_access_dict: Mapping[str, Any], has_files: bool,
     ) -> None: ...
     @property
     def description(self) -> str: ...
     @property
-    def embargo_date(self) -> Optional[str]: ...
+    def embargo_date(self) -> str | None: ...
     @property
     def message_class(self) -> str: ...
 
@@ -30,5 +31,5 @@ class AccessStatusField(fields.Field):
     """Record access status."""
 
     def _serialize(
-        self, value: Any, attr: Optional[str], obj: Any, **kwargs: Any
-    ) -> Optional[Mapping[str, Any]]: ...
+        self, value: Any, attr: str | None, obj: Any, **kwargs: Any,
+    ) -> Mapping[str, Any] | None: ...

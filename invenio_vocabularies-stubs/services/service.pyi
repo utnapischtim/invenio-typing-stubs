@@ -1,7 +1,7 @@
-from typing import Any, Dict, Generic, List, Optional, TypeVar
+from typing import Any, Generic, TypeVar
 
 from flask_principal import Identity
-from invenio_db.uow import UnitOfWork, dummy_uow
+from invenio_db.uow import UnitOfWork
 from invenio_records_resources.services import RecordService
 from invenio_records_resources.services.records.results import RecordList
 from invenio_search.engine import dsl
@@ -16,13 +16,13 @@ CTypeConfig = TypeVar("CTypeConfig", bound=VocabularyTypesServiceConfig)
 
 class VocabularyTypeService(RecordService[CTypeConfig], Generic[CTypeConfig]):
     def rebuild_index(
-        self, identity: Identity, uow: UnitOfWork = dummy_uow
+        self, identity: Identity, uow: UnitOfWork = ...,
     ) -> bool: ...
     def search(
         self,
         identity: Identity,
-        params: Optional[Dict[str, Any]] = ...,
-        search_preference: Optional[str] = ...,
+        params: dict[str, Any] | None = ...,
+        search_preference: str | None = ...,
         expand: bool = ...,
         **kwargs,
     ) -> RecordList: ...
@@ -37,12 +37,12 @@ class VocabulariesService(RecordService[CVocabConfig], Generic[CVocabConfig]):
         identity: Identity,
         id: str,
         pid_type: str,
-        uow: UnitOfWork = dummy_uow,
+        uow: UnitOfWork = ...,
     ) -> VocabularyType: ...
     def read_all(  # type: ignore[override]
         self,
         identity: Identity,
-        fields: List[str],
+        fields: list[str],
         type: str,
         cache: bool = True,
         extra_filter: dsl.query.Query | str = "",
@@ -51,16 +51,16 @@ class VocabulariesService(RecordService[CVocabConfig], Generic[CVocabConfig]):
     def read_many(
         self,
         identity: Identity,
-        ids: List[str],
-        fields: List[str] | None = None,
+        ids: list[str],
+        fields: list[str] | None = None,
         **kwargs: Any,
     ) -> RecordList: ...
     def search(
         self,
         identity: Identity,
-        params: Optional[Dict[str, Any]] = ...,
-        search_preference: Optional[str] = ...,
+        params: dict[str, Any] | None = ...,
+        search_preference: str | None = ...,
         expand: bool = ...,
         **kwargs: Any,
     ) -> RecordList: ...
-    def launch(self, identity: Identity, data: Dict[str, Any]) -> bool: ...
+    def launch(self, identity: Identity, data: dict[str, Any]) -> bool: ...

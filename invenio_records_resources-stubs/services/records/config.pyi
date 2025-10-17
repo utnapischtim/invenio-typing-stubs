@@ -10,7 +10,8 @@
 
 """Record Service API."""
 
-from typing import Any, Callable, Generic, Mapping, TypeVar
+from collections.abc import Callable, Mapping
+from typing import Any, Generic, TypeVar
 
 import marshmallow as ma
 from invenio_indexer.api import RecordIndexer
@@ -26,7 +27,7 @@ from invenio_records_resources.services.records.queryparser import QueryParser
 from invenio_search import RecordsSearchV2
 
 RecordT = TypeVar("RecordT", bound=Record)
-SearchOptionsT = TypeVar("SearchOptionsT", bound="SearchOptions")
+SearchOptionsT = TypeVar("SearchOptionsT", bound=SearchOptions)
 SchemaT = TypeVar("SchemaT", bound=ma.Schema)
 IndexerT = TypeVar("IndexerT", bound=RecordIndexer)
 PermissionPolicyT = TypeVar("PermissionPolicyT", bound=BasePermissionPolicy)

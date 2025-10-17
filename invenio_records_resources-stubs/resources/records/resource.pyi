@@ -10,7 +10,8 @@
 
 """Invenio Resources module to create REST APIs."""
 
-from typing import Any, Callable, Generic, ParamSpec, TypeAlias, TypeVar
+from collections.abc import Callable
+from typing import Any, Generic, ParamSpec, TypeVar
 
 from flask_resources import Resource
 from invenio_records_resources.resources.errors import ErrorHandlersMixin
@@ -19,7 +20,7 @@ from invenio_records_resources.services.records.service import RecordService
 
 P = ParamSpec("P")
 R = TypeVar("R")
-Decorator: TypeAlias = Callable[[Callable[P, R]], Callable[P, R]]
+type Decorator[**P, R] = Callable[[Callable[P, R]], Callable[P, R]]
 
 # note: unlike in sources, we are having generics here so that we can safely pass and access
 # instances of subclasses in inheriting resources

@@ -2,7 +2,6 @@ from typing import Any
 
 from invenio_records_resources.services.records.params.base import ParamInterpreter
 
-
 class StatusParam(ParamInterpreter):
     def apply(self, identity, search, params: dict[str, Any]): ...
 

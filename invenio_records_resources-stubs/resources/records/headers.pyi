@@ -9,8 +9,9 @@
 
 """Invenio Resources module to create REST APIs."""
 
-from typing import Any, Mapping
+from collections.abc import Mapping
+from typing import Any
 
 def etag_headers(
-    obj_or_list: Mapping[str, Any], code: int, many: bool = False
+    obj_or_list: Mapping[str, Any], code: int, many: bool = False,
 ) -> dict[str, str]: ...

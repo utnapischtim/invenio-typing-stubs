@@ -1,6 +1,5 @@
-from __future__ import annotations
 
-from typing import Any, Generic, Optional, TypeVar
+from typing import Any, Generic, TypeVar
 
 from flask_principal import Identity
 from invenio_drafts_resources.services.records.service import RecordService
@@ -47,20 +46,20 @@ class RDMRecordService(RecordService[C], Generic[C]):
         data,
         expand: bool = ...,
         uow=None,
-        revision_id: Optional[int] = ...,
+        revision_id: int | None = ...,
     ): ...
     def update_tombstone(
-        self, identity: Identity, id_: str, data, expand: bool = ..., uow=None
+        self, identity: Identity, id_: str, data, expand: bool = ..., uow=None,
     ): ...
     def cleanup_record(self, identity: Identity, id_: str, uow=None): ...
     def restore_record(
-        self, identity: Identity, id_: str, expand: bool = ..., uow=None
+        self, identity: Identity, id_: str, expand: bool = ..., uow=None,
     ): ...
     def mark_record_for_purge(
-        self, identity: Identity, id_: str, expand: bool = ..., uow=None
+        self, identity: Identity, id_: str, expand: bool = ..., uow=None,
     ): ...
     def unmark_record_for_purge(
-        self, identity: Identity, id_: str, expand: bool = ..., uow=None
+        self, identity: Identity, id_: str, expand: bool = ..., uow=None,
     ): ...
     def purge_record(self, identity: Identity, id_: str, uow=None): ...
     def publish(self, identity: Identity, id_: str, uow=None, expand: bool = ...): ...
@@ -69,8 +68,8 @@ class RDMRecordService(RecordService[C], Generic[C]):
     def search_drafts(
         self,
         identity: Identity,
-        params: Optional[dict[str, Any]] = ...,
-        search_preference: Optional[str] = ...,
+        params: dict[str, Any] | None = ...,
+        search_preference: str | None = ...,
         expand: bool = ...,
         extra_filter=None,
         **kwargs,
@@ -79,8 +78,8 @@ class RDMRecordService(RecordService[C], Generic[C]):
         self,
         identity: Identity,
         id_: str,
-        params: Optional[dict[str, Any]] = ...,
-        search_preference: Optional[str] = ...,
+        params: dict[str, Any] | None = ...,
+        search_preference: str | None = ...,
         expand: bool = ...,
         permission_action: str = ...,
         **kwargs,
@@ -89,8 +88,8 @@ class RDMRecordService(RecordService[C], Generic[C]):
         self,
         identity: Identity,
         id_: str,
-        params: Optional[dict[str, Any]] = ...,
-        search_preference: Optional[str] = ...,
+        params: dict[str, Any] | None = ...,
+        search_preference: str | None = ...,
         expand: bool = ...,
         permission_action: str = ...,
         **kwargs,
@@ -108,7 +107,7 @@ class RDMRecordService(RecordService[C], Generic[C]):
         identity: Identity,
         id_: str,
         data,
-        revision_id: Optional[int] = ...,
+        revision_id: int | None = ...,
         uow=None,
         expand: bool = ...,
     ): ...

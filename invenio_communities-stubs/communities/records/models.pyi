@@ -1,4 +1,4 @@
-from typing import Any, ClassVar, Optional
+from typing import Any, ClassVar
 
 from invenio_communities.communities.records.systemfields.deletion_status import (
     CommunityDeletionStatusEnum as CommunityDeletionStatusEnum,
@@ -24,4 +24,4 @@ class CommunityFeatured(_Model, Timestamp):
     __tablename__: ClassVar[str]
     id: Any
     community_id: Any
-    start_date: Optional[Any]
+    start_date: Any | None

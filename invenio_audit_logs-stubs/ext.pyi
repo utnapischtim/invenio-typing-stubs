@@ -1,4 +1,4 @@
-from typing import Any, Dict
+from typing import Any
 
 from flask import Flask
 from invenio_audit_logs import config as config
@@ -14,7 +14,7 @@ class InvenioAuditLogs:
 
     audit_log_service: AuditLogService
     audit_log_resource: AuditLogResource
-    actions_registry: Dict[str, Any]
+    actions_registry: dict[str, Any]
 
     def __init__(self, app: Flask | None = None) -> None: ...
     def init_app(self, app: Flask) -> None: ...

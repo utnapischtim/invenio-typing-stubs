@@ -1,5 +1,5 @@
 import enum
-from typing import Any, Optional, Self, overload
+from typing import Any, Self, overload
 
 from invenio_communities.communities.records.api import Community
 from invenio_records.systemfields import SystemField
@@ -12,7 +12,7 @@ class CommunityDeletionStatusEnum(enum.Enum):
 class CommunityDeletionStatus:
     _status: CommunityDeletionStatusEnum
     def __init__(
-        self, status: Optional[CommunityDeletionStatusEnum | str] = None
+        self, status: CommunityDeletionStatusEnum | str | None = None,
     ) -> None: ...
     @property
     def status(self) -> str: ...
@@ -20,9 +20,7 @@ class CommunityDeletionStatus:
     def status(self, value: CommunityDeletionStatusEnum | str | None) -> None: ...
     @property
     def is_deleted(self) -> bool: ...
-    def __repr__(self) -> str: ...
-    def __str__(self) -> str: ...
-    def __eq__(self, other: Any) -> bool: ...
+    def __eq__(self, other: object) -> bool: ...
 
 class CommunityDeletionStatusField(SystemField):  # type: ignore[misc]
     def pre_commit(self, record: Community) -> None: ...
@@ -32,6 +30,6 @@ class CommunityDeletionStatusField(SystemField):  # type: ignore[misc]
     def __get__(self, instance: None, owner: type[Community]) -> Self: ...  # type: ignore # keep typing tighter
     @overload
     def __get__(  # type: ignore # keep typing tighter
-        self, instance: Community, owner: type[Community]
+        self, instance: Community, owner: type[Community],
     ) -> CommunityDeletionStatus: ...
     def __set__(self, instance: Community, value: CommunityDeletionStatus) -> None: ...  # type: ignore[override]

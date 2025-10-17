@@ -1,4 +1,3 @@
-from __future__ import annotations
 
 from typing import Any
 
@@ -12,4 +11,3 @@ class AccessSettings:
 
     def __init__(self, settings_dict: dict[str, Any]) -> None: ...
     def dump(self) -> dict[str, Any]: ...
-    def __repr__(self) -> str: ...

@@ -39,7 +39,7 @@ class VocabularyTypeResourceConfig(ResourceConfig, ConfiguratorMixin):
     request_view_args: Mapping[str, ma.fields.Field]
     request_search_args = VocabularySearchRequestArgsSchema
     error_handlers: Mapping[
-        int | type[HTTPException] | type[BaseException],
+        type[HTTPException | BaseException] | int,
         Callable[[Exception], Response],
     ]
     response_handlers: Mapping[str, ResponseHandler]

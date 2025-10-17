@@ -27,7 +27,7 @@ class FileService(Service[C], Generic[C]):
         file_key: str | None = ...,
     ) -> Record: ...
     def check_permission(
-        self, identity: Identity, action_name: str, **kwargs
+        self, identity: Identity, action_name: str, **kwargs,
     ) -> bool: ...
     def commit_file(
         self,
@@ -37,7 +37,7 @@ class FileService(Service[C], Generic[C]):
         uow: UnitOfWork | None = ...,
     ) -> FileItem: ...
     def delete_all_files(
-        self, identity: Identity, id_: str, uow: UnitOfWork | None = ...
+        self, identity: Identity, id_: str, uow: UnitOfWork | None = ...,
     ) -> FileList: ...
     def delete_file(
         self,
@@ -60,10 +60,10 @@ class FileService(Service[C], Generic[C]):
     @property
     def file_schema(self) -> ServiceSchemaWrapper: ...
     def get_file_content(
-        self, identity: Identity, id_: str, file_key: str
+        self, identity: Identity, id_: str, file_key: str,
     ) -> FileItem: ...
     def get_transfer_metadata(
-        self, identity: Identity, id_: str, file_key: str
+        self, identity: Identity, id_: str, file_key: str,
     ) -> dict[str, Any]: ...
     def init_files(
         self,
@@ -76,7 +76,7 @@ class FileService(Service[C], Generic[C]):
     def initial_file_schema(self) -> ServiceSchemaWrapper: ...
     def list_files(self, identity: Identity, id_: str) -> FileList: ...
     def read_file_metadata(
-        self, identity: Identity, id_: str, file_key: str
+        self, identity: Identity, id_: str, file_key: str,
     ) -> FileItem: ...
     @property
     def record_cls(self) -> type[Record]: ...

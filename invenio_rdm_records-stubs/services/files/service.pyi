@@ -1,4 +1,3 @@
-from __future__ import annotations
 
 from typing import Generic, TypeVar
 
@@ -11,8 +10,8 @@ C = TypeVar("C", bound=FileServiceConfig)
 
 class RDMFileService(_FileService[C], Generic[C]):
     def _check_record_deleted_permissions(
-        self, record: RDMRecord, identity: Identity
+        self, record: RDMRecord, identity: Identity,
     ) -> None: ...
     def _get_record(
-        self, id_: str, identity: Identity, action: str, file_key: str | None = ...
+        self, id_: str, identity: Identity, action: str, file_key: str | None = ...,
     ) -> RDMRecord: ...

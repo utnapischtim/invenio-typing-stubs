@@ -7,7 +7,7 @@ class UserContext:
     resolver: UserResolver
     def __init__(self, key: str = "user") -> None: ...
     def __call__(
-        self, data: dict[str, Any], lookup_key: str = "user_id", **kwargs: Any
+        self, data: dict[str, Any], lookup_key: str = "user_id", **kwargs: Any,
     ) -> None: ...
 
 class RecordContext:

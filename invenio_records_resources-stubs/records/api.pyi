@@ -1,8 +1,9 @@
+from collections.abc import Generator, Mapping
 from contextlib import contextmanager
-from typing import IO, Any, ClassVar, Generator, Mapping, Self, TypedDict, overload
+from typing import IO, Any, ClassVar, Self, TypedDict, overload
 from uuid import UUID
 
-from invenio_files_rest.models import (  # type: ignore[import-untyped]
+from invenio_files_rest.models import (
     FileInstance,
     ObjectVersion,
 )
@@ -28,7 +29,7 @@ class FileAccess:
     _hidden: bool
     dirty: bool
 
-    def __init__(self, hidden: bool | None = ...) -> None: ...
+    def __init__(self, *, hidden: bool | None = ...) -> None: ...
     def dump(self) -> dict[str, bool]: ...
     @classmethod
     def from_dict(cls, access_dict: dict[str, bool]) -> Self: ...
@@ -41,26 +42,28 @@ class FileAccessField(SystemField):  # type: ignore[misc]
     _access_obj_class: type[FileAccess]
 
     def __init__(
-        self, key: str | None = ..., access_obj_class: type[FileAccess] = ...
+        self,
+        key: str | None = ...,
+        access_obj_class: type[FileAccess] = ...,
     ) -> None: ...
-    def obj(self, instance: "FileRecord") -> FileAccess: ...
+    def obj(self, instance: FileRecord) -> FileAccess: ...
     def set_obj(
-        self, record: "FileRecord", obj: dict[str, bool] | FileAccess
+        self,
+        record: FileRecord,
+        obj: dict[str, bool] | FileAccess,
     ) -> None: ...
-    def pre_commit(self, record: "FileRecord") -> None: ...
-    @overload  # type: ignore[override]
-    def __get__(self, instance: None, owner: type[FileRecord]) -> Self: ...  # type: ignore # keep typing tighter
+    def pre_commit(self, record: FileRecord) -> None: ...
     @overload
-    def __get__(  # type: ignore # keep typing tighter
-        self, instance: FileRecord, owner: type[FileRecord]
-    ) -> FileAccess: ...
-    def __set__(self, instance: FileRecord, value: FileAccess) -> None: ...  # type: ignore[override]
+    def __get__(self, instance: None, owner: type[FileRecord]) -> Self: ...
+    @overload
+    def __get__(self, instance: FileRecord, owner: type[FileRecord]) -> FileAccess: ...
+    def __set__(self, instance: FileRecord, value: FileAccess) -> None: ...
 
 class FileRecord(RecordBase, SystemFieldsMixin):
     send_signals: ClassVar[bool]
     enable_jsonref: ClassVar[bool]
     model_cls: ClassVar[type[RecordMetadata]]
-    record_cls: ClassVar[type["Record"] | None]
+    record_cls: ClassVar[type[Record] | None]
     dumper: ClassVar[Dumper]
     metadata: ClassVar[DictField]
     access: ClassVar[FileAccessField]
@@ -78,12 +81,15 @@ class FileRecord(RecordBase, SystemFieldsMixin):
     def get_stream(self, mode: str) -> IO[bytes]: ...
     @classmethod
     def list_by_record(
-        cls, record_id: UUID, with_deleted: bool = ...
-    ) -> Generator[Self, None, None]: ...
+        cls,
+        record_id: UUID,
+        *,
+        with_deleted: bool = ...,
+    ) -> Generator[Self]: ...
     @contextmanager
-    def open_stream(self, mode: str) -> Generator[IO[bytes], None, None]: ...
+    def open_stream(self, mode: str) -> Generator[IO[bytes]]: ...
     @property
-    def record(self) -> "Record": ...
+    def record(self) -> Record: ...
     @classmethod
     def remove_all(cls, record_id: UUID) -> None: ...
 

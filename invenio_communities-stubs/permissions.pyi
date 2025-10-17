@@ -1,4 +1,4 @@
-from typing import Optional, TypedDict
+from typing import TypedDict
 
 from flask_principal import Identity
 from invenio_communities.communities.records.api import Community
@@ -68,7 +68,7 @@ class CommunityPermissionPolicy(BasePermissionPolicy):
 
 class PermissionContext(TypedDict, total=False):
     action: str
-    identity: Optional[Identity]
+    identity: Identity | None
     permission_policy_cls: type[BasePermissionPolicy]
 
 def can_perform_action(community: Community, context: PermissionContext) -> bool: ...

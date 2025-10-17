@@ -29,7 +29,7 @@ C = TypeVar("C", bound=RecordServiceConfig)
 
 class RecordService(RecordServiceBase[C], Generic[C]):
     def __init__(
-        self, config, files_service=None, draft_files_service=None
+        self, config, files_service=None, draft_files_service=None,
     ) -> None: ...
     @property
     def files(self): ...
@@ -77,12 +77,12 @@ class RecordService(RecordServiceBase[C], Generic[C]):
     def delete_draft(self, identity: Identity, id_, revision_id=None, uow=None): ...
     def import_files(self, identity: Identity, id_, uow=None): ...
     def validate_draft(
-        self, identity: Identity, id_, ignore_field_permissions: bool = False
+        self, identity: Identity, id_, ignore_field_permissions: bool = False,
     ) -> None: ...
     def cleanup_drafts(
-        self, timedelta, uow=None, search_gc_deletes: int = 60
+        self, timedelta, uow=None, search_gc_deletes: int = 60,
     ) -> None: ...
     def reindex_latest_first(
-        self, identity: Identity, search_preference=None, extra_filter=None, uow=None
+        self, identity: Identity, search_preference=None, extra_filter=None, uow=None,
     ): ...
     def rebuild_index(self, identity: Identity) -> bool: ...  # type: ignore[override]

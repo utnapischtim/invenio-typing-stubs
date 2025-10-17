@@ -15,9 +15,9 @@ from invenio_communities.communities.services.service import (
 )
 
 __all__ = (
+    "CommunityFileServiceConfig",
     "CommunityService",
     "CommunityServiceConfig",
-    "CommunityFileServiceConfig",
-    "SearchOptions",
     "DefaultCommunityComponents",
+    "SearchOptions",
 )

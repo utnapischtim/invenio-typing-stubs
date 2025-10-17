@@ -1,4 +1,5 @@
-from typing import Any, Optional, Sequence
+from collections.abc import Sequence
+from typing import Any
 
 from flask import Flask
 from invenio_pidstore.models import PersistentIdentifier, PIDStatus
@@ -18,27 +19,27 @@ class PIDProvider:
         self,
         name: str,
         client: Any | None = ...,
-        pid_type: Optional[str] = ...,
+        pid_type: str | None = ...,
         default_status: PIDStatus = ...,
         managed: bool = ...,
-        label: Optional[str] = ...,
+        label: str | None = ...,
         *kwargs: Any,
     ) -> None: ...
     def generate_id(
-        self, record: RDMRecord | RDMDraft | dict[str, Any], **kwargs: Any
+        self, record: RDMRecord | RDMDraft | dict[str, Any], **kwargs: Any,
     ) -> str: ...
     @classmethod
     def is_enabled(cls, app: Flask | None = ...) -> bool: ...
     def is_managed(self) -> bool: ...
     def can_modify(self, pid: PersistentIdentifier, **kwargs: Any) -> bool: ...
     def get(
-        self, pid_value: str | int, pid_provider: Optional[str] = ...
+        self, pid_value: str | int, pid_provider: str | None = ...,
     ) -> PersistentIdentifier: ...
     def create(
         self,
         record: Any,
-        pid_value: Optional[str] = ...,
-        status: Optional[PIDStatus] = ...,
+        pid_value: str | None = ...,
+        status: PIDStatus | None = ...,
         **kwargs: Any,
     ) -> PersistentIdentifier: ...
     def reserve(
@@ -57,7 +58,7 @@ class PIDProvider:
         self,
         pid: PersistentIdentifier,
         record: RDMRecord | RDMDraft | dict[str, Any] | None = ...,
-        url: Optional[str] = ...,
+        url: str | None = ...,
         **kwargs: Any,
     ) -> bool | None: ...
     def restore(self, pid: PersistentIdentifier, **kwargs: Any) -> None: ...
@@ -66,23 +67,23 @@ class PIDProvider:
         pid: PersistentIdentifier,
         soft_delete: bool = ...,
         **kwargs: Any,
-    ) -> Optional[bool]: ...
+    ) -> bool | None: ...
     def validate(
         self,
         record: RDMRecord | RDMDraft | dict[str, Any],
-        identifier: Optional[str] = ...,
-        provider: Optional[str] = ...,
+        identifier: str | None = ...,
+        provider: str | None = ...,
         **kwargs: Any,
     ) -> tuple[bool, list[dict[str, Any]]]: ...
     def _insert_pid_type_error_msg(
-        self, errors: list[dict[str, Any]], error_msg: str | Sequence[str]
+        self, errors: list[dict[str, Any]], error_msg: str | Sequence[str],
     ) -> None: ...
     def validate_restriction_level(
         self,
         record: RDMRecord | RDMDraft | dict[str, Any],
-        identifier: Optional[str],
+        identifier: str | None,
         **kwargs: Any,
     ) -> None: ...
     def create_and_reserve(
-        self, record: RDMRecord | RDMDraft | dict[str, Any], **kwargs: Any
+        self, record: RDMRecord | RDMDraft | dict[str, Any], **kwargs: Any,
     ) -> None: ...

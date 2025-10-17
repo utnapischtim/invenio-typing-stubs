@@ -1,4 +1,5 @@
-from typing import Any, Generic, Iterator, TypeVar, Union
+from collections.abc import Iterator
+from typing import Any, Generic, TypeVar
 
 from flask_principal import AnonymousIdentity, Identity
 from invenio_records_resources.services.base.components import BaseServiceComponent
@@ -19,7 +20,7 @@ class Service(Generic[C]):
     def __init__(self, config: C) -> None: ...
     def check_permission(
         self,
-        identity: Union[Identity, AnonymousIdentity],
+        identity: Identity | AnonymousIdentity,
         action_name: str,
         **kwargs: Any,
     ) -> bool: ...
@@ -30,7 +31,7 @@ class Service(Generic[C]):
     def permission_policy(self, action_name: str, **kwargs: Any) -> Any: ...
     def require_permission(
         self,
-        identity: Union[Identity, AnonymousIdentity],
+        identity: Identity | AnonymousIdentity,
         action_name: str,
         **kwargs: Any,
     ) -> None: ...

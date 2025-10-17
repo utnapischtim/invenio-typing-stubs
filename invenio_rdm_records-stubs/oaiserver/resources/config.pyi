@@ -10,7 +10,7 @@ from invenio_records_resources.services.base.config import ConfiguratorMixin
 from werkzeug.exceptions import HTTPException
 
 oaipmh_error_handlers: Mapping[
-    int | type[HTTPException] | type[BaseException],
+    type[HTTPException | BaseException] | int,
     Callable[[Exception], Response],
 ]
 
@@ -28,11 +28,11 @@ class OAIPMHServerResourceConfig(ResourceConfig, ConfiguratorMixin):
     request_read_args: Mapping[str, Any]
     request_view_args: Mapping[str, ma.fields.Field]
     request_search_args: (
-        type[SearchRequestArgsSchema] | type[OAIPMHServerSearchRequestArgsSchema]
+        type[SearchRequestArgsSchema | OAIPMHServerSearchRequestArgsSchema]
     )
 
     error_handlers: Mapping[
-        int | type[HTTPException] | type[BaseException],
+        type[HTTPException | BaseException] | int,
         Callable[[Exception], Response],
     ]
 

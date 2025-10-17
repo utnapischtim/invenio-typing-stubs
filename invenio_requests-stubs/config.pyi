@@ -1,4 +1,4 @@
-from typing import Any, Dict, List
+from typing import Any
 
 from invenio_records_resources.references.entity_resolvers.base import EntityResolver
 from invenio_requests.customizations import CommentEventType as CommentEventType
@@ -10,17 +10,17 @@ from invenio_requests.services.permissions import PermissionPolicy as Permission
 from invenio_requests.services.requests import facets as facets
 
 REQUESTS_PERMISSION_POLICY = PermissionPolicy
-REQUESTS_REGISTERED_TYPES: List[RequestType]
-REQUESTS_REGISTERED_EVENT_TYPES: List[RequestEventType]
-REQUESTS_ENTITY_RESOLVERS: List[type[EntityResolver] | EntityResolver]
-REQUESTS_ROUTES: Dict[str, str]
-REQUESTS_SEARCH: Dict[str, List[str]]
-REQUESTS_SORT_OPTIONS: Dict[str, Dict[str, Any]]
-REQUESTS_FACETS: Dict[str, Dict[str, Any]]
+REQUESTS_REGISTERED_TYPES: list[RequestType]
+REQUESTS_REGISTERED_EVENT_TYPES: list[RequestEventType]
+REQUESTS_ENTITY_RESOLVERS: list[type[EntityResolver] | EntityResolver]
+REQUESTS_ROUTES: dict[str, str]
+REQUESTS_SEARCH: dict[str, list[str]]
+REQUESTS_SORT_OPTIONS: dict[str, dict[str, Any]]
+REQUESTS_FACETS: dict[str, dict[str, Any]]
 REQUESTS_TIMELINE_PAGE_SIZE: int
 REQUESTS_MODERATION_ROLE: str
-REQUESTS_USER_MODERATION_SEARCH: Dict[str, List[str]]
-REQUESTS_USER_MODERATION_SORT_OPTIONS: Dict[str, Dict[str, Any]]
-REQUESTS_USER_MODERATION_FACETS: Dict[str, Dict[str, Any]]
+REQUESTS_USER_MODERATION_SEARCH: dict[str, list[str]]
+REQUESTS_USER_MODERATION_SORT_OPTIONS: dict[str, dict[str, Any]]
+REQUESTS_USER_MODERATION_FACETS: dict[str, dict[str, Any]]
 REQUESTS_REVIEWERS_ENABLED: bool
 REQUESTS_REVIEWERS_MAX_NUMBER: int

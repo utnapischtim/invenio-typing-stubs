@@ -16,10 +16,10 @@ from invenio_vocabularies.resources.schema import (
 )
 
 __all__ = [
-    "VocabularyL10Schema",
     "L10NString",
-    "VocabulariesResourceConfig",
-    "VocabularyTypeResourceConfig",
     "VocabulariesAdminResource",
     "VocabulariesResource",
+    "VocabulariesResourceConfig",
+    "VocabularyL10Schema",
+    "VocabularyTypeResourceConfig",
 ]

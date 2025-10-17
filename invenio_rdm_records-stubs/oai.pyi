@@ -1,4 +1,3 @@
-from __future__ import annotations
 
 from typing import Any
 
@@ -7,7 +6,7 @@ from invenio_search import RecordsSearch
 from lxml import etree
 
 def dublincore_etree(
-    pid: Any, record: Any, **serializer_kwargs: Any
+    pid: Any, record: Any, **serializer_kwargs: Any,
 ) -> etree._Element: ...
 def marcxml_etree(pid: Any, record: Any) -> etree._Element: ...
 def dcat_etree(pid: Any, record: Any) -> etree._Element: ...

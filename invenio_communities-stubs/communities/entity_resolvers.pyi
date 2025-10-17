@@ -1,4 +1,3 @@
-from typing import Dict
 
 from invenio_communities.communities.records.api import Community as Community
 from invenio_communities.communities.schema import (
@@ -29,4 +28,4 @@ class CommunityPKProxy(RecordPKProxy):
 class CommunityResolver(RecordResolver):
     type_id: str
     def __init__(self) -> None: ...
-    def _reference_entity(self, entity) -> Dict[str, str]: ...
+    def _reference_entity(self, entity) -> dict[str, str]: ...

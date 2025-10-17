@@ -1,7 +1,6 @@
 from typing import Any
 
 from flask_principal import Identity
-from invenio_access.permissions import system_identity
 from invenio_audit_logs.proxies import (
     current_audit_logs_service as current_audit_logs_service,
 )
@@ -13,7 +12,7 @@ class AuditLogOp(Operation):
     identity: Identity
     result: Any
     def __init__(
-        self, data: dict[str, Any], identity: Identity = system_identity
+        self, data: dict[str, Any], identity: Identity = ...,
     ) -> None: ...
     def on_register(self, uow: UnitOfWork) -> None: ...
 

@@ -1,6 +1,5 @@
-from typing import Type
 
 from invenio_records_resources.records.api import Record
 from invenio_vocabularies.contrib.funders.funders import record_type as record_type
 
-Funder: Type[Record]
+Funder: type[Record]

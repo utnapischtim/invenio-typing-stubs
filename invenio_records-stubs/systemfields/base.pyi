@@ -1,11 +1,6 @@
 from typing import (
     Any,
-    Dict,
-    Optional,
     Self,
-    Tuple,
-    Type,
-    Union,
     overload,
 )
 
@@ -14,11 +9,11 @@ from invenio_records.dumpers.search import SearchDumper
 from invenio_records.extensions import ExtensionMixin, RecordExtension, RecordMeta
 
 def _get_fields(
-    attrs: Any, field_class: Type[SystemField]
-) -> Dict[str, SystemField]: ...
+    attrs: Any, field_class: type[SystemField],
+) -> dict[str, SystemField]: ...
 def _get_inherited_fields(
-    class_: Type[SystemFieldsMixin], field_class: Type[SystemField]
-) -> Dict[Any, Any]: ...
+    class_: type[SystemFieldsMixin], field_class: type[SystemField],
+) -> dict[Any, Any]: ...
 
 #
 # How to type SystemField
@@ -44,14 +39,14 @@ def _get_inherited_fields(
 #
 
 class SystemField(ExtensionMixin):
-    def __init__(self, key: Optional[str] = ...): ...
+    def __init__(self, key: str | None = ...): ...
     @property
     def attr_name(self) -> str: ...
     @property
     def key(self) -> str: ...
     def get_dictkey(self, instance: Record) -> Any: ...
     def set_dictkey(
-        self, instance: Record, value: Any, create_if_missing: bool = False
+        self, instance: Record, value: Any, create_if_missing: bool = False,
     ) -> None: ...
     def _set_cache(self, instance: Record, obj: Any) -> None: ...
     def _get_cache(self, instance: Record) -> Any: ...
@@ -67,14 +62,13 @@ class SystemField(ExtensionMixin):
 class SystemFieldsMixin(metaclass=SystemFieldsMeta):
     """Mixin for classes that support system fields."""
 
-    pass
 
 class SystemFieldContext:
     @property
     def field(self) -> SystemField: ...
 
 class SystemFieldsExt(RecordExtension):
-    def __init__(self, declared_fields: Dict[str, SystemField]): ...
+    def __init__(self, declared_fields: dict[str, SystemField]): ...
     def _run(self, method: str, *args, **kwargs): ...
     def post_commit(self, *args, **kwargs): ...
     def post_create(self, *args, **kwargs): ...
@@ -86,16 +80,16 @@ class SystemFieldsExt(RecordExtension):
     def pre_init(self, *args, **kwargs): ...
     def pre_load(
         self,
-        data: Dict[str, Optional[Union[str, int]]],
-        loader: Optional[SearchDumper] = ...,
+        data: dict[str, str | int | None],
+        loader: SearchDumper | None = ...,
     ): ...
     def pre_revert(self, *args, **kwargs): ...
 
 class SystemFieldsMeta(RecordMeta):
     @staticmethod
     def __new__(
-        mcs: Type[SystemFieldsMeta],
+        mcs: type[SystemFieldsMeta],
         name: str,
-        bases: Tuple[()],
-        attrs: Dict[str, Union[str, int, Tuple[()]]],
+        bases: tuple[()],
+        attrs: dict[str, str | int | tuple[()]],
     ) -> SystemFieldsMeta: ...

@@ -11,11 +11,11 @@ class BaseWriter(ABC, metaclass=abc.ABCMeta):
     def __init__(self, *args: Any, **kwargs: Any) -> None: ...
     @abstractmethod
     def write(
-        self, stream_entry: StreamEntry, *args: Any, **kwargs: Any
+        self, stream_entry: StreamEntry, *args: Any, **kwargs: Any,
     ) -> StreamEntry: ...
     @abstractmethod
     def write_many(
-        self, stream_entries: list[StreamEntry], *args: Any, **kwargs: Any
+        self, stream_entries: list[StreamEntry], *args: Any, **kwargs: Any,
     ) -> list[StreamEntry]: ...
 
 class ServiceWriter(BaseWriter):
@@ -30,23 +30,23 @@ class ServiceWriter(BaseWriter):
     ) -> None: ...
     def write(self, stream_entry: StreamEntry, *args, **kwargs) -> StreamEntry: ...
     def write_many(
-        self, stream_entries: list[StreamEntry], *args, **kwargs
+        self, stream_entries: list[StreamEntry], *args, **kwargs,
     ) -> list[StreamEntry]: ...
 
 class YamlWriter(BaseWriter):
     def __init__(self, filepath: str, *args: Any, **kwargs: Any) -> None: ...
     def write(
-        self, stream_entry: StreamEntry, *args: Any, **kwargs: Any
+        self, stream_entry: StreamEntry, *args: Any, **kwargs: Any,
     ) -> StreamEntry: ...
     def write_many(
-        self, stream_entries: list[StreamEntry], *args: Any, **kwargs: Any
+        self, stream_entries: list[StreamEntry], *args: Any, **kwargs: Any,
     ) -> list[StreamEntry]: ...
 
 class AsyncWriter(BaseWriter):
     def __init__(self, writer: BaseWriter, *args: Any, **kwargs: Any) -> None: ...
     def write(
-        self, stream_entry: StreamEntry, *args: Any, **kwargs: Any
+        self, stream_entry: StreamEntry, *args: Any, **kwargs: Any,
     ) -> StreamEntry: ...
     def write_many(
-        self, stream_entries: list[StreamEntry], *args: Any, **kwargs: Any
+        self, stream_entries: list[StreamEntry], *args: Any, **kwargs: Any,
     ) -> list[StreamEntry]: ...

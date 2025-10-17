@@ -4,7 +4,7 @@ from typing import Any, Dict, Generic, List, Optional, TypeVar, Union
 import marshmallow as ma
 from _typeshed import Incomplete
 from flask_principal import Identity
-from invenio_db.uow import UnitOfWork, dummy_uow
+from invenio_db.uow import UnitOfWork
 from invenio_records_resources.services import RecordService
 from invenio_records_resources.services.records.schema import ServiceSchemaWrapper
 from invenio_requests.customizations import RequestActions as RequestActions
@@ -38,37 +38,41 @@ class RequestsService(RecordService[C], Generic[C]):
     @property
     def expandable_fields(
         self,
-    ) -> List[EntityResolverExpandableField | MultiEntityResolverExpandableField]: ...
+    ) -> list[EntityResolverExpandableField | MultiEntityResolverExpandableField]: ...
     def _execute(
-        self, identity: Identity, request: Request, action: str, uow: UnitOfWork
+        self,
+        identity: Identity,
+        request: Request,
+        action: str,
+        uow: UnitOfWork,
     ) -> None: ...
     def create(  # type: ignore[override]
         self,
         identity: Identity,
-        data: Dict[str, Any],
+        data: dict[str, Any],
         request_type: Incomplete,
-        receiver: Dict[str, Any] | None = None,
-        creator: Optional[Dict[str, Any]] = None,
-        topic: Optional[Dict[str, Any]] = None,
-        expires_at: Optional[datetime] = None,
-        uow: UnitOfWork = dummy_uow,
+        receiver: dict[str, Any],
+        creator: dict[str, Any] | None = None,
+        topic: dict[str, Any] | None = None,
+        expires_at: str | None = None,
+        uow: UnitOfWork = ...,
         expand: bool = False,
     ) -> RequestItem: ...
     def execute_action(
         self,
         identity: Identity,
-        id_: Union[str, int],
+        id_: str | int,
         action: str,
-        data: Optional[Dict[str, Any]] = None,
-        uow: UnitOfWork = dummy_uow,
+        data: dict[str, Any] | None = None,
+        uow: UnitOfWork = ...,
         expand: bool = False,
         **kwargs: Any,
     ) -> RequestItem: ...
     def search_user_requests(
         self,
         identity: Identity,
-        params: Optional[Dict[str, Any]] = None,
-        search_preference: Optional[str] = None,
+        params: dict[str, Any] | None = None,
+        search_preference: str | None = None,
         expand: bool = False,
         **kwargs: Any,
     ) -> RequestList: ...

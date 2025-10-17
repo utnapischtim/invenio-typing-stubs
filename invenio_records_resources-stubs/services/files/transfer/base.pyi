@@ -60,6 +60,6 @@ class Transfer(ABC):
     def status(self) -> str: ...
 
 __all__ = (
-    "TransferStatus",
     "Transfer",
+    "TransferStatus",
 )

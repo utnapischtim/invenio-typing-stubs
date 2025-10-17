@@ -15,4 +15,4 @@ class _DraftMediaFilesComponent(BaseRecordFilesComponent):
 MediaFilesAttrConfig: dict[str, Any]
 
 class DraftMediaFilesComponent(BaseRecordFilesComponent):
-    pass
+    ...

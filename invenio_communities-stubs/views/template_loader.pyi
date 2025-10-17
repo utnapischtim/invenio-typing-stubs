@@ -1,4 +1,3 @@
-from typing import List
 
 from flask import Flask
 from flask.templating import DispatchingJinjaLoader
@@ -9,10 +8,10 @@ from werkzeug.utils import cached_property
 class CommunityThemeJinjaLoader(ThemeJinjaLoader):
     brand: str
     def __init__(
-        self, app: Flask, loader: DispatchingJinjaLoader, brand: str
+        self, app: Flask, loader: DispatchingJinjaLoader, brand: str,
     ) -> None: ...
     @cached_property
-    def prefixes(self) -> List[str]: ...
+    def prefixes(self) -> list[str]: ...
 
 class CommunityThemeChoiceJinjaLoader(ChoiceLoader):
     app: Flask

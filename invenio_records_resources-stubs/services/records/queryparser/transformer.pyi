@@ -1,11 +1,10 @@
-from __future__ import annotations
 
 from collections.abc import Callable, Generator
 from typing import Any
 
-from invenio_access.permissions import Permission  # type: ignore[import-untyped]
-from luqum.tree import Phrase, SearchField, Word  # type: ignore[import-untyped]
-from luqum.visitor import TreeTransformer  # type: ignore[import-untyped]
+from invenio_access.permissions import Permission
+from luqum.tree import Phrase, SearchField, Word
+from luqum.visitor import TreeTransformer
 
 class FieldValueMapper:
     """Class used to remap values to new terms."""
@@ -76,14 +75,14 @@ class SearchFieldTransformer(TreeTransformer):
         self,
         node: SearchField,
         context: dict[str, Any],
-    ) -> Generator[SearchField, None, None]: ...
+    ) -> Generator[SearchField]: ...
     def visit_word(
         self,
         node: Word,
         context: dict[str, Any],
-    ) -> Generator[Word, None, None]: ...
+    ) -> Generator[Word]: ...
     def visit_phrase(
         self,
         node: Phrase,
         context: dict[str, Any],
-    ) -> Generator[Phrase, None, None]: ...
+    ) -> Generator[Phrase]: ...

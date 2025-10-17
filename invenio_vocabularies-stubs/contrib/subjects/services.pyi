@@ -11,5 +11,5 @@ C = TypeVar("C", bound=RecordServiceConfig)
 
 class SubjectsService(RecordService[C], Generic[C]):
     def create_scheme(
-        self, identity, id_, name: str = "", uri: str = ""
+        self, identity, id_, name: str = "", uri: str = "",
     ) -> VocabularyScheme: ...

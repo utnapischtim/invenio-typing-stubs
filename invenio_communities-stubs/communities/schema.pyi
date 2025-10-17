@@ -1,4 +1,4 @@
-from typing import Any, Dict
+from typing import Any
 
 from invenio_records_resources.services.records.schema import BaseRecordSchema
 from invenio_vocabularies.contrib.affiliations.schema import (
@@ -77,7 +77,7 @@ class BaseCommunitySchema(BaseRecordSchema, FieldPermissionsMixin):
     class Meta:
         unknown = EXCLUDE
 
-    field_dump_permissions: Dict[str, str]
+    field_dump_permissions: dict[str, str]
     id: fields.Str
     slug: fields.Str
     metadata: fields.Nested
@@ -90,8 +90,8 @@ class BaseCommunitySchema(BaseRecordSchema, FieldPermissionsMixin):
     children: fields.Nested
     @post_dump
     def post_dump(
-        self, data: Dict[str, Any], many: bool, **kwargs: Any
-    ) -> Dict[str, Any]: ...
+        self, data: dict[str, Any], many: bool, **kwargs: Any,
+    ) -> dict[str, Any]: ...
 
 class CommunityParentSchema(BaseCommunitySchema): ...
 
@@ -99,17 +99,17 @@ class CommunitySchema(BaseCommunitySchema):
     parent: fields.Nested
     @post_dump
     def post_dump(
-        self, data: Dict[str, Any], many: bool, **kwargs: Any
-    ) -> Dict[str, Any]: ...
+        self, data: dict[str, Any], many: bool, **kwargs: Any,
+    ) -> dict[str, Any]: ...
     def filter_parent_id(
-        self, in_data: Dict[str, Any], original_data: Dict[str, Any], **kwargs: Any
-    ) -> Dict[str, Any]: ...
+        self, in_data: dict[str, Any], original_data: dict[str, Any], **kwargs: Any,
+    ) -> dict[str, Any]: ...
     @pre_load
     def initialize_custom_fields(
-        self, data: Dict[str, Any], **kwargs: Any
-    ) -> Dict[str, Any]: ...
+        self, data: dict[str, Any], **kwargs: Any,
+    ) -> dict[str, Any]: ...
     @post_load
-    def lowercase(self, in_data: Dict[str, Any], **kwargs: Any) -> Dict[str, Any]: ...
+    def lowercase(self, in_data: dict[str, Any], **kwargs: Any) -> dict[str, Any]: ...
 
 class CommunityFeaturedSchema(Schema):
     id: fields.Int

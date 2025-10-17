@@ -30,9 +30,9 @@ __all__ = (
     "ExternalLink",
     "Link",
     "LinksTemplate",
+    "NestedLinks",
     "Service",
     "ServiceConfig",
     "ServiceItemResult",
     "ServiceListResult",
-    "NestedLinks",
 )

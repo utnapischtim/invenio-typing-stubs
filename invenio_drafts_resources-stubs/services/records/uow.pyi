@@ -1,4 +1,4 @@
-from typing import Any, Optional, Protocol, Union
+from typing import Any, Protocol
 
 from invenio_db.uow import UnitOfWork
 from invenio_drafts_resources.records.api import ParentRecord
@@ -16,7 +16,7 @@ class _IndexerContext(Protocol):
 class ParentRecordCommitOp(RecordCommitOp):
     """Parent record commit operation, bulk indexing records and drafts."""
 
-    _indexer_context: Optional[Union[_IndexerContext, dict[str, Any]]]
+    _indexer_context: _IndexerContext | dict[str, Any] | None
     _record_cls: type
     _draft_cls: type
     _record_indexer: RecordIndexer
@@ -26,7 +26,7 @@ class ParentRecordCommitOp(RecordCommitOp):
     def __init__(
         self,
         parent: ParentRecord,
-        indexer_context: Optional[Union[_IndexerContext, dict[str, Any]]] = ...,
+        indexer_context: _IndexerContext | dict[str, Any] | None = ...,
         bulk_index: bool = ...,
     ) -> None: ...
     def on_commit(self, uow: UnitOfWork) -> None: ...

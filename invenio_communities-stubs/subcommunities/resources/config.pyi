@@ -27,6 +27,6 @@ class SubCommunityResourceConfig(ConfiguratorMixin, ResourceConfig):
     response_handlers: Mapping[str, ResponseHandler]
     default_accept_mimetype: str | None
     error_handlers: Mapping[
-        int | type[HTTPException] | type[BaseException],
+        type[HTTPException | BaseException] | int,
         Callable[[Exception], Response],
     ]

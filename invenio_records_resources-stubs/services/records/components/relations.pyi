@@ -21,7 +21,7 @@ class RelationsComponent(ServiceComponent):
     """Relations service component."""
 
     def read(
-        self, identity: Identity, record: Record | None = None, **kwargs: Any
+        self, identity: Identity, record: Record | None = None, **kwargs: Any,
     ) -> None: ...
 
 class ChangeNotificationsComponent(ServiceComponent):

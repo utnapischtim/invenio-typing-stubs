@@ -1,8 +1,3 @@
-from typing import (
-    Dict,
-    List,
-    Union,
-)
 
 from flask_principal import (
     AnonymousIdentity,
@@ -26,16 +21,10 @@ class FileMetadataComponent(FileServiceComponent):
         identity: Identity,
         id_: str,
         record: Record,
-        data: List[
-            Dict[
+        data: list[
+            dict[
                 str,
-                Union[
-                    str,
-                    Dict[str, str],
-                    int,
-                    Dict[str, bool],
-                    Dict[str, Union[str, int]],
-                ],
+                str | dict[str, str] | int | dict[str, bool] | dict[str, str | int],
             ]
         ],
     ): ...
@@ -45,7 +34,7 @@ class FileMetadataComponent(FileServiceComponent):
         id_: str,
         file_key: str,
         record: Record,
-        data: Dict[str, Dict[str, str]],
+        data: dict[str, dict[str, str]],
     ): ...
     def update_transfer_metadata(
         self,
@@ -53,5 +42,5 @@ class FileMetadataComponent(FileServiceComponent):
         id_: str,
         file_key: str,
         record: Record,
-        transfer_metadata: Dict[str, str],
+        transfer_metadata: dict[str, str],
     ): ...

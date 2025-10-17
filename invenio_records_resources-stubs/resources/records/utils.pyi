@@ -11,4 +11,3 @@
 
 def search_preference() -> str:
     """Generating an identifier for use with the search engine preference param."""
-    ...

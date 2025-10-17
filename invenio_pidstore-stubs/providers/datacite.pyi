@@ -3,7 +3,7 @@
 Type stubs for invenio_pidstore.providers.datacite.
 """
 
-from typing import Any, ClassVar, Optional
+from typing import Any, ClassVar
 
 from datacite import DataCiteMDSClient
 from invenio_pidstore.models import PersistentIdentifier, PIDStatus
@@ -20,7 +20,7 @@ class DataCiteProvider(BaseProvider):
     def __init__(
         self,
         pid: PersistentIdentifier,
-        client: Optional[DataCiteMDSClient] = None,
+        client: DataCiteMDSClient | None = None,
         **kwargs: Any,
     ) -> None: ...
     def reserve(self, doc: str) -> bool: ...

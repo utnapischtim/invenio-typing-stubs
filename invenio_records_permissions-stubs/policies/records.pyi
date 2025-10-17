@@ -1,4 +1,3 @@
-from typing import Type
 
 from invenio_records_permissions.generators import Generator
 from invenio_records_permissions.policies.base import BasePermissionPolicy
@@ -16,4 +15,4 @@ class RecordPermissionPolicy(BasePermissionPolicy):
     original_action: str
     def __init__(self, action: str, **over) -> None: ...
 
-def get_record_permission_policy() -> Type[RecordPermissionPolicy]: ...
+def get_record_permission_policy() -> type[RecordPermissionPolicy]: ...

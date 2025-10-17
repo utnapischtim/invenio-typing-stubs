@@ -75,7 +75,7 @@ class RecordTypeFactory:
         search_options: type[SearchOptions] | SearchOptions | None = None,
         service_components: list[type[BaseServiceComponent]] | None = None,
         permission_policy_cls: type[RecordPermissionPolicy] | None = None,
-        pid_field_cls: type[PIDField] = PIDField,
+        pid_field_cls: type[PIDField] = ...,
         pid_field_kwargs: dict[str, Any] | None = None,
         model_cls_attrs: dict[str, Any] | None = None,
         record_cls_attrs: dict[str, Any] | None = None,

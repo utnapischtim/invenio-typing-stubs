@@ -1,4 +1,3 @@
-from __future__ import annotations
 
 from datetime import date, datetime
 from typing import Any
@@ -41,5 +40,5 @@ class SecretLink(_Model):
     def validate_token(cls, token: str, expected_data: dict[str, Any]) -> bool: ...
     @staticmethod
     def load_token(
-        token: str, expected_data: dict[str, Any] | None = ..., *, force: bool = ...
+        token: str, expected_data: dict[str, Any] | None = ..., *, force: bool = ...,
     ) -> dict[str, Any] | None: ...

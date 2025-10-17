@@ -1,5 +1,5 @@
-from collections.abc import Mapping
-from typing import Any, Callable, Dict
+from collections.abc import Callable, Mapping
+from typing import Any
 
 import marshmallow as ma
 from invenio_indexer.api import RecordIndexer
@@ -38,7 +38,7 @@ from invenio_requests.services.requests.params import (
 from invenio_requests.services.requests.results import RequestItem as RequestItem
 from invenio_requests.services.requests.results import RequestList as RequestList
 
-def _is_action_available(request: Request, context: Dict[str, Any]) -> bool: ...
+def _is_action_available(request: Request, context: dict[str, Any]) -> bool: ...
 
 class RequestSearchOptions(SearchOptions, SearchOptionsMixin):
     # NOTE: immutable defaults prevent shared-state mutation across configs.

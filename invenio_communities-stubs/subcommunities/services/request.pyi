@@ -1,4 +1,4 @@
-from typing import Any, Type
+from typing import Any
 
 from flask_principal import Identity
 from invenio_db.uow import UnitOfWork
@@ -49,7 +49,7 @@ class SubCommunityInvitationRequest(RequestType):
     available_actions: dict[str, type[RequestAction]]
     needs_context: Any
 
-def subcommunity_request_type(app: Flask) -> Type[SubCommunityRequest] | None: ...
+def subcommunity_request_type(app: Flask) -> type[SubCommunityRequest] | None: ...
 def subcommunity_invitation_request_type(
     app: Flask,
-) -> Type[SubCommunityInvitationRequest] | None: ...
+) -> type[SubCommunityInvitationRequest] | None: ...

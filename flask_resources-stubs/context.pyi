@@ -1,4 +1,3 @@
-from __future__ import annotations
 
 from collections.abc import Callable, Mapping
 from types import TracebackType
@@ -8,7 +7,7 @@ from flask import Response
 
 class ResponseHandlerProtocol(Protocol):
     def make_response(
-        self, obj_or_list: Any, code: int, many: bool = False
+        self, obj_or_list: Any, code: int, many: bool = False,
     ) -> Response: ...
 
 class ResourceConfigProtocol(Protocol):

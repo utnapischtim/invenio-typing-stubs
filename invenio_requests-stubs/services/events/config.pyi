@@ -1,4 +1,4 @@
-from typing import Any, Dict
+from typing import Any
 
 import marshmallow as ma
 from invenio_indexer.api import RecordIndexer
@@ -21,7 +21,7 @@ class RequestEventList(RecordList): ...
 
 class RequestEventLink(Link):
     @staticmethod
-    def vars(record: RequestEvent, vars: Dict[str, Any]) -> None: ...
+    def vars(record: RequestEvent, vars: dict[str, Any]) -> None: ...
 
 class RequestEventsServiceConfig(
     RecordServiceConfig[

@@ -24,6 +24,6 @@ class TransferField(SystemField):  # type: ignore[misc]
     def __get__(self, instance: None, owner: type[FileRecord]) -> Self: ...  # type: ignore # keep typing tighter
     @overload
     def __get__(  # type: ignore # keep typing tighter
-        self, instance: FileRecord, owner: type[FileRecord]
+        self, instance: FileRecord, owner: type[FileRecord],
     ) -> TransferFieldData: ...
     def __set__(self, instance: FileRecord, value: TransferFieldData) -> None: ...  # type: ignore[override]

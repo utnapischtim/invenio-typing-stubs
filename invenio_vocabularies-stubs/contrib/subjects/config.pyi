@@ -1,12 +1,13 @@
-from typing import Any, Dict, Mapping, Type
+from collections.abc import Mapping
+from typing import Any
 
 from invenio_records_resources.services import SearchOptions
 from invenio_records_resources.services.records.components import ServiceComponent
 from invenio_records_resources.services.records.queryparser import QueryParser
 from invenio_vocabularies.services.components import PIDComponent as PIDComponent
 
-subject_schemes: Dict[
-    str, Dict[str, Any]
+subject_schemes: dict[
+    str, dict[str, Any],
 ]  # intentionally not using a LocalProxy[Dict[str, Dict[str, Any]]] here as mypy does not understand it
 localized_title: (
     str  # intentionally not using a LocalProxy[str] here as mypy does not understand it
@@ -28,4 +29,4 @@ class SubjectsSearchOptions(SearchOptions):
     sort_default_no_query: str
     sort_options: Mapping[str, Mapping[str, Any]]
 
-service_components: tuple[Type[ServiceComponent], ...]
+service_components: tuple[type[ServiceComponent], ...]

@@ -9,4 +9,4 @@ from invenio_records_resources.services.records.service import RecordService
 C = TypeVar("C", bound=AuditLogServiceConfig)
 
 class AuditLogService(RecordService[C], Generic[C]):
-    pass
+    ...

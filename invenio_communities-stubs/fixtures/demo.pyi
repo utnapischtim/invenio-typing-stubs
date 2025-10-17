@@ -1,5 +1,5 @@
-from typing import Any, Dict
+from typing import Any
 
 from faker.proxy import Faker
 
-def create_fake_community(faker: Faker) -> Dict[str, Any]: ...
+def create_fake_community(faker: Faker) -> dict[str, Any]: ...

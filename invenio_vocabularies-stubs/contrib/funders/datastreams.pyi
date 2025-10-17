@@ -1,4 +1,4 @@
-from typing import Any, Dict, Type
+from typing import Any
 
 from invenio_vocabularies.contrib.common.ror.datastreams import (
     RORTransformer as RORTransformer,
@@ -11,10 +11,10 @@ class FundersServiceWriter(ServiceWriter):
 
 class FundersRORTransformer(RORTransformer):
     def __init__(
-        self, *args, vocab_schemes=None, funder_fundref_doi_prefix=None, **kwargs
+        self, *args, vocab_schemes=None, funder_fundref_doi_prefix=None, **kwargs,
     ) -> None: ...
 
-VOCABULARIES_DATASTREAM_READERS: Dict[str, Type[Any]]
-VOCABULARIES_DATASTREAM_WRITERS: Dict[str, Type[FundersServiceWriter]]
-VOCABULARIES_DATASTREAM_TRANSFORMERS: Dict[str, Type[FundersRORTransformer]]
-DATASTREAM_CONFIG: Dict[str, Any]
+VOCABULARIES_DATASTREAM_READERS: dict[str, type[Any]]
+VOCABULARIES_DATASTREAM_WRITERS: dict[str, type[FundersServiceWriter]]
+VOCABULARIES_DATASTREAM_TRANSFORMERS: dict[str, type[FundersRORTransformer]]
+DATASTREAM_CONFIG: dict[str, Any]

@@ -9,7 +9,8 @@
 
 """Record Resource Configuration."""
 
-from typing import Any, Mapping
+from collections.abc import Mapping
+from typing import Any
 
 import marshmallow as ma
 from flask_resources import RequestBodyParser, ResourceConfig, ResponseHandler

@@ -18,10 +18,10 @@ from invenio_drafts_resources.services.records.components.relations import (
 )
 
 __all__ = [
-    "ServiceComponent",
     "DraftFilesComponent",
+    "DraftMediaFilesComponent",
     "DraftMetadataComponent",
     "PIDComponent",
     "RelationsComponent",
-    "DraftMediaFilesComponent",
+    "ServiceComponent",
 ]

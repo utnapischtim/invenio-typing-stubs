@@ -6,7 +6,7 @@ Type stubs for invenio_pidstore.models.
 import logging
 import uuid
 from enum import Enum
-from typing import ClassVar, Optional, Union
+from typing import ClassVar
 
 from flask_babel import LazyString
 from sqlalchemy import Column, Index
@@ -26,7 +26,6 @@ class PIDStatus(Enum):
 
     def __init__(self, value: str) -> None: ...
     def __eq__(self, other: object) -> bool: ...
-    def __str__(self) -> str: ...
     @property
     def title(self) -> str: ...
 
@@ -41,43 +40,43 @@ class PersistentIdentifier(_Model, Timestamp):
     id: Column[int]
     pid_type: Column[str]
     pid_value: Column[str]
-    pid_provider: Column[Optional[str]]
+    pid_provider: Column[str | None]
     status: Column[PIDStatus]
-    object_type: Column[Optional[str]]
-    object_uuid: Column[Optional[uuid.UUID]]
+    object_type: Column[str | None]
+    object_uuid: Column[uuid.UUID | None]
 
     @classmethod
     def create(
         cls,
         pid_type: str,
         pid_value: str,
-        pid_provider: Optional[str] = None,
+        pid_provider: str | None = None,
         status: PIDStatus = ...,
-        object_type: Optional[str] = None,
-        object_uuid: Optional[Union[str, uuid.UUID]] = None,
+        object_type: str | None = None,
+        object_uuid: str | uuid.UUID | None = None,
     ) -> PersistentIdentifier: ...
     @classmethod
     def get(
         cls,
         pid_type: str,
-        pid_value: Union[str, int],
-        pid_provider: Optional[str] = None,
+        pid_value: str | int,
+        pid_provider: str | None = None,
     ) -> PersistentIdentifier: ...
     @classmethod
     def get_by_object(
         cls,
         pid_type: str,
         object_type: str,
-        object_uuid: Union[str, uuid.UUID],
+        object_uuid: str | uuid.UUID,
     ) -> PersistentIdentifier: ...
     def has_object(self) -> bool: ...
     def get_assigned_object(
-        self, object_type: Optional[str] = None
-    ) -> Optional[uuid.UUID]: ...
+        self, object_type: str | None = None,
+    ) -> uuid.UUID | None: ...
     def assign(
         self,
         object_type: str,
-        object_uuid: Union[str, uuid.UUID],
+        object_uuid: str | uuid.UUID,
         overwrite: bool = False,
     ) -> bool: ...
     def unassign(self) -> bool: ...
@@ -92,7 +91,6 @@ class PersistentIdentifier(_Model, Timestamp):
     def is_deleted(self) -> bool: ...
     def is_new(self) -> bool: ...
     def is_reserved(self) -> bool: ...
-    def __repr__(self) -> str: ...
 
 class Redirect(_Model, Timestamp):
     """Redirect for a persistent identifier."""
@@ -120,8 +118,8 @@ class RecordIdentifier(_Model):
     def insert(cls, val: int) -> None: ...
 
 __all__ = (
-    "PersistentIdentifier",
     "PIDStatus",
+    "PersistentIdentifier",
     "RecordIdentifier",
     "Redirect",
 )

@@ -1,5 +1,4 @@
 from abc import abstractmethod
-from typing import Set
 
 class CustomFieldsException(Exception):
     @property
@@ -13,8 +12,8 @@ class CustomFieldsInvalidArgument(CustomFieldsException):
     def description(self) -> str: ...
 
 class CustomFieldsNotConfigured(CustomFieldsException):
-    field_names: Set[str]
-    def __init__(self, field_names: Set[str]): ...
+    field_names: set[str]
+    def __init__(self, field_names: set[str]): ...
     @property
     def description(self) -> str: ...
 

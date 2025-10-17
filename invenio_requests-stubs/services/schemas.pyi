@@ -1,4 +1,4 @@
-from typing import Any, Dict, Optional
+from typing import Any
 
 from invenio_records_resources.services.records.schema import BaseRecordSchema
 from invenio_requests.customizations.event_types import (
@@ -39,7 +39,7 @@ class GenericRequestSchema(RequestSchema):
 
 class EventTypeMarshmallowField(fields.Str):
     def _serialize(
-        self, value: Any, attr: Optional[str], obj: Any, **kwargs: Any
+        self, value: Any, attr: str | None, obj: Any, **kwargs: Any,
     ) -> str: ...
 
 class RequestEventSchema(BaseRecordSchema):
@@ -47,4 +47,4 @@ class RequestEventSchema(BaseRecordSchema):
     created_by: fields.Dict
     permissions: fields.Method
 
-    def get_permissions(self, obj: RequestEvent) -> Dict[str, bool]: ...
+    def get_permissions(self, obj: RequestEvent) -> dict[str, bool]: ...

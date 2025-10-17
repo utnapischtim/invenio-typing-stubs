@@ -1,5 +1,6 @@
+from collections.abc import Callable
 from datetime import timedelta
-from typing import Any, Callable
+from typing import Any
 
 from invenio_communities.cache.cache import IdentityCache
 from invenio_communities.communities.records.systemfields.access import (

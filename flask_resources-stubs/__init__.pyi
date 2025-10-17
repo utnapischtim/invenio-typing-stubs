@@ -1,4 +1,3 @@
-from __future__ import annotations
 
 from flask_resources.config import from_conf
 from flask_resources.content_negotiation import with_content_negotiation
@@ -25,26 +24,26 @@ from flask_resources.serializers import (
 __version__ = "1.2.0"
 
 __all__: tuple[str, ...] = (
-    "__version__",
-    "create_error_handler",
-    "from_conf",
+    "BaseListSchema",
+    "BaseObjectSchema",
+    "CSVSerializer",
     "HTTPJSONException",
     "JSONDeserializer",
     "JSONSerializer",
-    "CSVSerializer",
+    "MarshmallowSerializer",
     "MultiDictSchema",
-    "request_body_parser",
-    "request_parser",
     "RequestBodyParser",
     "RequestParser",
-    "resource_requestctx",
     "Resource",
     "ResourceConfig",
-    "response_handler",
     "ResponseHandler",
+    "__version__",
+    "create_error_handler",
+    "from_conf",
+    "request_body_parser",
+    "request_parser",
+    "resource_requestctx",
+    "response_handler",
     "route",
     "with_content_negotiation",
-    "BaseListSchema",
-    "MarshmallowSerializer",
-    "BaseObjectSchema",
 )

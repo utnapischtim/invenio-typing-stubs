@@ -1,5 +1,6 @@
+from collections.abc import Callable
 from enum import Enum
-from typing import Any, Callable, ClassVar
+from typing import Any, ClassVar
 
 from invenio_records.dumpers import Dumper
 from invenio_records.models import RecordMetadata

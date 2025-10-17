@@ -26,8 +26,8 @@ __all__ = (
     "IndexField",
     "ModelPIDField",
     "PIDField",
-    "PIDStatusCheckField",
-    "PIDRelation",
     "PIDListRelation",
     "PIDNestedListRelation",
+    "PIDRelation",
+    "PIDStatusCheckField",
 )

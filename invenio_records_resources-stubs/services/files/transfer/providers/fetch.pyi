@@ -1,5 +1,5 @@
 from io import BufferedReader, BytesIO
-from typing import Any, ClassVar, Dict, Optional, Union
+from typing import Any, ClassVar
 
 from invenio_records_resources.records.api import (
     FileRecord,
@@ -14,12 +14,12 @@ class FetchTransfer(RemoteTransferBase):
     transfer_type: ClassVar[str]
     def commit_file(self) -> None: ...
     def init_file(
-        self, record: Record, file_metadata: Dict[str, Any], **kwargs
+        self, record: Record, file_metadata: dict[str, Any], **kwargs,
     ) -> FileRecord: ...
     def set_file_content(
         self,
-        stream: Union[BytesIO, BufferedReader, LimitedStream],
-        content_length: Optional[int],
+        stream: BytesIO | BufferedReader | LimitedStream,
+        content_length: int | None,
     ) -> None: ...
     @property
     def status(self) -> str: ...

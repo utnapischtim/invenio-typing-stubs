@@ -1,4 +1,3 @@
-from __future__ import annotations
 
 from typing import Any
 
@@ -13,5 +12,5 @@ class RDMGithubRelease(GitHubRelease):
     def get_custom_fields(self) -> dict[str, Any]: ...
     def get_owner(self) -> dict[str, Any] | None: ...
     def _upload_files_to_draft(
-        self, identity: Identity, draft: Any, uow: UnitOfWork
+        self, identity: Identity, draft: Any, uow: UnitOfWork,
     ) -> None: ...

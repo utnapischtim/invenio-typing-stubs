@@ -18,7 +18,7 @@ class RORHTTPReader(BaseReader):
         *args,
         **kwargs,
     ) -> None: ...
-    def read(self, item=None, *args, **kwargs) -> Generator[io.BytesIO, None, None]: ...
+    def read(self, item=None, *args, **kwargs) -> Generator[io.BytesIO]: ...
 
 VOCABULARIES_DATASTREAM_READERS: dict[str, type[RORHTTPReader]]
 
@@ -26,7 +26,7 @@ class RORTransformer(BaseTransformer):
     vocab_schemes: dict[str, Any] | None
     funder_fundref_doi_prefix: str | None
     def __init__(
-        self, *args, vocab_schemes=None, funder_fundref_doi_prefix=None, **kwargs
+        self, *args, vocab_schemes=None, funder_fundref_doi_prefix=None, **kwargs,
     ) -> None: ...
     def apply(self, stream_entry, **kwargs): ...
 

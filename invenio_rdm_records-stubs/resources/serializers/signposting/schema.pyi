@@ -1,6 +1,6 @@
-from __future__ import annotations
 
-from typing import Any, Mapping
+from collections.abc import Mapping
+from typing import Any
 
 import idutils as idutils
 from invenio_base import invenio_url_for as invenio_url_for
@@ -31,7 +31,7 @@ class LandingPageLvl1Schema(LandingPageSchema):
     def serialize_linkset(self, obj: Mapping[str, Any], **kwargs: Any): ...
     @post_dump
     def fallback_to_lvl2_linkset_only_if_collections_too_big(
-        self, data: Mapping[str, Any], **kwargs: Any
+        self, data: Mapping[str, Any], **kwargs: Any,
     ): ...
 
 class LandingPageLvl2Schema(LandingPageSchema):

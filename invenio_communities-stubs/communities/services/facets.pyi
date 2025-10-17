@@ -1,4 +1,4 @@
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 from invenio_records_resources.services.records.facets.facets import (
     LabelledFacetMixin as LabelledFacetMixin,
@@ -13,11 +13,11 @@ class TypeFacet(BaseTermsFacet): ...
 class VisibilityFacet(BaseTermsFacet):
     def __init__(
         self,
-        label: Optional[str] = None,
-        value_labels: Optional[Dict[str, str]] = None,
+        label: str | None = None,
+        value_labels: dict[str, str] | None = None,
         **kwargs: Any,
     ): ...
-    def get_label_mapping(self, buckets: List[FieldBucket]) -> Dict[str, str]: ...
+    def get_label_mapping(self, buckets: list[FieldBucket]) -> dict[str, str]: ...
 
 class RoleFacet(BaseTermsFacet): ...
 

@@ -1,4 +1,3 @@
-from __future__ import annotations
 
 from collections.abc import Iterable
 from typing import Any
@@ -29,7 +28,7 @@ class MarshmallowSerializer(BaseSerializer):
 
 class DumperMixin:
     def post_dump(
-        self, data: Any, original: Any | None = ..., **kwargs: Any
+        self, data: Any, original: Any | None = ..., **kwargs: Any,
     ) -> Any: ...
     def pre_dump(self, data: Any, original: Any | None = ..., **kwargs: Any) -> Any: ...
 
@@ -37,16 +36,16 @@ class BaseSerializerSchema(Schema):
     dumpers: list[DumperMixin]
 
     def __init__(
-        self, dumpers: Iterable[DumperMixin] | None = ..., **kwargs: Any
+        self, dumpers: Iterable[DumperMixin] | None = ..., **kwargs: Any,
     ) -> None: ...
     def post_dump_pipeline(
-        self, data: Any, original: Any, many: bool, **kwargs: Any
+        self, data: Any, original: Any, many: bool, **kwargs: Any,
     ) -> Any: ...
     def pre_dump_pipeline(self, data: Any, many: bool, **kwargs: Any) -> Any: ...
 
 __all__ = (
     "BaseSerializer",
-    "MarshmallowSerializer",
-    "DumperMixin",
     "BaseSerializerSchema",
+    "DumperMixin",
+    "MarshmallowSerializer",
 )

@@ -7,7 +7,6 @@
 # modify it under the terms of the MIT License; see LICENSE file for more
 # details.
 
-from __future__ import annotations
 
 from collections.abc import Generator
 from typing import Any, Self
@@ -17,7 +16,7 @@ from invenio_search.engine import dsl
 class FacetsResponse(dsl.response.Response):  # type: ignore[misc]
     @classmethod
     def create_response_cls(cls, facets_param: Any) -> type[Self]: ...
-    def _iter_facets(self) -> Generator[tuple[str, Any, Any, Any], None, None]: ...
+    def _iter_facets(self) -> Generator[tuple[str, Any, Any, Any]]: ...
     @property
     def facets(self) -> dsl.AttrDict: ...
     @property

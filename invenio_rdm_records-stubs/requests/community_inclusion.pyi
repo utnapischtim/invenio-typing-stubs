@@ -10,7 +10,7 @@ if TYPE_CHECKING:
     from invenio_communities.communities.records.api import Community
 
 def is_access_restriction_valid(
-    record: RDMDraft | RDMRecord, community: "Community"
+    record: RDMDraft | RDMRecord, community: Community,
 ) -> bool: ...
 
 class SubmitAction(actions.SubmitAction):

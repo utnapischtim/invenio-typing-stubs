@@ -1,4 +1,5 @@
-from typing import Any, ClassVar, Mapping, Optional
+from collections.abc import Mapping
+from typing import Any, ClassVar
 
 from invenio_rdm_records.records.systemfields.access.access_settings import (
     AccessSettings,
@@ -22,14 +23,14 @@ class ParentRecordAccess:
 
     def __init__(
         self,
-        owned_by: Optional[Owner] = ...,
-        grants: Optional[Grants] = ...,
-        links: Optional[Links] = ...,
-        owner_cls: Optional[type[Owner]] = ...,
-        settings: Optional[AccessSettings] = ...,
-        grants_cls: Optional[type[Grants]] = ...,
-        links_cls: Optional[type[Links]] = ...,
-        settings_cls: Optional[type[AccessSettings]] = ...,
+        owned_by: Owner | None = ...,
+        grants: Grants | None = ...,
+        links: Links | None = ...,
+        owner_cls: type[Owner] | None = ...,
+        settings: AccessSettings | None = ...,
+        grants_cls: type[Grants] | None = ...,
+        links_cls: type[Links] | None = ...,
+        settings_cls: type[AccessSettings] | None = ...,
     ) -> None: ...
     @property
     def owned_by(self) -> Owner: ...
@@ -48,20 +49,19 @@ class ParentRecordAccess:
     @classmethod
     def from_dict(
         cls,
-        access_dict: Optional[Mapping[str, Any]],
-        owner_cls: Optional[type[Owner]] = ...,
-        grants_cls: Optional[type[Grants]] = ...,
-        links_cls: Optional[type[Links]] = ...,
-        settings_cls: Optional[type[AccessSettings]] = ...,
+        access_dict: Mapping[str, Any] | None,
+        owner_cls: type[Owner] | None = ...,
+        grants_cls: type[Grants] | None = ...,
+        links_cls: type[Links] | None = ...,
+        settings_cls: type[AccessSettings] | None = ...,
     ) -> ParentRecordAccess: ...
-    def __repr__(self) -> str: ...
 
 class ParentRecordAccessField(SystemField):
     def __init__(
-        self, key: str = ..., access_obj_class: type[ParentRecordAccess] = ...
+        self, key: str = ..., access_obj_class: type[ParentRecordAccess] = ...,
     ) -> None: ...
     def obj(self, instance: Any) -> ParentRecordAccess: ...
     def set_obj(
-        self, record: Any, obj: Mapping[str, Any] | ParentRecordAccess
+        self, record: Any, obj: Mapping[str, Any] | ParentRecordAccess,
     ) -> None: ...
     def pre_commit(self, record: Any) -> None: ...

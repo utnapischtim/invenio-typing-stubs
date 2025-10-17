@@ -8,4 +8,4 @@ from invenio_requests.customizations.user_moderation.user_moderation import (
     UserModerationRequest as UserModerationRequest,
 )
 
-__all__ = ["UserModerationRequest", "AcceptUserAction", "DeclineUserAction"]
+__all__ = ["AcceptUserAction", "DeclineUserAction", "UserModerationRequest"]

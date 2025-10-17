@@ -1,11 +1,9 @@
-from typing import Callable
 
 from invenio_records_resources.services.records.facets import (
     CombinedTermsFacet,
     NestedTermsFacet,
     TermsFacet,
 )
-
 
 access_status: TermsFacet
 is_published: TermsFacet

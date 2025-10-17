@@ -1,4 +1,4 @@
-from typing import Any, List
+from typing import Any
 
 from invenio_communities.notifications.generators import (
     CommunityMembersRecipient as CommunityMembersRecipient,
@@ -8,63 +8,63 @@ from invenio_notifications.services.builders import NotificationBuilder
 from invenio_notifications.services.generators import EntityResolve
 
 class BaseNotificationBuilder(NotificationBuilder):
-    context: List[EntityResolve]
-    recipient_filters: List[Any]  # List of filter objects
-    recipient_backends: List[Any]  # List of backend objects
+    context: list[EntityResolve]
+    recipient_filters: list[Any]  # List of filter objects
+    recipient_backends: list[Any]  # List of backend objects
 
 class CommunityInvitationNotificationBuilder(BaseNotificationBuilder): ...
 
 class CommunityInvitationSubmittedNotificationBuilder(
-    CommunityInvitationNotificationBuilder
+    CommunityInvitationNotificationBuilder,
 ):
     type: str
     @classmethod
     def build(cls, **kwargs: Any) -> Notification: ...  # request, role, message
-    recipients: List[Any]  # List of UserRecipient objects
+    recipients: list[Any]  # List of UserRecipient objects
 
 class CommunityInvitationAcceptNotificationBuilder(
-    CommunityInvitationNotificationBuilder
+    CommunityInvitationNotificationBuilder,
 ):
     type: str
     @classmethod
     def build(cls, **kwargs: Any) -> Notification: ...  # request
-    recipients: List[CommunityMembersRecipient]
+    recipients: list[CommunityMembersRecipient]
 
 class CommunityInvitationCancelNotificationBuilder(
-    CommunityInvitationNotificationBuilder
+    CommunityInvitationNotificationBuilder,
 ):
     type: str
     @classmethod
     def build(cls, **kwargs: Any) -> Notification: ...  # request
-    recipients: List[Any]  # List of UserRecipient objects
+    recipients: list[Any]  # List of UserRecipient objects
 
 class CommunityInvitationDeclineNotificationBuilder(
-    CommunityInvitationNotificationBuilder
+    CommunityInvitationNotificationBuilder,
 ):
     type: str
     @classmethod
     def build(cls, **kwargs: Any) -> Notification: ...  # request
-    recipients: List[CommunityMembersRecipient]
+    recipients: list[CommunityMembersRecipient]
 
 class CommunityInvitationExpireNotificationBuilder(
-    CommunityInvitationNotificationBuilder
+    CommunityInvitationNotificationBuilder,
 ):
     type: str
     @classmethod
     def build(cls, **kwargs: Any) -> Notification: ...  # request
-    recipients: List[Any]  # includes both community members and user recipient
+    recipients: list[Any]  # includes both community members and user recipient
 
 class SubCommunityBuilderBase(BaseNotificationBuilder):
     type: str
-    context: List[EntityResolve]
+    context: list[EntityResolve]
     @classmethod
     def build(cls, **kwargs: Any) -> Notification: ...  # identity, request
-    recipients: List[Any]  # List of recipient objects
-    recipient_filters: List[Any]  # List of filter objects
+    recipients: list[Any]  # List of recipient objects
+    recipient_filters: list[Any]  # List of filter objects
 
 class SubCommunityCreate(SubCommunityBuilderBase):
     type: str
-    recipient_filters: List[Any]  # List of filter objects
+    recipient_filters: list[Any]  # List of filter objects
 
 class SubCommunityAccept(SubCommunityBuilderBase):
     type: str
@@ -74,31 +74,31 @@ class SubCommunityDecline(SubCommunityBuilderBase):
 
 class SubComInvitationBuilderBase(SubCommunityBuilderBase):
     type: str
-    context: List[EntityResolve]
+    context: list[EntityResolve]
 
 class SubComInvitationCreate(SubComInvitationBuilderBase):
     type: str
-    context: List[EntityResolve]
-    recipients: List[Any]  # List of recipient objects
+    context: list[EntityResolve]
+    recipients: list[Any]  # List of recipient objects
 
 class SubComInvitationAccept(SubComInvitationBuilderBase):
     type: str
-    recipient_filters: List[Any]  # List of filter objects
+    recipient_filters: list[Any]  # List of filter objects
 
 class SubComInvitationDecline(SubComInvitationBuilderBase):
     type: str
-    recipient_filters: List[Any]  # List of filter objects
+    recipient_filters: list[Any]  # List of filter objects
 
 class SubComInvitationExpire(SubComInvitationBuilderBase):
     type: str
-    context: List[EntityResolve]
-    recipients: List[Any]  # List of recipient objects
+    context: list[EntityResolve]
+    recipients: list[Any]  # List of recipient objects
 
 class SubComCommentNotificationBuilderBase(SubCommunityBuilderBase):
-    context: List[EntityResolve]
+    context: list[EntityResolve]
     @classmethod
     def build(cls, **kwargs: Any) -> Notification: ...  # request, request_event
-    recipient_filters: List[Any]  # List of filter objects
+    recipient_filters: list[Any]  # List of filter objects
 
 class SubComReqCommentNotificationBuilder(SubComCommentNotificationBuilderBase):
     type: str

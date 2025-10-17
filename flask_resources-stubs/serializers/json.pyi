@@ -1,4 +1,3 @@
-from __future__ import annotations
 
 import json
 from collections.abc import Callable
@@ -14,8 +13,8 @@ class JSONEncoder(json.JSONEncoder):
 class _EncoderFactory(Protocol):
     def __call__(self) -> json.JSONEncoder: ...
 
-OptionsResolvable = dict[str, Any] | Callable[[], dict[str, Any]]
-EncoderResolvable = type[json.JSONEncoder] | _EncoderFactory
+type OptionsResolvable = dict[str, Any] | Callable[[], dict[str, Any]]
+type EncoderResolvable = type[json.JSONEncoder] | _EncoderFactory
 
 class JSONSerializer(BaseSerializer):
     _options: OptionsResolvable | None
@@ -33,4 +32,4 @@ class JSONSerializer(BaseSerializer):
     def serialize_object(self, obj: Any) -> str: ...
     def serialize_object_list(self, obj_list: Any) -> str: ...
 
-__all__ = ("JSONSerializer", "JSONEncoder", "flask_request_options")
+__all__ = ("JSONEncoder", "JSONSerializer", "flask_request_options")

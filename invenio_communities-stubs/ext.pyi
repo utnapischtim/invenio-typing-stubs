@@ -1,4 +1,3 @@
-from typing import Optional
 
 from flask import Flask
 from invenio_communities.cache.cache import IdentityCache as IdentityCache
@@ -38,7 +37,7 @@ from invenio_communities.utils import (
 from . import config as config
 
 class InvenioCommunities:
-    def __init__(self, app: Optional[Flask] = ...) -> None: ...
+    def __init__(self, app: Flask | None = ...) -> None: ...
     def init_app(self, app: Flask) -> None: ...
     roles_registry: RoleRegistry
     def init_config(self, app: Flask) -> None: ...

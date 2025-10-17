@@ -1,4 +1,3 @@
-from __future__ import annotations
 
 from flask_resources.serializers.base import (
     BaseSerializer,
@@ -17,11 +16,11 @@ from flask_resources.serializers.simple import SimpleSerializer
 __all__ = (
     "BaseSerializer",
     "BaseSerializerSchema",
-    "DumperMixin",
-    "MarshmallowSerializer",
     "CSVSerializer",
-    "JSONSerializer",
+    "DumperMixin",
     "JSONEncoder",
-    "flask_request_options",
+    "JSONSerializer",
+    "MarshmallowSerializer",
     "SimpleSerializer",
+    "flask_request_options",
 )

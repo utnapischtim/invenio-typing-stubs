@@ -26,13 +26,13 @@ from invenio_records_resources.services.records.service import (
 )
 
 __all__ = (
-    "pagination_endpoint_links",
-    "pagination_links",
     "RecordEndpointLink",
+    "RecordIndexerMixin",
     "RecordLink",
     "RecordService",
     "RecordServiceConfig",
     "SearchOptions",
     "ServiceSchemaWrapper",
-    "RecordIndexerMixin",
+    "pagination_endpoint_links",
+    "pagination_links",
 )

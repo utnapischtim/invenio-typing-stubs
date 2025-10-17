@@ -1,4 +1,4 @@
-from typing import TYPE_CHECKING, Any, Dict, Optional, Self, Type, Union, overload
+from typing import TYPE_CHECKING, Any, Self, overload
 
 from invenio_records.systemfields import SystemField
 from invenio_requests.customizations import EventType as EventType
@@ -14,26 +14,26 @@ if TYPE_CHECKING:
 class EventTypeField(SystemField):  # type: ignore[misc]
     def _set(
         self,
-        model: "RecordMetadataBase",
-        value: Union[str, "EventType", Type["EventType"]],
+        model: RecordMetadataBase,
+        value: str | EventType | type[EventType],
     ): ...
     @staticmethod
     def get_instance(
-        value: Union[str, "EventType", Type["EventType"]],
-    ) -> "EventType": ...
-    def obj(self, instance: "RequestEvent") -> "EventType": ...
+        value: str | EventType | type[EventType],
+    ) -> EventType: ...
+    def obj(self, instance: RequestEvent) -> EventType: ...
     def pre_init(
         self,
-        record: "RequestEvent",
-        data: Dict[str, Any],
-        model: Optional["RecordMetadataBase"] = None,
+        record: RequestEvent,
+        data: dict[str, Any],
+        model: RecordMetadataBase | None = None,
         **kwargs: Any,
     ) -> None: ...
-    def set_obj(self, instance: "RequestEvent", obj: "EventType") -> None: ...
+    def set_obj(self, instance: RequestEvent, obj: EventType) -> None: ...
     @overload  # type: ignore[override]
     def __get__(self, instance: None, owner: type[RequestEvent]) -> Self: ...  # type: ignore # keep typing tighter
     @overload
     def __get__(  # type: ignore # keep typing tighter
-        self, instance: RequestEvent, owner: type[RequestEvent]
+        self, instance: RequestEvent, owner: type[RequestEvent],
     ) -> EventType: ...
     def __set__(self, instance: RequestEvent, value: EventType) -> None: ...  # type: ignore[override]

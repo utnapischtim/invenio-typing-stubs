@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import Any, Dict, Generic, Optional, Type, TypeVar
+from typing import Any, Generic, TypeVar
 from uuid import UUID
 
 from flask_principal import Identity
@@ -61,7 +61,7 @@ C = TypeVar("C", bound=MemberServiceConfig)
 
 class MemberService(RecordService[C], Generic[C]):
     @property
-    def community_cls(self) -> Type[Community]: ...
+    def community_cls(self) -> type[Community]: ...
     @property
     def member_dump_schema(self) -> ServiceSchemaWrapper: ...
     @property
@@ -86,11 +86,11 @@ class MemberService(RecordService[C], Generic[C]):
         community: Community,
         role: Role,
         visible: bool,
-        member: Dict[str, Any],
-        message: Optional[str],
+        member: dict[str, Any],
+        message: str | None,
         uow: UnitOfWork,
         active: bool = ...,
-        request_id: Optional[str] = ...,
+        request_id: str | None = ...,
     ) -> None: ...
     def _invite_factory(
         self,
@@ -98,8 +98,8 @@ class MemberService(RecordService[C], Generic[C]):
         community: Community,
         role: Role,
         visible: bool,
-        member: Dict[str, Any],
-        message: Optional[str],
+        member: dict[str, Any],
+        message: str | None,
         uow: UnitOfWork,
     ) -> None: ...
     def _members_search(
@@ -108,12 +108,12 @@ class MemberService(RecordService[C], Generic[C]):
         community_id: str,
         permission_action: str,
         schema: ServiceSchemaWrapper,
-        search_opts: Type[Any],
-        extra_filter: Optional[Any] = ...,
-        params: Optional[Dict[str, Any]] = ...,
-        search_preference: Optional[str] = ...,
+        search_opts: type[Any],
+        extra_filter: Any | None = ...,
+        params: dict[str, Any] | None = ...,
+        search_preference: str | None = ...,
         scan: bool = ...,
-        scan_params: Optional[Dict[str, Any]] = ...,
+        scan_params: dict[str, Any] | None = ...,
         **kwargs: Any,
     ) -> RecordList: ...
     def _update(
@@ -121,38 +121,38 @@ class MemberService(RecordService[C], Generic[C]):
         identity: Identity,
         community: Community,
         member: Member,
-        role: Optional[Role],
-        visible: Optional[bool],
+        role: Role | None,
+        visible: bool | None,
         uow: UnitOfWork,
     ) -> bool: ...
     def accept_invite(
-        self, identity: Identity, request_id: str, uow: Optional[UnitOfWork] = ...
+        self, identity: Identity, request_id: str, uow: UnitOfWork | None = ...,
     ) -> None: ...
     def add(
         self,
         identity: Identity,
         community_id: str | UUID,
-        data: Dict[str, Any],
-        uow: Optional[UnitOfWork] = ...,
+        data: dict[str, Any],
+        uow: UnitOfWork | None = ...,
     ) -> bool: ...
     def decline_invite(
-        self, identity: Identity, request_id: str, uow: Optional[UnitOfWork] = ...
+        self, identity: Identity, request_id: str, uow: UnitOfWork | None = ...,
     ) -> None: ...
     def delete(self, *args: Any, **kwargs: Any) -> Any: ...
     def invite(
         self,
         identity: Identity,
         community_id: str | UUID,
-        data: Dict[str, Any],
-        uow: Optional[UnitOfWork] = ...,
+        data: dict[str, Any],
+        uow: UnitOfWork | None = ...,
     ) -> bool: ...
-    def read_memberships(self, identity: Identity) -> Dict[str, Any]: ...
+    def read_memberships(self, identity: Identity) -> dict[str, Any]: ...
     def request_membership(
         self,
         identity: Identity,
         community_id: str | UUID,
-        data: Dict[str, Any],
-        uow: Optional[UnitOfWork] = ...,
+        data: dict[str, Any],
+        uow: UnitOfWork | None = ...,
     ) -> RequestItem: ...
     def scan(self, *args: Any, **kwargs: Any) -> RecordList: ...
     def search(self, *args: Any, **kwargs: Any) -> RecordList: ...
@@ -160,35 +160,35 @@ class MemberService(RecordService[C], Generic[C]):
         self,
         identity: Identity,
         community_id: str | UUID,
-        params: Optional[Dict[str, Any]] = ...,
-        search_preference: Optional[str] = ...,
+        params: dict[str, Any] | None = ...,
+        search_preference: str | None = ...,
         **kwargs: Any,
     ) -> RecordList: ...
     def search_public(
         self,
         identity: Identity,
         community_id: str | UUID,
-        params: Optional[Dict[str, Any]] = ...,
-        search_preference: Optional[str] = ...,
+        params: dict[str, Any] | None = ...,
+        search_preference: str | None = ...,
         **kwargs: Any,
     ) -> RecordList: ...
     def update(self, *args: Any, **kwargs: Any) -> Any: ...
     def update_membership_request(
-        self, identity: Identity, community_id: str | UUID, data, uow=None
+        self, identity: Identity, community_id: str | UUID, data, uow=None,
     ) -> None: ...
     def search_membership_requests(self) -> None: ...
     def accept_membership_request(
         self,
         identity: Identity,
         request_id: str | UUID,
-        uow: Optional[UnitOfWork] = ...,
+        uow: UnitOfWork | None = ...,
     ) -> None: ...
     def close_membership_request(
         self,
         identity: Identity,
         request_id: str | UUID,
-        uow: Optional[UnitOfWork] = ...,
+        uow: UnitOfWork | None = ...,
     ) -> None: ...
     def rebuild_index(
-        self, identity: Identity, uow: Optional[UnitOfWork] = ...
+        self, identity: Identity, uow: UnitOfWork | None = ...,
     ) -> bool: ...

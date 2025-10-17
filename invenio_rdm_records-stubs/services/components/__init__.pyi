@@ -14,10 +14,10 @@ __all__ = (
     "AccessComponent",
     "ContentModerationComponent",
     "CustomFieldsComponent",
+    "DefaultRecordsComponents",
     "MetadataComponent",
     "PIDsComponent",
     "ParentPIDsComponent",
     "RecordDeletionComponent",
     "ReviewComponent",
-    "DefaultRecordsComponents",
 )

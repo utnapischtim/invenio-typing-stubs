@@ -26,14 +26,14 @@ class TransferStatus:
     FAILED: ClassVar[str]
 
 __all__ = (
-    "Transfer",
     "FETCH_TRANSFER_TYPE",
     "LOCAL_TRANSFER_TYPE",
     "MULTIPART_TRANSFER_TYPE",
     "REMOTE_TRANSFER_TYPE",
-    "TransferStatus",
     "FetchTransfer",
     "LocalTransfer",
     "MultipartTransfer",
     "RemoteTransfer",
+    "Transfer",
+    "TransferStatus",
 )

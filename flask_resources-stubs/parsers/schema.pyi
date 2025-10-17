@@ -1,4 +1,3 @@
-from __future__ import annotations
 
 from typing import Any
 
@@ -20,4 +19,4 @@ class BaseListSchema(Schema):
 class BaseObjectSchema(Schema):
     def dump(self, obj: Any, **kwargs: Any) -> Any: ...
 
-__all__ = ("MultiDictSchema", "BaseListSchema", "BaseObjectSchema")
+__all__ = ("BaseListSchema", "BaseObjectSchema", "MultiDictSchema")

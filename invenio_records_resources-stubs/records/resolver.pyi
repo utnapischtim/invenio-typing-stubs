@@ -1,5 +1,6 @@
 import uuid
-from typing import Any, Callable
+from collections.abc import Callable
+from typing import Any
 
 from invenio_pidstore.models import PersistentIdentifier  # type: ignore[import-untyped]
 from invenio_records_resources.records.api import (
@@ -16,7 +17,7 @@ class UUIDResolver:
         **kwargs: Any,
     ) -> None: ...
     def resolve(
-        self, pid_value: str | uuid.UUID
+        self, pid_value: str | uuid.UUID,
     ) -> tuple[PersistentIdentifier, Record]: ...
 
 class ModelResolver:
@@ -24,8 +25,8 @@ class ModelResolver:
     model_field_name: str
 
     def __init__(
-        self, record_cls: type[Record], model_field_name: str, **kwargs: Any
+        self, record_cls: type[Record], model_field_name: str, **kwargs: Any,
     ) -> None: ...
     def resolve(
-        self, pid_value: str
+        self, pid_value: str,
     ) -> tuple[PersistentIdentifier | PersistentIdentifierWrapper, Record]: ...

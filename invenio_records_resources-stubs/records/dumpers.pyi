@@ -1,4 +1,4 @@
-from typing import Any, Dict, List, Union
+from typing import Any
 
 from invenio_records.api import Record as BaseRecord
 from invenio_records.dumpers import Dumper, SearchDumperExt
@@ -13,15 +13,9 @@ class CustomFieldsDumperExt(SearchDumperExt):
     def load(self, data: dict[str, Any], record_cls: type[BaseRecord]) -> None: ...
 
 class PartialFileDumper(Dumper):
-    def dump(self, record: BaseRecord, data: Dict[Any, Any]) -> Dict[
+    def dump(self, record: BaseRecord, data: dict[Any, Any]) -> dict[
         str,
-        Union[
-            Dict[str, str],
-            str,
-            Dict[str, Union[str, Dict[str, Dict[str, str]], List[str]]],
-            Dict[str, Dict[str, str]],
-            List[str],
-        ],
+        dict[str, str] | str | dict[str, str | dict[str, dict[str, str]] | list[str]] | dict[str, dict[str, str]] | list[str],
     ]: ...
     def load(
         self,

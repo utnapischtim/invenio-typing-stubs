@@ -26,8 +26,8 @@ from invenio_records_resources.resources.records import (
 )
 
 __all__ = (
-    "FileResourceConfig",
     "FileResource",
+    "FileResourceConfig",
     "RecordResource",
     "RecordResourceConfig",
     "SearchRequestArgsSchema",

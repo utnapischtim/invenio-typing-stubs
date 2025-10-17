@@ -1,4 +1,4 @@
-from typing import Any, Dict, Generic, List, Optional, TypeVar
+from typing import Any, Generic, TypeVar
 
 from flask_principal import Identity
 from invenio_cache.decorators import cached_with_expiration
@@ -30,7 +30,7 @@ from invenio_communities.errors import (
 )
 from invenio_communities.generators import CommunityMembers as CommunityMembers
 from invenio_communities.members.services.service import MemberService
-from invenio_db.uow import UnitOfWork, dummy_uow
+from invenio_db.uow import UnitOfWork
 from invenio_records_resources.services.files.results import FileItem
 from invenio_records_resources.services.files.service import FileService
 from invenio_records_resources.services.records import RecordService
@@ -41,7 +41,7 @@ from werkzeug.wsgi import LimitedStream
 
 @cached_with_expiration
 def get_cached_community_slug(
-    community_id: str, community_service_id: str = "communities"
+    community_id: str, community_service_id: str = "communities",
 ) -> str: ...
 
 C = TypeVar("C", bound=CommunityServiceConfig)
@@ -50,9 +50,9 @@ class CommunityService(RecordService[C], Generic[C]):
     def __init__(
         self,
         config: Any,
-        files_service: Optional[FileService] = None,
+        files_service: FileService | None = None,
         invitations_service: Any = None,
-        members_service: Optional[MemberService] = None,
+        members_service: MemberService | None = None,
     ) -> None: ...
     @property
     def links_item_tpl(self) -> CommunityLinksTemplate: ...
@@ -67,12 +67,12 @@ class CommunityService(RecordService[C], Generic[C]):
     @property
     def schema_tombstone(self) -> ServiceSchemaWrapper: ...
     @property
-    def expandable_fields(self) -> List[EntityResolverExpandableField]: ...
+    def expandable_fields(self) -> list[EntityResolverExpandableField]: ...
     def search_user_communities(
         self,
         identity: Identity,
-        params: Optional[Dict[str, Any]] = None,
-        search_preference: Optional[str] = None,
+        params: dict[str, Any] | None = None,
+        search_preference: str | None = None,
         extra_filter: Any = None,
         **kwargs: Any,
     ) -> CommunityListResult: ...
@@ -80,8 +80,8 @@ class CommunityService(RecordService[C], Generic[C]):
         self,
         identity: Identity,
         community_id: str,
-        params: Optional[Dict[str, Any]] = None,
-        search_preference: Optional[str] = None,
+        params: dict[str, Any] | None = None,
+        search_preference: str | None = None,
         expand: bool = False,
         **kwargs: Any,
     ) -> RequestList: ...
@@ -89,10 +89,10 @@ class CommunityService(RecordService[C], Generic[C]):
         self,
         identity: Identity,
         id_: str,
-        data: Dict[str, Any],
+        data: dict[str, Any],
         revision_id: Any = None,
         raise_errors: bool = True,
-        uow: UnitOfWork = dummy_uow,
+        uow: UnitOfWork = ...,
     ) -> CommunityItem: ...
     def read_logo(self, identity: Identity, id_: str) -> FileItem: ...
     def update_logo(
@@ -100,38 +100,38 @@ class CommunityService(RecordService[C], Generic[C]):
         identity: Identity,
         id_: str,
         stream: LimitedStream,
-        content_length: Optional[int] = None,
-        uow: UnitOfWork = dummy_uow,
+        content_length: int | None = None,
+        uow: UnitOfWork = ...,
     ) -> FileItem: ...
     def delete_logo(
-        self, identity: Identity, id_: str, uow: UnitOfWork = dummy_uow
+        self, identity: Identity, id_: str, uow: UnitOfWork = ...,
     ) -> FileItem: ...
     def featured_search(
         self,
         identity: Identity,
-        params: Optional[Dict[str, Any]] = None,
-        search_preference: Optional[str] = None,
+        params: dict[str, Any] | None = None,
+        search_preference: str | None = None,
         **kwargs: Any,
     ) -> CommunityListResult: ...
     def featured_list(
-        self, identity: Identity, community_id: str
+        self, identity: Identity, community_id: str,
     ) -> CommunityFeaturedList: ...
     def featured_create(
         self,
         identity: Identity,
         community_id: str,
-        data: Dict[str, Any],
+        data: dict[str, Any],
         raise_errors: bool = True,
-        uow: UnitOfWork = dummy_uow,
+        uow: UnitOfWork = ...,
     ) -> CommunityItem: ...
     def featured_update(
         self,
         identity: Identity,
         community_id: str,
-        data: Dict[str, Any],
+        data: dict[str, Any],
         featured_id: int,
         raise_errors: bool = True,
-        uow: UnitOfWork = dummy_uow,
+        uow: UnitOfWork = ...,
     ) -> CommunityItem: ...
     def featured_delete(
         self,
@@ -139,61 +139,61 @@ class CommunityService(RecordService[C], Generic[C]):
         community_id: str,
         featured_id: int,
         raise_errors: bool = True,
-        uow: UnitOfWork = dummy_uow,
+        uow: UnitOfWork = ...,
     ) -> None: ...
     def delete_community(
         self,
         identity: Identity,
         id_: str,
-        data: Optional[Dict[str, Any]] = None,
+        data: dict[str, Any] | None = None,
         revision_id: Any = None,
         expand: bool = False,
-        uow: UnitOfWork = dummy_uow,
+        uow: UnitOfWork = ...,
     ) -> CommunityItem: ...
     def delete(
         self,
         identity: Identity,
         id_: str,
         revision_id: Any = ...,
-        uow: Optional[UnitOfWork] = ...,
+        uow: UnitOfWork | None = ...,
     ) -> Any: ...
     def update_tombstone(
         self,
         identity: Identity,
         id_: str,
-        data: Dict[str, Any],
+        data: dict[str, Any],
         expand: bool = False,
-        uow: UnitOfWork = dummy_uow,
+        uow: UnitOfWork = ...,
     ) -> CommunityItem: ...
     def restore_community(
         self,
         identity: Identity,
         id_: str,
         expand: bool = False,
-        uow: UnitOfWork = dummy_uow,
+        uow: UnitOfWork = ...,
     ) -> CommunityItem: ...
     def mark_community_for_purge(
         self,
         identity: Identity,
         id_: str,
         expand: bool = False,
-        uow: UnitOfWork = dummy_uow,
+        uow: UnitOfWork = ...,
     ) -> CommunityItem: ...
     def unmark_community_for_purge(
         self,
         identity: Identity,
         id_: str,
         expand: bool = False,
-        uow: UnitOfWork = dummy_uow,
+        uow: UnitOfWork = ...,
     ) -> CommunityItem: ...
     def purge_community(
-        self, identity: Identity, id_: str, uow: UnitOfWork = dummy_uow
+        self, identity: Identity, id_: str, uow: UnitOfWork = ...,
     ) -> None: ...
     def search(
         self,
         identity: Identity,
-        params: Optional[Dict[str, Any]] = None,
-        search_preference: Optional[str] = None,
+        params: dict[str, Any] | None = None,
+        search_preference: str | None = None,
         expand: bool = False,
         extra_filter: Any = None,
         **kwargs: Any,
@@ -201,7 +201,7 @@ class CommunityService(RecordService[C], Generic[C]):
     def read(
         self,
         identity: Identity,
-        id_: Optional[str],
+        id_: str | None,
         expand: bool = False,
         action: str = ...,
     ) -> Any: ...
@@ -209,30 +209,30 @@ class CommunityService(RecordService[C], Generic[C]):
         self,
         identity: Identity,
         id_: str,
-        data: Dict[str, Any],
+        data: dict[str, Any],
         revision_id: Any = None,
-        uow: UnitOfWork = dummy_uow,
+        uow: UnitOfWork = ...,
         expand: bool = False,
     ) -> CommunityItem: ...
     def on_relation_update(
         self,
         identity: Identity,
         record_type: str,
-        records_info: List[Any],
+        records_info: list[Any],
         notif_time: str,
         limit: int = ...,
     ) -> Any: ...
     def bulk_update_parent(
         self,
         identity: Identity,
-        community_ids: List[str],
+        community_ids: list[str],
         parent_id: str,
-        uow: UnitOfWork = dummy_uow,
+        uow: UnitOfWork = ...,
     ) -> None: ...
     def search_subcommunities(
         self,
         identity: Identity,
         id_: str,
-        params: Optional[Dict[str, Any]] = None,
+        params: dict[str, Any] | None = None,
         **kwargs: Any,
     ) -> CommunityListResult: ...

@@ -1,4 +1,5 @@
-from typing import Any, Generic, Iterator, Optional, TypeVar
+from collections.abc import Iterator
+from typing import Any, Generic, TypeVar
 
 from flask import Flask
 from invenio_records_permissions.policies import BasePermissionPolicy
@@ -12,7 +13,7 @@ from invenio_records_resources.services.base.results import (
 PermissionPolicyT = TypeVar("PermissionPolicyT", bound=BasePermissionPolicy)
 
 class ServiceConfig(Generic[PermissionPolicyT]):
-    service_id: Optional[str]
+    service_id: str | None
     permission_policy_cls: type[PermissionPolicyT]
     result_item_cls: type[ServiceItemResult]
     result_list_cls: type[ServiceListResult]
@@ -41,7 +42,7 @@ class FromConfig:
     import_string: bool
 
     def __init__(
-        self, config_key: str, default: Any = ..., import_string: bool = ...
+        self, config_key: str, default: Any = ..., import_string: bool = ...,
     ) -> None: ...
     def __get__(self, obj: Any, objtype: type = ...) -> Any: ...
     def __set_name__(self, owner: type, name: str) -> None: ...
@@ -55,11 +56,11 @@ class OptionsSelector:
     selected_options: list[str]
 
     def __init__(
-        self, available_options: dict[str, Any], selected_options: list[str]
+        self, available_options: dict[str, Any], selected_options: list[str],
     ) -> None: ...
     def __iter__(self) -> Iterator[tuple[str, Any]]: ...
     def map_option(self, key: str, option: Any) -> tuple[str, Any]: ...
-    def __call__(self) -> "OptionsSelector": ...
+    def __call__(self) -> OptionsSelector: ...
 
 class SortOptionsSelector(OptionsSelector):
     """Sort options for the search configuration."""
@@ -71,8 +72,8 @@ class SortOptionsSelector(OptionsSelector):
         self,
         available_options: dict[str, Any],
         selected_options: list[str],
-        default: Optional[str] = ...,
-        default_no_query: Optional[str] = ...,
+        default: str | None = ...,
+        default_no_query: str | None = ...,
     ) -> None: ...
 
 class SearchConfig:
@@ -80,26 +81,26 @@ class SearchConfig:
 
     _sort: Any
     _facets: Any
-    _query_parser_cls: Optional[type]
+    _query_parser_cls: type | None
 
     def __init__(
         self,
-        config: Optional[dict[str, Any]] = ...,
-        sort: Optional[dict[str, Any]] = ...,
-        facets: Optional[dict[str, Any]] = ...,
+        config: dict[str, Any] | None = ...,
+        sort: dict[str, Any] | None = ...,
+        facets: dict[str, Any] | None = ...,
     ) -> None: ...
     @property
     def sort_options(self) -> dict[str, Any]: ...
     @property
     def available_sort_options(self) -> dict[str, Any]: ...
     @property
-    def sort_default(self) -> Optional[str]: ...
+    def sort_default(self) -> str | None: ...
     @property
-    def sort_default_no_query(self) -> Optional[str]: ...
+    def sort_default_no_query(self) -> str | None: ...
     @property
     def facets(self) -> dict[str, Any]: ...
     @property
-    def query_parser_cls(self) -> Optional[type]: ...
+    def query_parser_cls(self) -> type | None: ...
 
 class FromConfigSearchOptions:
     """Data descriptor for search options configuration."""
@@ -108,16 +109,16 @@ class FromConfigSearchOptions:
     sort_key: str
     facet_key: str
     default: dict[str, Any]
-    search_option_cls: Optional[type]
-    search_option_cls_key: Optional[str]
+    search_option_cls: type | None
+    search_option_cls_key: str | None
 
     def __init__(
         self,
         config_key: str,
         sort_key: str,
         facet_key: str,
-        default: Optional[dict[str, Any]] = ...,
-        search_option_cls: Optional[type] = ...,
-        search_option_cls_key: Optional[str] = ...,
+        default: dict[str, Any] | None = ...,
+        search_option_cls: type | None = ...,
+        search_option_cls_key: str | None = ...,
     ) -> None: ...
     def __get__(self, obj: Any, objtype: type = ...) -> Any: ...

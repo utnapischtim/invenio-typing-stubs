@@ -7,7 +7,6 @@
 # modify it under the terms of the MIT License; see LICENSE file for more
 # details.
 
-from __future__ import annotations
 
 from typing import Any
 
@@ -15,7 +14,7 @@ from invenio_records_resources.records.api import Record
 from invenio_records_resources.services.base.links import EndpointLink, Link
 
 def pagination_endpoint_links(
-    endpoint: str, params: list[str] | None = ...
+    endpoint: str, params: list[str] | None = ...,
 ) -> dict[str, EndpointLink]: ...
 def pagination_links(tpl: str) -> dict[str, Link]: ...
 

@@ -10,13 +10,13 @@ from .owners import Owner
 from .protection import Protection
 
 __all__ = (
+    "AccessSettings",
     "Embargo",
     "Grant",
     "Grants",
     "Link",
     "Links",
     "Owner",
-    "AccessSettings",
     "ParentRecordAccess",
     "ParentRecordAccessField",
     "Protection",

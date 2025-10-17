@@ -1,8 +1,7 @@
-from typing import Any, Mapping
+from collections.abc import Mapping
+from typing import Any
 
 from marshmallow import Schema, fields
-from invenio_communities.communities.schema import CommunitySchema
-
 
 class CommunitiesSchema(Schema):
     ids: fields.List

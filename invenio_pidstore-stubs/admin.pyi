@@ -3,7 +3,7 @@
 Type stubs for invenio_pidstore.admin.
 """
 
-from typing import Any, Dict, Tuple
+from typing import Any
 from uuid import UUID as UUID
 
 from markupsafe import Markup as Markup
@@ -24,12 +24,12 @@ class PersistentIdentifierModelView:
     can_delete: bool
     can_view_details: bool
     column_display_all_relations: bool
-    column_list: Tuple[str, ...]
-    column_labels: Dict[str, str]
-    column_filters: Tuple[Any, ...]
-    column_searchable_list: Tuple[str, ...]
-    column_default_sort: Tuple[str, bool]
-    column_formatters: Dict[str, Any]
+    column_list: tuple[str, ...]
+    column_labels: dict[str, str]
+    column_filters: tuple[Any, ...]
+    column_searchable_list: tuple[str, ...]
+    column_default_sort: tuple[str, bool]
+    column_formatters: dict[str, Any]
     page_size: int
 
-pid_adminview: Dict[str, Any]
+pid_adminview: dict[str, Any]

@@ -1,7 +1,6 @@
-from __future__ import annotations
 
 from collections.abc import Callable, KeysView
-from typing import Any, TypeAlias
+from typing import Any
 
 from flask import Flask
 from jsonref import JsonRef
@@ -9,16 +8,16 @@ from werkzeug.routing import Map
 
 from . import config as config
 
-JSONSchemaValue: TypeAlias = (
+type JSONSchemaValue = (
     str
     | int
     | float
     | bool
     | None
-    | dict[str, "JSONSchemaValue"]
-    | list["JSONSchemaValue"]
+    | dict[str, JSONSchemaValue]
+    | list[JSONSchemaValue]
 )
-JSONSchema: TypeAlias = dict[str, JSONSchemaValue]
+type JSONSchema = dict[str, JSONSchemaValue]
 
 class InvenioJSONSchemasState:
     app: Flask

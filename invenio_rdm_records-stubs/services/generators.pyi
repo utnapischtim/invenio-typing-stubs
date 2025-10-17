@@ -1,4 +1,5 @@
-from typing import Any, Collection, Iterable, Optional
+from collections.abc import Collection, Iterable
+from typing import Any
 
 from flask_principal import Identity, Need
 from invenio_records.api import Record
@@ -8,10 +9,10 @@ from invenio_search.engine import dsl
 class IfRestricted(ConditionalGenerator):
     field: str
     def __init__(
-        self, field: str, then_: Iterable[Generator], else_: Iterable[Generator]
+        self, field: str, then_: Iterable[Generator], else_: Iterable[Generator],
     ) -> None: ...
     def query_filter(
-        self, **kwargs: Any
+        self, **kwargs: Any,
     ) -> dsl.query.Query | list[dsl.query.Query] | None: ...
     def _condition(self, **kwargs: Any) -> bool: ...
 
@@ -31,57 +32,57 @@ class IfRecordDeleted(Generator):
     then_: Iterable[Generator]
     else_: Iterable[Generator]
     def __init__(
-        self, then_: Iterable[Generator], else_: Iterable[Generator]
+        self, then_: Iterable[Generator], else_: Iterable[Generator],
     ) -> None: ...
     def needs(
-        self, record: Optional[Record] = ..., **kwargs: Any
+        self, record: Record | None = ..., **kwargs: Any,
     ) -> Collection[Need]: ...
     def excludes(
-        self, record: Optional[Record] = ..., **kwargs: Any
+        self, record: Record | None = ..., **kwargs: Any,
     ) -> Collection[Need]: ...
     def query_filter(
-        self, **kwargs: Any
+        self, **kwargs: Any,
     ) -> dsl.query.Query | list[dsl.query.Query] | None: ...
 
 class RecordOwners(Generator):
     def needs(
-        self, record: Optional[Record] = ..., **kwargs: Any
+        self, record: Record | None = ..., **kwargs: Any,
     ) -> Collection[Need]: ...
     def query_filter(
-        self, identity: Optional[Identity] = ..., **kwargs: Any
+        self, identity: Identity | None = ..., **kwargs: Any,
     ) -> dsl.query.Query | list[dsl.query.Query] | None: ...
 
 class AccessGrant(Generator):
     def __init__(self, permission: str) -> None: ...
     def needs(
-        self, record: Optional[Record] = ..., **kwargs: Any
+        self, record: Record | None = ..., **kwargs: Any,
     ) -> Collection[Need]: ...
     def query_filter(
-        self, identity: Optional[Identity] = ..., **kwargs: Any
+        self, identity: Identity | None = ..., **kwargs: Any,
     ) -> dsl.query.Query | list[dsl.query.Query] | None: ...
 
 class SecretLinks(Generator):
     def __init__(self, permission: str) -> None: ...
     def needs(
-        self, record: Optional[Record] = ..., **kwargs: Any
+        self, record: Record | None = ..., **kwargs: Any,
     ) -> Collection[Need]: ...
     def query_filter(
-        self, identity: Optional[Identity] = ..., **kwargs: Any
+        self, identity: Identity | None = ..., **kwargs: Any,
     ) -> dsl.query.Query | list[dsl.query.Query] | None: ...
 
 class SubmissionReviewer(Generator):
     def needs(
-        self, record: Optional[Record] = ..., **kwargs: Any
+        self, record: Record | None = ..., **kwargs: Any,
     ) -> Collection[Need]: ...
 
 class RequestReviewers(Generator):
     def needs(
-        self, record: Optional[Record] = ..., **kwargs: Any
+        self, record: Record | None = ..., **kwargs: Any,
     ) -> Collection[Need]: ...
 
 class CommunityInclusionReviewers(Generator):
     def needs(
-        self, record: Optional[Record] = ..., **kwargs: Any
+        self, record: Record | None = ..., **kwargs: Any,
     ) -> Collection[Need]: ...
 
 class RecordCommunitiesAction(Generator):
@@ -89,16 +90,16 @@ class RecordCommunitiesAction(Generator):
     def roles(self, **kwargs: Any) -> set[str]: ...
     def communities(self, identity: Identity) -> list[str]: ...
     def needs(
-        self, record: Optional[Record] = ..., **kwargs: Any
+        self, record: Record | None = ..., **kwargs: Any,
     ) -> Collection[Need]: ...
     def query_filter(
-        self, identity: Optional[Identity] = ..., **kwargs: Any
+        self, identity: Identity | None = ..., **kwargs: Any,
     ) -> dsl.query.Query | list[dsl.query.Query] | None: ...
 
 class ResourceAccessToken(Generator):
     def __init__(self, access: str) -> None: ...
     def needs(
-        self, record: Optional[Record] = ..., file_key: str | None = ..., **kwargs: Any
+        self, record: Record | None = ..., file_key: str | None = ..., **kwargs: Any,
     ) -> Collection[Need]: ...
 
 class IfCreate(ConditionalGenerator):
@@ -106,7 +107,7 @@ class IfCreate(ConditionalGenerator):
 
 class IfRequestType(ConditionalGenerator):
     def __init__(
-        self, request_type: type, then_: Iterable[Generator], else_: Iterable[Generator]
+        self, request_type: type, then_: Iterable[Generator], else_: Iterable[Generator],
     ) -> None: ...
     def _condition(self, **kwargs: Any) -> bool: ...
 

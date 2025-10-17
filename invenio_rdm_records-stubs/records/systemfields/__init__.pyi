@@ -12,7 +12,7 @@ __all__ = (
     "IsVerifiedField",
     "ParentRecordAccessField",
     "RecordAccessField",
-    "RecordStatisticsField",
     "RecordDeletionStatusField",
+    "RecordStatisticsField",
     "TombstoneField",
 )

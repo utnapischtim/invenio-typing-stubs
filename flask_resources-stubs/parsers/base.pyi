@@ -1,4 +1,3 @@
-from __future__ import annotations
 
 from typing import Any
 
@@ -13,7 +12,7 @@ class RequestParser:
         self,
         schema_or_dict: type[ma.Schema] | dict[str, Any],
         location: str,
-        unknown: Any = ma.EXCLUDE,
+        unknown: Any = ...,
     ) -> None: ...
     @property
     def location(self) -> str: ...

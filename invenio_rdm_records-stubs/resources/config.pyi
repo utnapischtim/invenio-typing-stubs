@@ -41,7 +41,7 @@ class RDMGrantGroupAccessResourceConfig(RecordResourceConfig, ConfiguratorMixin)
 
 class RDMCommunityRecordsResourceConfig(RecordResourceConfig, ConfiguratorMixin): ...
 class RDMRecordCommunitiesResourceConfig(
-    CommunityResourceConfig, ConfiguratorMixin
+    CommunityResourceConfig, ConfiguratorMixin,
 ): ...
 
 class RDMRecordRequestsResourceConfig(ResourceConfig, ConfiguratorMixin):

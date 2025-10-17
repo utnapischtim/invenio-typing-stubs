@@ -13,9 +13,9 @@ from invenio_records_resources.services.files.transfer.providers.remote import (
 )
 
 __all__ = (
-    "RemoteTransferBase",
-    "RemoteTransfer",
-    "LocalTransfer",
     "FetchTransfer",
+    "LocalTransfer",
     "MultipartTransfer",
+    "RemoteTransfer",
+    "RemoteTransferBase",
 )

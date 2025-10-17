@@ -12,10 +12,10 @@ from invenio_requests.services.requests.service import (
 )
 
 __all__ = [
-    "RequestNumberComponent",
-    "RequestLink",
     "RequestItem",
+    "RequestLink",
     "RequestList",
+    "RequestNumberComponent",
     "RequestsService",
     "RequestsServiceConfig",
 ]

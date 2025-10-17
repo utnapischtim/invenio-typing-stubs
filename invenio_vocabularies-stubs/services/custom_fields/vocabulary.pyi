@@ -19,7 +19,7 @@ from marshmallow.fields import Field
 
 class VocabularyCF(BaseCF):
     field_keys: ClassVar[list[str]]
-    relation_cls: type[PIDRelation] | type[PIDListRelation]
+    relation_cls: type[PIDRelation | PIDListRelation]
     vocabulary_id: str
     dump_options: bool
     multiple: bool

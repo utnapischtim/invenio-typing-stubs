@@ -1,4 +1,3 @@
-from __future__ import annotations
 
 from flask_principal import Identity
 from invenio_db.uow import UnitOfWork

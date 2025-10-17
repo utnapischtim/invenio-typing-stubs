@@ -1,4 +1,3 @@
-from __future__ import annotations
 
 from collections.abc import Callable, Mapping
 from datetime import timedelta
@@ -7,7 +6,7 @@ from typing import Any
 from invenio_rdm_records.services.permissions import RDMRecordPermissionPolicy
 from invenio_rdm_records.services.pids.providers.base import PIDProvider
 
-Validator = Callable[[str], bool]
+type Validator = Callable[[str], bool]
 
 RDM_RECORDS_USER_FIXTURE_PASSWORDS: dict[str, str | None]
 RDM_RECORDS_UI_EDIT_URL: str

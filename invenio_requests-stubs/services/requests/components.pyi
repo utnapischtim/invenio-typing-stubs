@@ -1,7 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Optional
+from typing import TYPE_CHECKING, Any
 
 from flask_principal import Identity
-from invenio_db.uow import UnitOfWork, dummy_uow
+from invenio_db.uow import UnitOfWork
 from invenio_records_resources.records.api import Record as BaseRecord
 from invenio_records_resources.services.records.components import (
     DataComponent,
@@ -19,8 +19,8 @@ class RequestNumberComponent(ServiceComponent):
     def create(
         self,
         identity: Identity,
-        data: Optional[Dict[str, Any]] = None,
-        record: Optional["Request"] = None,
+        data: dict[str, Any] | None = None,
+        record: Request | None = None,
         **kwargs: Any,
     ) -> None: ...
 
@@ -28,8 +28,8 @@ class EntityReferencesComponent(ServiceComponent):
     def create(
         self,
         identity: Identity,
-        data: Optional[Dict[str, Any]] = None,
-        record: Optional["Request"] = None,
+        data: dict[str, Any] | None = None,
+        record: Request | None = None,
         **kwargs: Any,
     ) -> None: ...
 
@@ -37,23 +37,23 @@ class RequestDataComponent(DataComponent):
     def update(
         self,
         identity: Identity,
-        data: Optional[Dict[str, Any]] = None,
+        data: dict[str, Any] | None = None,
         record: BaseRecord | None = None,
         **kwargs: Any,
     ) -> None: ...
 
 class RequestReviewersComponent(ServiceComponent):
-    def _ensure_no_duplicates(self, reviewers: List[Any]) -> List[Any]: ...
+    def _ensure_no_duplicates(self, reviewers: list[Any]) -> list[Any]: ...
     def _reviewers_updated(
-        self, previous_reviewers: List[Any], new_reviewers: List[Any]
+        self, previous_reviewers: list[Any], new_reviewers: list[Any],
     ) -> bool: ...
-    def _validate_reviewers(self, reviewers: List[Any]) -> None: ...
+    def _validate_reviewers(self, reviewers: list[Any]) -> None: ...
     def update(
         self,
         identity: Identity,
-        data: Optional[Dict[str, Any]] = None,
+        data: dict[str, Any] | None = None,
         record: BaseRecord | None = None,
-        uow: UnitOfWork = dummy_uow,
+        uow: UnitOfWork = ...,
         **kwargs: Any,
     ) -> None: ...
 
@@ -61,7 +61,7 @@ class RequestPayloadComponent(DataComponent):
     def update(
         self,
         identity: Identity,
-        data: Optional[Dict[str, Any]] = None,
+        data: dict[str, Any] | None = None,
         record: BaseRecord | None = None,
         **kwargs: Any,
     ) -> None: ...

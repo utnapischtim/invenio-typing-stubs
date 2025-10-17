@@ -13,12 +13,12 @@ from invenio_records_resources.services.base import Service
 class ServiceResultProxy(EntityProxy):
     service: Service
     def __init__(
-        self, resolver: EntityResolver, ref_dict: dict[str, Any], service: Service
+        self, resolver: EntityResolver, ref_dict: dict[str, Any], service: Service,
     ) -> None: ...
     def _resolve(self) -> dict[str, Any]: ...
     def get_needs(self, ctx: Any | None = None) -> list[Need | ItemNeed]: ...
     def pick_resolved_fields(
-        self, identity: Any, resolved_dict: dict[str, Any]
+        self, identity: Any, resolved_dict: dict[str, Any],
     ) -> dict[str, Any]: ...
 
 class ServiceResultResolver(EntityResolver):
@@ -31,7 +31,7 @@ class ServiceResultResolver(EntityResolver):
         self,
         service_id: str,
         type_key: str,
-        proxy_cls: type[ServiceResultProxy] = ServiceResultProxy,
+        proxy_cls: type[ServiceResultProxy] = ...,
         item_cls: type[Any] | None = None,
         record_cls: type[Record] | None = None,
     ) -> None: ...

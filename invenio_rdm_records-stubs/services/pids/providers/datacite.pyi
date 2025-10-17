@@ -1,4 +1,4 @@
-from typing import Any, Optional
+from typing import Any
 
 from datacite import DataCiteRESTClient
 from flask import Flask
@@ -17,8 +17,8 @@ class DataCiteClient:
     def __init__(
         self,
         name: str,
-        config_prefix: Optional[str] = ...,
-        config_overrides: Optional[dict[str, Any]] = ...,
+        config_prefix: str | None = ...,
+        config_overrides: dict[str, Any] | None = ...,
         **kwargs: Any,
     ) -> None: ...
     def cfgkey(self, key: str) -> str: ...
@@ -34,8 +34,8 @@ class DataCitePIDProvider(PIDProvider):
     def __init__(
         self,
         id_: str,
-        client: Optional[DataCiteClient] = ...,
-        serializer: Optional[DataCite43JSONSerializer] = ...,
+        client: DataCiteClient | None = ...,
+        serializer: DataCite43JSONSerializer | None = ...,
         pid_type: str = ...,
         default_status: PIDStatus = ...,
         **kwargs: Any,
@@ -56,26 +56,26 @@ class DataCitePIDProvider(PIDProvider):
         self,
         pid: PersistentIdentifier,
         record: RDMRecord | RDMDraft | dict[str, Any] | None = ...,
-        url: Optional[str] = ...,
+        url: str | None = ...,
         **kwargs: Any,
     ) -> bool: ...
     def restore(self, pid: PersistentIdentifier, **kwargs: Any) -> None: ...
     def delete(
-        self, pid: PersistentIdentifier, soft_delete: bool = ..., **kwargs: Any
+        self, pid: PersistentIdentifier, soft_delete: bool = ..., **kwargs: Any,
     ) -> bool: ...
     def validate(
         self,
         record: RDMRecord | RDMDraft | dict[str, Any],
-        identifier: Optional[str] = ...,
-        provider: Optional[str] = ...,
+        identifier: str | None = ...,
+        provider: str | None = ...,
         **kwargs: Any,
     ) -> tuple[bool, list[dict[str, Any]]]: ...
     def validate_restriction_level(
         self,
         record: RDMRecord | RDMDraft | dict[str, Any],
-        identifier: Optional[str] = ...,
+        identifier: str | None = ...,
         **kwargs: Any,
     ) -> None: ...
     def create_and_reserve(
-        self, record: RDMRecord | RDMDraft | dict[str, Any], **kwargs: Any
+        self, record: RDMRecord | RDMDraft | dict[str, Any], **kwargs: Any,
     ) -> None: ...

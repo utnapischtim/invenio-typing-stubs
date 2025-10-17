@@ -19,7 +19,7 @@ class PIDsComponent(ServiceComponent):
 
     def _validate_optional_doi(self, *args: Any, **kwargs: Any) -> Any: ...
     def _find_changed_pids_to_discard_from_source(
-        self, source_pids: dict[str, Any], dest_pids: dict[str, Any]
+        self, source_pids: dict[str, Any], dest_pids: dict[str, Any],
     ) -> dict[str, Any]: ...
     def create(
         self,

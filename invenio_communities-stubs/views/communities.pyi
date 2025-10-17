@@ -1,4 +1,4 @@
-from typing import Any, Dict, List, Optional, Set
+from typing import Any
 
 from flask_login import login_required
 from invenio_communities.communities.resources.ui_schema import (
@@ -11,22 +11,22 @@ from invenio_communities.views.template_loader import (
     CommunityThemeChoiceJinjaLoader as CommunityThemeChoiceJinjaLoader,
 )
 
-VISIBILITY_FIELDS: List[Dict[str, str]]  # List of visibility option dicts
-MEMBERS_VISIBILITY_FIELDS: List[
-    Dict[str, str]
+VISIBILITY_FIELDS: list[dict[str, str]]  # List of visibility option dicts
+MEMBERS_VISIBILITY_FIELDS: list[
+    dict[str, str]
 ]  # List of member visibility option dicts
-RECORDS_SUBMISSION_POLICY_FIELDS: List[
-    Dict[str, str]
+RECORDS_SUBMISSION_POLICY_FIELDS: list[
+    dict[str, str]
 ]  # List of submission policy option dicts
-REVIEW_POLICY_FIELDS: List[Dict[str, str]]  # List of review policy option dicts
-MEMBER_POLICY_FIELDS: List[Dict[str, str]]  # List of member policy option dicts
-HEADER_PERMISSIONS: Set[str]  # Set of permission strings
-PRIVATE_PERMISSIONS: Set[str]  # Set of permission strings
-MEMBERS_PERMISSIONS: Set[str]  # Set of permission strings
+REVIEW_POLICY_FIELDS: list[dict[str, str]]  # List of review policy option dicts
+MEMBER_POLICY_FIELDS: list[dict[str, str]]  # List of member policy option dicts
+HEADER_PERMISSIONS: set[str]  # Set of permission strings
+PRIVATE_PERMISSIONS: set[str]  # Set of permission strings
+MEMBERS_PERMISSIONS: set[str]  # Set of permission strings
 
 def render_community_theme_template(
-    template_name_or_list: str | List[str],
-    theme: Optional[Dict[str, Any]] = ...,
+    template_name_or_list: str | list[str],
+    theme: dict[str, Any] | None = ...,
     **context: Any,
 ) -> str: ...
 def communities_frontpage(): ...
@@ -47,5 +47,5 @@ def invitations(pid_value, community, community_ui): ...
 def communities_about(pid_value, community, community_ui): ...
 def communities_curation_policy(pid_value, community, community_ui): ...
 def community_theme_css_config(
-    pid_value, revision, community
-) -> tuple[str, int, Dict[str, str]]: ...
+    pid_value, revision, community,
+) -> tuple[str, int, dict[str, str]]: ...

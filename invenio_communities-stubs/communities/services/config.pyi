@@ -83,8 +83,8 @@ class CommunityServiceConfig(
     indexer_queue_name: str
     search: type[SearchOptionsBase]
     schema: type[ma.Schema] | None
-    schema_featured: Any = CommunityFeaturedSchema
-    schema_tombstone: Any = TombstoneSchema
+    schema_featured: Any = ...
+    schema_tombstone: Any = ...
     result_list_cls_featured = CommunityFeaturedList
     result_item_cls_featured = FeaturedCommunityItem
     action_link: Any

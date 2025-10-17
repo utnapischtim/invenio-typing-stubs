@@ -4,10 +4,6 @@ from io import (
 )
 from typing import (
     Any,
-    Dict,
-    List,
-    Optional,
-    Union,
 )
 
 from flask_principal import (
@@ -30,7 +26,7 @@ class FileServiceComponent(BaseServiceComponent):
         record: Record,
     ): ...
     def delete_all_files(
-        self, identity: Identity, id_: str, record: Record, results: List[Any]
+        self, identity: Identity, id_: str, record: Record, results: list[Any],
     ): ...
     def delete_file(
         self,
@@ -60,7 +56,7 @@ class FileServiceComponent(BaseServiceComponent):
         identity: Identity,
         id_: str,
         record: Record,
-        data: List[Dict[str, Any]],
+        data: list[dict[str, Any]],
     ): ...
     def list_files(
         self,
@@ -80,8 +76,8 @@ class FileServiceComponent(BaseServiceComponent):
         identity: Identity,
         id_: str,
         file_key: str,
-        stream: Union[BytesIO, BufferedReader, LimitedStream],
-        content_length: Optional[int],
+        stream: BytesIO | BufferedReader | LimitedStream,
+        content_length: int | None,
         record: Record,
     ): ...
     def update_file_metadata(
@@ -90,7 +86,7 @@ class FileServiceComponent(BaseServiceComponent):
         id_: str,
         file_key: str,
         record: Record,
-        data: Dict[str, Dict[str, str]],
+        data: dict[str, dict[str, str]],
     ): ...
     def get_file_transfer_metadata(
         self,
@@ -98,7 +94,7 @@ class FileServiceComponent(BaseServiceComponent):
         id_: str,
         file_key: str,
         record: Record,
-        transfer_metadata: Dict[str, Any],
+        transfer_metadata: dict[str, Any],
     ): ...
     def update_file_transfer_metadata(
         self,
@@ -106,5 +102,5 @@ class FileServiceComponent(BaseServiceComponent):
         id_: str,
         file_key: str,
         record: Record,
-        transfer_metadata: Dict[str, Any],
+        transfer_metadata: dict[str, Any],
     ): ...

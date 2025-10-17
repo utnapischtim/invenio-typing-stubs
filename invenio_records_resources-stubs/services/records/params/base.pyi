@@ -7,7 +7,6 @@
 # modify it under the terms of the MIT License; see LICENSE file for more
 # details.
 
-from __future__ import annotations
 
 from typing import Any
 
@@ -19,5 +18,5 @@ class ParamInterpreter:
     config: type[SearchOptions]
     def __init__(self, config: type[SearchOptions]) -> None: ...
     def apply(
-        self, identity: Identity, search: RecordsSearchV2, params: dict[str, Any]
+        self, identity: Identity, search: RecordsSearchV2, params: dict[str, Any],
     ) -> RecordsSearchV2: ...

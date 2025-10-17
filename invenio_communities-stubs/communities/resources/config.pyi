@@ -40,7 +40,7 @@ class CommunityResourceConfig(RecordResourceConfig, ConfiguratorMixin):
     request_search_args: type[SearchRequestArgsSchema]
     request_view_args: Mapping[str, ma.fields.Field]
     error_handlers: Mapping[
-        int | type[HTTPException] | type[BaseException],
+        type[HTTPException | BaseException] | int,
         Callable[[Exception], Response],
     ]
     request_community_requests_search_args: type[RequestSearchRequestArgsSchema]

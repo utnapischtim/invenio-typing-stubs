@@ -1,5 +1,5 @@
 from collections.abc import Mapping
-from typing import Any, Dict, List, Optional, Type
+from typing import Any
 
 from flask_babel.speaklater import LazyString
 from flask_principal import Need
@@ -23,35 +23,33 @@ from marshmallow.fields import Field
 class RequestType:
     type_id: str
     name: str | LazyString
-    available_statuses: Dict[str, RequestState]
+    available_statuses: dict[str, RequestState]
     create_action: str
     delete_action: str
-    available_actions: Dict[str, Type[RequestAction]]
+    available_actions: dict[str, type[RequestAction]]
     creator_can_be_none: bool
     receiver_can_be_none: bool
     topic_can_be_none: bool
-    allowed_creator_ref_types: List[str]
-    allowed_receiver_ref_types: List[str]
-    allowed_topic_ref_types: List[str]
+    allowed_creator_ref_types: list[str]
+    allowed_receiver_ref_types: list[str]
+    allowed_topic_ref_types: list[str]
     resolve_topic_needs: bool
-    payload_schema: Optional[Mapping[str, Field]]
-    payload_schema_cls: Optional[Type[Schema]]
+    payload_schema: Mapping[str, Field] | None
+    payload_schema_cls: type[Schema] | None
     comment_notification_builder: type
-    needs_context: Optional[str]
+    needs_context: str | None
 
     @classmethod
-    def allowed_reviewers_ref_types(cls) -> List[str]: ...
+    def allowed_reviewers_ref_types(cls) -> list[str]: ...
     @classmethod
     def reviewers_can_be_none(cls) -> bool: ...
     @classmethod
-    def entity_needs(cls, entity: Optional[Any]) -> List[Need]: ...
+    def entity_needs(cls, entity: Any | None) -> list[Need]: ...
     @classmethod
     def _create_payload_cls(cls): ...
     @classmethod
     def _create_marshmallow_schema(cls) -> type[Schema]: ...
     @classmethod
     def marshmallow_schema(cls) -> type[Schema]: ...
-    def _update_link_config(self, **context_values) -> Dict[str, Any]: ...
+    def _update_link_config(self, **context_values) -> dict[str, Any]: ...
     def generate_request_number(self, request: Request, **kwargs) -> str: ...
-    def __str__(self) -> str: ...
-    def __repr__(self) -> str: ...

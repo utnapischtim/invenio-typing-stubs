@@ -1,6 +1,6 @@
-from __future__ import annotations
 
-from typing import Any, Mapping
+from collections.abc import Mapping
+from typing import Any
 
 from invenio_rdm_records.resources.serializers.schemaorg.schema import SchemaorgSchema
 

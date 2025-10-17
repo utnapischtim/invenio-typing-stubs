@@ -16,15 +16,15 @@ from invenio_requests.proxies import (
 )
 
 __all__ = [
+    "InvenioRequests",
+    "RequestAction",
     "__version__",
     "current_event_type_registry",
     "current_events_service",
     "current_request_type_registry",
+    "current_requests",
     "current_requests_resource",
     "current_requests_service",
-    "current_requests",
-    "InvenioRequests",
-    "RequestAction",
 ]
 
 __version__: str

@@ -30,7 +30,7 @@ class IIIFResourceConfig(ResourceConfig, ConfiguratorMixin):
     supported_formats: Any
     proxy_cls: Any
     error_handlers: Mapping[
-        int | type[HTTPException] | type[BaseException],
+        type[HTTPException | BaseException] | int,
         Callable[[Exception], Response],
     ]
 

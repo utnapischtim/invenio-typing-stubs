@@ -7,9 +7,9 @@ from invenio_audit_logs.services.service import AuditLogService as AuditLogServi
 from invenio_audit_logs.services.uow import AuditLogOp as AuditLogOp
 
 __all__ = [
-    "AuditLogService",
-    "AuditLogSchema",
-    "AuditLogServiceConfig",
     "AuditLogAction",
     "AuditLogOp",
+    "AuditLogSchema",
+    "AuditLogService",
+    "AuditLogServiceConfig",
 ]

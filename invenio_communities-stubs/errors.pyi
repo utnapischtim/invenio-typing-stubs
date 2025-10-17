@@ -1,7 +1,5 @@
 from typing import (
     Any,
-    Dict,
-    Optional,
 )
 
 from invenio_communities.communities.records.api import Community
@@ -17,17 +15,17 @@ class CommunityError(Exception):
 
 class CommunityDeletedError(CommunityError):
     def __init__(
-        self, community: Community, result_item: Optional[CommunityItem] = ...
+        self, community: Community, result_item: CommunityItem | None = ...,
     ) -> None: ...
     community: Community
-    result_item: Optional[CommunityItem]
+    result_item: CommunityItem | None
 
 class CommunityFeaturedEntryDoesNotExistError(CommunityError):
-    def __init__(self, query_arguments: Dict[str, Any]) -> None: ...
+    def __init__(self, query_arguments: dict[str, Any]) -> None: ...
 
 class DeletionStatusError(CommunityError):
     def __init__(
-        self, community: Community, expected_status: CommunityDeletionStatusEnum
+        self, community: Community, expected_status: CommunityDeletionStatusEnum,
     ) -> None: ...
     community: Community
     expected_status: CommunityDeletionStatusEnum

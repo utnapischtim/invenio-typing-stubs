@@ -33,7 +33,7 @@ class FileSchema(Schema):
         unknown: Any
 
     def dump_file_fields(
-        self, obj: dict[str, Any], original: FileRecord, **kwargs: Any
+        self, obj: dict[str, Any], original: FileRecord, **kwargs: Any,
     ) -> dict[str, Any]: ...
     def dump_status(self, obj: FileRecord) -> str: ...
 

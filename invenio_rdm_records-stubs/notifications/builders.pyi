@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from __future__ import annotations
 
-from typing import Any, ClassVar, Optional, overload
+from typing import Any, ClassVar, overload
 
 from flask_principal import Identity
 from invenio_notifications.models import Notification
@@ -222,7 +221,7 @@ class GrantUserAccessNotificationBuilder(NotificationBuilder):
         record: Record,
         user: Any,
         permission: str,
-        message: Optional[str] = ...,
+        message: str | None = ...,
     ) -> Notification: ...
     @classmethod
     @overload

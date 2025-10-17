@@ -1,4 +1,4 @@
-from typing import Any, Dict, List, Optional, Type
+from typing import Any
 
 from flask_principal import Identity
 from invenio_communities.communities.records.api import Community
@@ -21,22 +21,22 @@ class PIDComponent(ServiceComponent):
     def create(
         self,
         identity: Identity,
-        record: Optional[Community] = None,
-        data: Optional[Dict[str, Any]] = None,
+        record: Community | None = None,
+        data: dict[str, Any] | None = None,
         **kwargs: Any,
     ) -> None: ...
     def update(
         self,
         identity: Identity,
-        record: Optional[Community] = None,
-        data: Optional[Dict[str, Any]] = None,
+        record: Community | None = None,
+        data: dict[str, Any] | None = None,
         **kwargs: Any,
     ) -> None: ...
     def rename(
         self,
         identity: Identity,
-        record: Optional[Community] = None,
-        data: Optional[Dict[str, Any]] = None,
+        record: Community | None = None,
+        data: dict[str, Any] | None = None,
         **kwargs: Any,
     ) -> None: ...
 
@@ -44,22 +44,22 @@ class CommunityAccessComponent(ServiceComponent):
     def _populate_access_and_validate(
         self,
         identity: Identity,
-        data: Dict[str, Any],
-        record: Optional[Community],
+        data: dict[str, Any],
+        record: Community | None,
         **kwargs: Any,
     ) -> None: ...
     def create(
         self,
         identity: Identity,
-        data: Optional[Dict[str, Any]] = None,
-        record: Optional[Community] = None,
+        data: dict[str, Any] | None = None,
+        record: Community | None = None,
         **kwargs: Any,
     ) -> None: ...
     def update(
         self,
         identity: Identity,
-        data: Optional[Dict[str, Any]] = None,
-        record: Optional[Community] = None,
+        data: dict[str, Any] | None = None,
+        record: Community | None = None,
         **kwargs: Any,
     ) -> None: ...
 
@@ -67,8 +67,8 @@ class OwnershipComponent(ServiceComponent):
     def create(
         self,
         identity: Identity,
-        data: Optional[Dict[str, Any]] = None,
-        record: Optional[Community] = None,
+        data: dict[str, Any] | None = None,
+        record: Community | None = None,
         **kwargs: Any,
     ) -> None: ...
 
@@ -76,8 +76,8 @@ class FeaturedCommunityComponent(ServiceComponent):
     def featured_create(
         self,
         identity: Identity,
-        data: Optional[Dict[str, Any]] = None,
-        record: Optional[Community] = None,
+        data: dict[str, Any] | None = None,
+        record: Community | None = None,
         **kwargs: Any,
     ) -> None: ...
 
@@ -85,34 +85,34 @@ class OAISetComponent(ServiceComponent):
     def _create_set_description(self, community_title: str) -> str: ...
     def _create_set_from_community(self, record: Community) -> OAISet: ...
     def _create_set_spec(self, community_slug: str) -> str: ...
-    def _retrieve_set(self, slug: str) -> Optional[OAISet]: ...
+    def _retrieve_set(self, slug: str) -> OAISet | None: ...
     def create(
         self,
         identity: Identity,
-        data: Optional[Dict[str, Any]] = None,
-        record: Optional[Community] = None,
+        data: dict[str, Any] | None = None,
+        record: Community | None = None,
         **kwargs: Any,
     ) -> None: ...
     def delete(
         self,
         identity: Identity,
-        data: Optional[Dict[str, Any]] = None,
-        record: Optional[Community] = None,
+        data: dict[str, Any] | None = None,
+        record: Community | None = None,
         **kwargs: Any,
     ) -> None: ...
     def update(
         self,
         identity: Identity,
-        data: Optional[Dict[str, Any]] = None,
-        record: Optional[Community] = None,
+        data: dict[str, Any] | None = None,
+        record: Community | None = None,
         **kwargs: Any,
     ) -> None: ...
     def rename(
         self,
         identity: Identity,
-        record: Optional[Community] = None,
-        data: Optional[Dict[str, Any]] = None,
-        old_slug: Optional[str] = None,
+        record: Community | None = None,
+        data: dict[str, Any] | None = None,
+        old_slug: str | None = None,
         **kwargs: Any,
     ) -> None: ...
 
@@ -120,16 +120,16 @@ class CustomFieldsComponent(ServiceComponent):
     def create(
         self,
         identity: Identity,
-        data: Optional[Dict[str, Any]] = None,
-        record: Optional[Community] = None,
-        errors: Optional[List[Any]] = None,
+        data: dict[str, Any] | None = None,
+        record: Community | None = None,
+        errors: list[Any] | None = None,
         **kwargs: Any,
     ) -> None: ...
     def update(
         self,
         identity: Identity,
-        data: Optional[Dict[str, Any]] = None,
-        record: Optional[Community] = None,
+        data: dict[str, Any] | None = None,
+        record: Community | None = None,
         **kwargs: Any,
     ) -> None: ...
 
@@ -137,36 +137,36 @@ class CommunityDeletionComponent(ServiceComponent):
     def delete(
         self,
         identity: Identity,
-        data: Optional[Dict[str, Any]] = None,
-        record: Optional[Community] = None,
+        data: dict[str, Any] | None = None,
+        record: Community | None = None,
         **kwargs: Any,
     ) -> None: ...
     def update_tombstone(
         self,
         identity: Identity,
-        data: Optional[Dict[str, Any]] = None,
-        record: Optional[Community] = None,
+        data: dict[str, Any] | None = None,
+        record: Community | None = None,
         **kwargs: Any,
     ) -> None: ...
     def restore(
         self,
         identity: Identity,
         data: None = None,
-        record: Optional[Community] = None,
+        record: Community | None = None,
         **kwargs: Any,
     ) -> None: ...
     def mark(
         self,
         identity: Identity,
         data: None = None,
-        record: Optional[Community] = None,
+        record: Community | None = None,
         **kwargs: Any,
     ) -> None: ...
     def unmark(
         self,
         identity: Identity,
         data: None = None,
-        record: Optional[Community] = None,
+        record: Community | None = None,
         **kwargs: Any,
     ) -> None: ...
 
@@ -174,55 +174,55 @@ class CommunityThemeComponent(ServiceComponent):
     def create(
         self,
         identity: Identity,
-        data: Optional[Dict[str, Any]] = None,
-        record: Optional[Community] = None,
+        data: dict[str, Any] | None = None,
+        record: Community | None = None,
         **kwargs: Any,
     ) -> None: ...
     def update(
         self,
         identity: Identity,
-        data: Optional[Dict[str, Any]] = None,
-        record: Optional[Community] = None,
-        errors: Optional[List[Any]] = None,
+        data: dict[str, Any] | None = None,
+        record: Community | None = None,
+        errors: list[Any] | None = None,
         **kwargs: Any,
     ) -> None: ...
 
 class CommunityParentComponent(ServiceComponent):
     def _validate_and_get_parent(
-        self, parent_data: Optional[Dict[str, Any]], child: Community
-    ) -> Optional[Community]: ...
+        self, parent_data: dict[str, Any] | None, child: Community,
+    ) -> Community | None: ...
     def create(
         self,
         identity: Identity,
-        data: Optional[Dict[str, Any]] = None,
-        record: Optional[Community] = None,
+        data: dict[str, Any] | None = None,
+        record: Community | None = None,
         **kwargs: Any,
     ) -> None: ...
     def update(
         self,
         identity: Identity,
-        data: Optional[Dict[str, Any]] = None,
-        record: Optional[Community] = None,
+        data: dict[str, Any] | None = None,
+        record: Community | None = None,
         **kwargs: Any,
     ) -> None: ...
 
 class ChildrenComponent(ServiceComponent):
     def _populate_and_validate(
-        self, identity: Identity, data: Dict[str, Any], record: Community, **kwargs: Any
+        self, identity: Identity, data: dict[str, Any], record: Community, **kwargs: Any,
     ) -> None: ...
     def create(
         self,
         identity: Identity,
-        data: Optional[Dict[str, Any]] = None,
-        record: Optional[Community] = None,
+        data: dict[str, Any] | None = None,
+        record: Community | None = None,
         **kwargs: Any,
     ) -> None: ...
     def update(
         self,
         identity: Identity,
-        data: Optional[Dict[str, Any]] = None,
-        record: Optional[Community] = None,
+        data: dict[str, Any] | None = None,
+        record: Community | None = None,
         **kwargs: Any,
     ) -> None: ...
 
-DefaultCommunityComponents: List[Type[ServiceComponent]]
+DefaultCommunityComponents: list[type[ServiceComponent]]

@@ -13,7 +13,7 @@ class AccessComponent(ServiceComponent):
         **kwargs: Any,
     ) -> None: ...
     def _init_owner(
-        self, identity: Identity, record: RDMDraft, **kwargs: Any
+        self, identity: Identity, record: RDMDraft, **kwargs: Any,
     ) -> None: ...
     def create(
         self,

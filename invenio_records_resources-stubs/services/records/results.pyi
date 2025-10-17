@@ -1,7 +1,7 @@
-from __future__ import annotations
 
 from abc import ABC, abstractmethod
-from typing import Any, Iterable, Iterator, Optional
+from collections.abc import Iterable, Iterator
+from typing import Any
 
 from invenio_records_resources.pagination import Pagination
 from invenio_records_resources.records.api import Record
@@ -29,14 +29,14 @@ class ExpandableField(ABC):
     def has(self, service: Service, value: Any) -> bool: ...
     def add_service_value(self, service: Service, value: Any) -> None: ...
     def add_dereferenced_record(
-        self, service: Service, value: Any, resolved_rec: Any
+        self, service: Service, value: Any, resolved_rec: Any,
     ) -> None: ...
     def get_dereferenced_record(self, service: Service, value: Any) -> Any: ...
     @abstractmethod
     def pick(self, identity: Any, resolved_rec: Any) -> Any: ...
 
 class FieldsResolver:
-    def __init__(self, expandable_fields: Optional[list[ExpandableField]]): ...
+    def __init__(self, expandable_fields: list[ExpandableField] | None): ...
     def resolve(
         self,
         identity: Any,
@@ -56,11 +56,11 @@ class RecordBulkItem(ServiceBulkItemResult):
         self,
         op_type: str,
         record: Record,
-        errors: Optional[list[Any]],
-        exc: Optional[BaseException],
+        errors: list[Any] | None,
+        exc: BaseException | None,
     ): ...
     @property
-    def errors(self) -> Optional[list[Any]]: ...
+    def errors(self) -> list[Any] | None: ...
     @property
     def op_type(self) -> str: ...
     @property
@@ -68,7 +68,7 @@ class RecordBulkItem(ServiceBulkItemResult):
         self,
     ) -> Record: ...
     @property
-    def exc(self) -> Optional[BaseException]: ...
+    def exc(self) -> BaseException | None: ...
 
 class RecordBulkList(ServiceBulkListResult):
     def __init__(self, service: Service, identity: Any, results: list[Any]): ...
@@ -79,13 +79,13 @@ class RecordItem(ServiceItemResult):
     _service: RecordService  # keep typing
     _identity: Any  # keep typing
     _record: Record  # keep typing
-    _errors: Optional[list[Any]]  # keep typing
-    _links_tpl: Optional[LinksTemplate]  # keep typing
+    _errors: list[Any] | None  # keep typing
+    _links_tpl: LinksTemplate | None  # keep typing
     _schema: ServiceSchemaWrapper  # keep typing
-    _expandable_fields: Optional[list[ExpandableField]]  # keep typing
+    _expandable_fields: list[ExpandableField] | None  # keep typing
     _expand: bool  # keep typing
-    _nested_links_item: Optional[list[Link]]  # keep typing
-    _data: Optional[dict[str, Any]]  # keep typing
+    _nested_links_item: list[Link] | None  # keep typing
+    _data: dict[str, Any] | None  # keep typing
 
     def __getitem__(self, key: str) -> Any: ...
     def __init__(
@@ -93,12 +93,12 @@ class RecordItem(ServiceItemResult):
         service: Service,
         identity: Any,
         record: Record,
-        errors: Optional[list[Any]] = ...,
-        links_tpl: Optional[LinksTemplate] = ...,
-        schema: Optional[ServiceSchemaWrapper] = ...,
-        expandable_fields: Optional[list[ExpandableField]] = ...,
+        errors: list[Any] | None = ...,
+        links_tpl: LinksTemplate | None = ...,
+        schema: ServiceSchemaWrapper | None = ...,
+        expandable_fields: list[ExpandableField] | None = ...,
         expand: bool = ...,
-        nested_links_item: Optional[list[Link]] = ...,
+        nested_links_item: list[Link] | None = ...,
     ): ...
     @property
     def _obj(self) -> Record: ...
@@ -110,18 +110,18 @@ class RecordItem(ServiceItemResult):
     @property
     def links(self) -> dict[str, Any]: ...
     @property
-    def errors(self) -> Optional[list[Any]]: ...
+    def errors(self) -> list[Any] | None: ...
     def to_dict(self) -> dict[str, Any]: ...
 
 class RecordList(ServiceListResult):
     _expand: bool  # keep typing
     _identity: Any  # keep typing
-    _fields_resolver: Optional[FieldsResolver]  # keep typing
+    _fields_resolver: FieldsResolver | None  # keep typing
     _schema: ServiceSchemaWrapper  # keep typing
-    _expandable_fields: Optional[list[ExpandableField]]  # keep typing
-    _links_tpl: Optional[LinksTemplate]  # keep typing
-    _links_item_tpl: Optional[LinksTemplate]  # keep typing
-    _nested_links_item: Optional[list[Link]]  # keep typing
+    _expandable_fields: list[ExpandableField] | None  # keep typing
+    _links_tpl: LinksTemplate | None  # keep typing
+    _links_item_tpl: LinksTemplate | None  # keep typing
+    _nested_links_item: list[Link] | None  # keep typing
     _service: RecordService  # keep typing
     _results: Any  # keep typing
     _params: Optional[dict[str, Any]]  # keep typing
@@ -131,22 +131,22 @@ class RecordList(ServiceListResult):
         service: RecordService,
         identity: Any,
         results: Any,
-        params: Optional[dict[str, Any]] = ...,
-        links_tpl: Optional[LinksTemplate] = ...,
-        links_item_tpl: Optional[LinksTemplate] = ...,
-        nested_links_item: Optional[list[Link]] = ...,
-        schema: Optional[ServiceSchemaWrapper] = ...,
-        expandable_fields: Optional[list[ExpandableField]] = ...,
+        params: dict[str, Any] | None = ...,
+        links_tpl: LinksTemplate | None = ...,
+        links_item_tpl: LinksTemplate | None = ...,
+        nested_links_item: list[Link] | None = ...,
+        schema: ServiceSchemaWrapper | None = ...,
+        expandable_fields: list[ExpandableField] | None = ...,
         expand: bool = ...,
     ): ...
     def __iter__(self) -> Iterator[dict[str, Any]]: ...
     def __len__(self) -> int: ...
     @property
-    def aggregations(self) -> Optional[dict[str, Any]]: ...
+    def aggregations(self) -> dict[str, Any] | None: ...
     @property
     def hits(self) -> Iterator[dict[str, Any]]: ...
     @property
     def pagination(self) -> Pagination: ...
     def to_dict(self) -> dict[str, Any]: ...
     @property
-    def total(self) -> Optional[int]: ...
+    def total(self) -> int | None: ...

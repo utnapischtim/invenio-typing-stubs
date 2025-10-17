@@ -1,4 +1,3 @@
-from __future__ import annotations
 
 from typing import Any, Protocol, TypeVar
 
@@ -16,6 +15,6 @@ class ConfigAttrValue[T]:
 U = TypeVar("U")
 
 def resolve_from_conf(
-    val: ConfigAttrValue[U] | U, config: SupportsConfigAttribute
+    val: ConfigAttrValue[U] | U, config: SupportsConfigAttribute,
 ) -> U: ...
 def from_conf(config_attr: str) -> ConfigAttrValue[Any]: ...

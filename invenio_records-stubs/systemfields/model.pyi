@@ -1,27 +1,27 @@
-from typing import Any, Optional, Self, overload
+from typing import Any, Self, overload
 
 from invenio_records.api import Record
 from invenio_records.systemfields.base import SystemField
 
 class ModelField(SystemField):  # type: ignore[misc]
-    _model_field_name: Optional[str]
+    _model_field_name: str | None
     dump: bool
-    _dump_key: Optional[str]
-    _dump_type: Optional[Any]
+    _dump_key: str | None
+    _dump_type: Any | None
 
     def __init__(
         self,
-        model_field_name: Optional[str] = ...,
+        model_field_name: str | None = ...,
         dump: bool = ...,
-        dump_key: Optional[str] = ...,
-        dump_type: Optional[Any] = ...,
+        dump_key: str | None = ...,
+        dump_type: Any | None = ...,
         **kwargs: Any,
     ): ...
     def _set(self, model: Any, value: Any) -> None: ...
     @property
     def dump_key(self) -> str: ...
     @property
-    def dump_type(self) -> Optional[Any]: ...
+    def dump_type(self) -> Any | None: ...
     @property
     def model_field_name(self) -> str: ...
     def post_init(
@@ -35,6 +35,6 @@ class ModelField(SystemField):  # type: ignore[misc]
     def __get__(self, instance: None, owner: type[Record]) -> Self: ...  # type: ignore # keep typing tighter
     @overload
     def __get__(  # type: ignore # keep typing tighter
-        self, instance: Record, owner: type[Record]
+        self, instance: Record, owner: type[Record],
     ) -> Any: ...
     def __set__(self, instance: Record, value: Any) -> None: ...  # type: ignore[override]

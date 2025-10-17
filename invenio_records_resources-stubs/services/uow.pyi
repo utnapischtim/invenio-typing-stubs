@@ -1,4 +1,4 @@
-from typing import Any, List, Optional, Union
+from typing import Any
 
 from invenio_db.uow import ModelCommitOp as ModelCommitOp
 from invenio_db.uow import ModelDeleteOp as ModelDeleteOp
@@ -8,14 +8,14 @@ from invenio_indexer.api import RecordIndexer  # type: ignore[import-untyped]
 from invenio_records_resources.records.api import FileRecord, Record
 
 class ChangeNotificationOp(Operation):
-    def __init__(self, record_type: str, records: List[Record]): ...
+    def __init__(self, record_type: str, records: list[Record]): ...
     def on_post_commit(self, uow: UnitOfWork): ...
 
 class RecordBulkCommitOp(Operation):
     def __init__(
         self,
-        records: List[Record],
-        indexer: Optional[RecordIndexer] = ...,
+        records: list[Record],
+        indexer: RecordIndexer | None = ...,
         index_refresh: bool = ...,
     ): ...
     def on_commit(self, uow: UnitOfWork): ...
@@ -24,8 +24,8 @@ class RecordBulkCommitOp(Operation):
 class RecordCommitOp(Operation):
     def __init__(
         self,
-        record: Union[FileRecord, Record],
-        indexer: Optional[RecordIndexer] = ...,
+        record: FileRecord | Record,
+        indexer: RecordIndexer | None = ...,
         index_refresh: bool = ...,
     ): ...
     def on_commit(self, uow: UnitOfWork): ...
@@ -38,7 +38,7 @@ class RecordDeleteOp(Operation):
     def __init__(
         self,
         record: Record,
-        indexer: Optional[RecordIndexer] = ...,
+        indexer: RecordIndexer | None = ...,
         force: bool = ...,
         index_refresh: bool = ...,
     ): ...
@@ -49,11 +49,11 @@ class RecordIndexDeleteOp(RecordDeleteOp):
     def on_register(self, uow: UnitOfWork): ...
 
 class RecordBulkIndexOp(Operation):
-    def __init__(self, records_iter: Any, indexer: Optional[RecordIndexer] = ...): ...
+    def __init__(self, records_iter: Any, indexer: RecordIndexer | None = ...): ...
     def on_post_commit(self, uow: UnitOfWork): ...
 
 class IndexRefreshOp(Operation):
-    def __init__(self, indexer: Any, index: Optional[str] = ..., **kwargs: Any): ...
+    def __init__(self, indexer: Any, index: str | None = ..., **kwargs: Any): ...
     def on_post_commit(self, uow: UnitOfWork): ...
 
 class TaskOp(Operation):
@@ -64,10 +64,10 @@ class TaskOp(Operation):
     def for_async_apply(
         cls,
         celery_task: Any,
-        args: Optional[tuple[Any, ...]] = ...,
-        kwargs: Optional[dict[str, Any]] = ...,
+        args: tuple[Any, ...] | None = ...,
+        kwargs: dict[str, Any] | None = ...,
         **celery_kwargs: Any,
-    ) -> "TaskOp": ...
+    ) -> TaskOp: ...
 
 class TaskRevokeOp(Operation):
     def __init__(self, task_id: str) -> None: ...

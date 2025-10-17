@@ -1,4 +1,4 @@
-from typing import Iterator
+from collections.abc import Iterator
 
 from invenio_records_resources.references.entity_resolvers.base import (
     EntityResolver as EntityResolver,

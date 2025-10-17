@@ -1,4 +1,4 @@
-from typing import Any, Dict, Generic, Tuple, TypeVar
+from typing import Any, Generic, TypeVar
 
 from invenio_records_resources.resources import RecordResource
 from invenio_records_resources.resources.records.resource import (
@@ -25,19 +25,19 @@ class RequestCommentsResource(RecordResource[C, S], Generic[C, S]):
     @list_view_args_parser
     @request_extra_args
     @data_parser
-    def create(self) -> Tuple[Dict[str, Any], int]: ...
+    def create(self) -> tuple[dict[str, Any], int]: ...
     @item_view_args_parser
     @request_extra_args
-    def read(self) -> Tuple[Dict[str, Any], int]: ...
+    def read(self) -> tuple[dict[str, Any], int]: ...
     @item_view_args_parser
     @request_extra_args
     @request_headers
     @data_parser
-    def update(self) -> Tuple[Dict[str, Any], int]: ...
+    def update(self) -> tuple[dict[str, Any], int]: ...
     @item_view_args_parser
     @request_headers
     def delete(self): ...
     @list_view_args_parser
     @request_extra_args
     @search_args_parser
-    def search(self) -> Tuple[Dict[str, Any], int]: ...
+    def search(self) -> tuple[dict[str, Any], int]: ...

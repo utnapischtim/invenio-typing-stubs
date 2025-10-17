@@ -3,7 +3,7 @@
 Type stubs for invenio_pidstore.providers.recordid_v2.
 """
 
-from typing import Any, ClassVar, Dict, Optional
+from typing import Any, ClassVar
 
 from invenio_pidstore.models import PIDStatus
 from invenio_pidstore.providers.base import BaseProvider
@@ -17,4 +17,4 @@ class RecordIdProviderV2(BaseProvider):
     default_status: ClassVar[PIDStatus]
 
     @classmethod
-    def generate_id(cls, options: Optional[Dict[str, Any]] = None) -> str: ...
+    def generate_id(cls, options: dict[str, Any] | None = None) -> str: ...

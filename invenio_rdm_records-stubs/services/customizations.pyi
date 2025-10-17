@@ -2,10 +2,10 @@ from typing import Any
 
 class FromConfigPIDsProviders:
     def __init__(
-        self, pids_key: str | None = None, providers_key: str | None = None
+        self, pids_key: str | None = None, providers_key: str | None = None,
     ) -> None: ...
     def __get__(
-        self, obj: Any, objtype: type | None = None
+        self, obj: Any, objtype: type | None = None,
     ) -> dict[str, dict[str, Any]]: ...
 
 class FromConfigRequiredPIDs:

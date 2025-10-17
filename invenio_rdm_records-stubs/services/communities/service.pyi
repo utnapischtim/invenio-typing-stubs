@@ -1,4 +1,4 @@
-from typing import Any, Dict, Generic, List, Tuple, TypeVar
+from typing import Any, Generic, TypeVar
 
 from flask_principal import Identity
 from invenio_db.uow import UnitOfWork
@@ -28,30 +28,30 @@ class RecordCommunitiesService(Service[C], RecordIndexerMixin, Generic[C]):
         uow: UnitOfWork,
     ): ...
     def add(
-        self, identity: Identity, id_: str, data: Dict[str, Any], uow: UnitOfWork
-    ) -> Tuple[List[Dict[str, Any]], List[Dict[str, Any]]]: ...
+        self, identity: Identity, id_: str, data: dict[str, Any], uow: UnitOfWork,
+    ) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]: ...
     def _remove(self, identity: Identity, community_id: str, record: Any) -> None: ...
     def remove(
-        self, identity: Identity, id_: str, data: Dict[str, Any], uow: UnitOfWork
-    ) -> Tuple[List[Dict[str, Any]], List[Dict[str, Any]]]: ...
+        self, identity: Identity, id_: str, data: dict[str, Any], uow: UnitOfWork,
+    ) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]: ...
     def search(
         self,
         identity: Identity,
         id_: str,
-        params: Dict[str, Any] | None = ...,
+        params: dict[str, Any] | None = ...,
         search_preference: str | None = ...,
         expand: bool = ...,
         extra_filter: Any | None = ...,
         **kwargs: Any,
     ): ...
     def _get_excluded_communities_filter(
-        self, record: Any, identity: Identity, id_: str
+        self, record: Any, identity: Identity, id_: str,
     ): ...
     def search_suggested_communities(
         self,
         identity: Identity,
         id_: str,
-        params: Dict[str, Any] | None = ...,
+        params: dict[str, Any] | None = ...,
         search_preference: str | None = ...,
         expand: bool = ...,
         by_membership: bool = ...,
@@ -59,13 +59,13 @@ class RecordCommunitiesService(Service[C], RecordIndexerMixin, Generic[C]):
         **kwargs: Any,
     ): ...
     def set_default(
-        self, identity: Identity, id_: str, data: Dict[str, Any], uow: UnitOfWork
+        self, identity: Identity, id_: str, data: dict[str, Any], uow: UnitOfWork,
     ): ...
     def bulk_add(
         self,
         identity: Identity,
         community_id: str,
-        record_ids: List[str],
+        record_ids: list[str],
         set_default: bool = ...,
         uow: UnitOfWork | None = None,
-    ) -> List[Dict[str, Any]]: ...
+    ) -> list[dict[str, Any]]: ...

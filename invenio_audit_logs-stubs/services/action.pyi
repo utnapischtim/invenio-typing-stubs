@@ -1,4 +1,5 @@
-from typing import Any, Callable, ClassVar
+from collections.abc import Callable
+from typing import Any, ClassVar
 
 from flask_principal import Identity
 
@@ -12,7 +13,7 @@ class AuditLogAction:
 
     @classmethod
     def build(
-        cls, identity: Identity, resource_id: Any, **kwargs: Any
+        cls, identity: Identity, resource_id: Any, **kwargs: Any,
     ) -> dict[str, Any] | None: ...
     def resolve_context(self, data: dict[str, Any], **kwargs: Any) -> None: ...
     def render_message(self, data: dict[str, Any]) -> str | None: ...

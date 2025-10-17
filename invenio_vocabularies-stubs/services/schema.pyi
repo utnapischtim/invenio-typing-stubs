@@ -1,4 +1,4 @@
-from typing import Any, Dict, Optional
+from typing import Any
 
 from invenio_records_resources.services.records.schema import BaseRecordSchema
 from marshmallow import Schema, fields, pre_load, validates_schema
@@ -13,15 +13,15 @@ class BaseVocabularyRelationSchema(Schema):
 class VocabularyRelationSchema(BaseVocabularyRelationSchema):
     title: fields.Dict
     @pre_load
-    def clean(self, data: Dict[str, Any], **kwargs: Any) -> Dict[str, Any]: ...
+    def clean(self, data: dict[str, Any], **kwargs: Any) -> dict[str, Any]: ...
 
 class ContribVocabularyRelationSchema(Schema):
     id: SanitizedUnicode
-    ftf_name: Optional[str]
-    parent_field_name: Optional[str]
+    ftf_name: str | None
+    parent_field_name: str | None
     administration_schema_type: str
     @validates_schema
-    def validate_relation_schema(self, data: Dict[str, Any], **kwargs: Any) -> None: ...
+    def validate_relation_schema(self, data: dict[str, Any], **kwargs: Any) -> None: ...
 
 class BaseVocabularySchema(BaseRecordSchema):
     title = i18n_strings
@@ -36,11 +36,11 @@ class VocabularySchema(BaseVocabularySchema):
 
 class ModePIDFieldVocabularyMixin:
     @validates_schema
-    def validate_id(self, data: Dict[str, Any], **kwargs: Any) -> None: ...
-    def move_id(self, data: Dict[str, Any], **kwargs: Any) -> Dict[str, Any]: ...
+    def validate_id(self, data: dict[str, Any], **kwargs: Any) -> None: ...
+    def move_id(self, data: dict[str, Any], **kwargs: Any) -> dict[str, Any]: ...
     def extract_pid_value(
-        self, data: Dict[str, Any], **kwargs: Any
-    ) -> Dict[str, Any]: ...
+        self, data: dict[str, Any], **kwargs: Any,
+    ) -> dict[str, Any]: ...
 
 class DatastreamObject(Schema):
     type: fields.Str

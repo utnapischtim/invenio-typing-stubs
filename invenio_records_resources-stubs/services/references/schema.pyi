@@ -1,4 +1,4 @@
-from typing import Any, Optional, Type
+from typing import Any
 
 import marshmallow as ma
 from marshmallow import Schema, validates_schema
@@ -10,13 +10,13 @@ class EntityReferenceBaseSchema(Schema):
     def create_from_dict(
         cls,
         allowed_types: list[str],
-        special_fields: Optional[dict[str, ma.fields.Field]] = ...,
-    ) -> Type[EntityReferenceBaseSchema]: ...
+        special_fields: dict[str, ma.fields.Field] | None = ...,
+    ) -> type[EntityReferenceBaseSchema]: ...
 
 class MultipleEntityReferenceBaseSchema(EntityReferenceBaseSchema):
     @classmethod
     def create_from_dict(
         cls,
         allowed_types: list[str],
-        special_fields: Optional[dict[str, ma.fields.Field]] = ...,
-    ) -> Type[MultipleEntityReferenceBaseSchema]: ...
+        special_fields: dict[str, ma.fields.Field] | None = ...,
+    ) -> type[MultipleEntityReferenceBaseSchema]: ...

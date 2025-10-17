@@ -2,10 +2,6 @@ from io import (
     BufferedReader,
     BytesIO,
 )
-from typing import (
-    Optional,
-    Union,
-)
 
 from flask_principal import (
     Identity,
@@ -29,14 +25,14 @@ class FileContentComponent(FileServiceComponent):
         deleted_file: FileRecord,
     ): ...
     def get_file_content(
-        self, identity: Identity, id_: str, file_key: str, record: Record
+        self, identity: Identity, id_: str, file_key: str, record: Record,
     ): ...
     def set_file_content(
         self,
         identity: Identity,
         id_: str,
         file_key: str,
-        stream: Union[LimitedStream, BytesIO, BufferedReader],
-        content_length: Optional[int],
+        stream: LimitedStream | BytesIO | BufferedReader,
+        content_length: int | None,
         record: Record,
     ): ...

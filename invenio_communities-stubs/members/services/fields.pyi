@@ -1,4 +1,5 @@
-from typing import Any, Mapping, Optional
+from collections.abc import Mapping
+from typing import Any
 
 from invenio_communities.proxies import current_roles as current_roles
 from invenio_communities.roles import Role
@@ -11,14 +12,14 @@ class RoleField(fields.Str):
     def _deserialize(
         self,
         value: str,
-        attr: Optional[str],
-        data: Optional[Mapping[str, Any]],
+        attr: str | None,
+        data: Mapping[str, Any] | None,
         **kwargs,
     ) -> Role: ...
     def _serialize(
         self,
         value: Role | str | None,
-        attr: Optional[str],
+        attr: str | None,
         obj: Any,
         **kwargs,
     ) -> str | None: ...

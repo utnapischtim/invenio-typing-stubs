@@ -1,4 +1,4 @@
-from typing import Any, Optional, Self, overload
+from typing import Any, Self, overload
 from uuid import UUID
 
 from invenio_communities.communities.records.api import Community
@@ -11,12 +11,12 @@ class PIDSlugFieldContext(SystemFieldContext):
 
 class PIDSlugField(SystemField):  # type: ignore[misc]
     def __init__(self, id_field: str, slug_field: str) -> None: ...
-    def obj(self, record: Community) -> Optional[PersistentIdentifierWrapper]: ...
+    def obj(self, record: Community) -> PersistentIdentifierWrapper | None: ...
     def pre_commit(self, record: Community) -> None: ...
     @overload  # type: ignore[override]
     def __get__(self, instance: None, owner: type[Community]) -> Self: ...  # type: ignore # keep typing tighter
     @overload
     def __get__(  # type: ignore # keep typing tighter
-        self, instance: Community, owner: type[Community]
-    ) -> Optional[PersistentIdentifierWrapper]: ...
-    def __set__(self, instance: Community, value: Optional[PersistentIdentifierWrapper]) -> None: ...  # type: ignore[override]
+        self, instance: Community, owner: type[Community],
+    ) -> PersistentIdentifierWrapper | None: ...
+    def __set__(self, instance: Community, value: PersistentIdentifierWrapper | None) -> None: ...  # type: ignore[override]

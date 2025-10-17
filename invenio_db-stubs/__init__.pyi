@@ -3,9 +3,9 @@ from invenio_db.shared import db
 
 __version__: str
 __all__ = (
+    "InvenioDB",
     "__version__",
     "db",
-    "InvenioDB",
 )
 
 # Note: the precise type of ``db`` is defined in invenio_db.shared as SQLAlchemy,

@@ -1,6 +1,5 @@
-from __future__ import annotations
 
-from typing import Any, ClassVar, Optional
+from typing import Any, ClassVar
 
 from invenio_communities.records.records.systemfields import CommunitiesField
 from invenio_drafts_resources.records import Draft
@@ -50,11 +49,11 @@ class RDMMediaFileDraft(FileRecord):
     record_cls: ClassVar[type[RRRecord] | None]
     processor: ClassVar[DictField]
 
-def get_files_quota(record: Optional[RDMRecord] = ...) -> dict[str, Any]: ...
+def get_files_quota(record: RDMRecord | None = ...) -> dict[str, Any]: ...
 
 get_quota: Any  # alias to get_files_quota
 
-def get_media_files_quota(record: Optional[RDMRecord] = ...) -> dict[str, Any]: ...
+def get_media_files_quota(record: RDMRecord | None = ...) -> dict[str, Any]: ...
 
 class RDMDraft(Draft):
     schema: ClassVar[ConstantField]
@@ -115,13 +114,13 @@ class RDMRecord(DRRecord):
 
     @classmethod
     def next_latest_published_record_by_parent(
-        cls, parent: RDMParent
+        cls, parent: RDMParent,
     ) -> RDMRecord | None: ...
     @classmethod
     def get_latest_published_by_parent(cls, parent: RDMParent) -> RDMRecord | None: ...
     @classmethod
     def get_previous_published_by_parent(
-        cls, parent: RDMParent
+        cls, parent: RDMParent,
     ) -> RDMRecord | None: ...
 
 class RDMRecordMediaFiles(RDMRecord):

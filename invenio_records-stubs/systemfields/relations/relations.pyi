@@ -1,35 +1,35 @@
-from typing import Any, Dict, List, Optional, Type
+from typing import Any
 
 from invenio_records.api import Record
 from invenio_records.systemfields.relations.results import RelationResult
 
 class RelationBase:
-    result_cls: Type[RelationResult]
-    key: Optional[str]
-    attrs: List[str]
-    keys: List[str]
+    result_cls: type[RelationResult]
+    key: str | None
+    attrs: list[str]
+    keys: list[str]
     _value_key_suffix: str
     _clear_empty: bool
-    _cache_key: Optional[str]
-    value_check: Optional[Any]
-    _cache_ref: Optional[Dict[str, Any]]
+    _cache_key: str | None
+    value_check: Any | None
+    _cache_ref: dict[str, Any] | None
 
     def __init__(
         self,
-        key: Optional[str] = ...,
-        attrs: Optional[List[str]] = ...,
-        keys: Optional[List[str]] = ...,
+        key: str | None = ...,
+        attrs: list[str] | None = ...,
+        keys: list[str] | None = ...,
         _value_key_suffix: str = ...,
         _clear_empty: bool = ...,
-        cache_key: Optional[str] = ...,
-        value_check: Optional[Any] = ...,
+        cache_key: str | None = ...,
+        value_check: Any | None = ...,
     ): ...
     def inject_cache(
-        self, cache: Dict[str, Dict[Any, Any]], default_key: str
+        self, cache: dict[str, dict[Any, Any]], default_key: str,
     ) -> None: ...
     @property
-    def cache(self) -> Dict[str, Any]: ...
-    def resolve(self, id_: str) -> Optional[Record]: ...
+    def cache(self) -> dict[str, Any]: ...
+    def resolve(self, id_: str) -> Record | None: ...
     @property
     def value_key(self) -> str: ...
     def exists(self, id_: str) -> bool: ...
@@ -40,24 +40,24 @@ class RelationBase:
     def clear_value(self, record: Record) -> None: ...
 
 class PKRelation(RelationBase):
-    record_cls: Type[Record]
+    record_cls: type[Record]
 
-    def __init__(self, *args: Any, record_cls: Type[Record] = ..., **kwargs: Any): ...
-    def resolve(self, id_: str) -> Optional[Record]: ...
+    def __init__(self, *args: Any, record_cls: type[Record] = ..., **kwargs: Any): ...
+    def resolve(self, id_: str) -> Record | None: ...
 
 class ListRelation(RelationBase):
-    relation_field: Optional[str]
+    relation_field: str | None
 
     def __init__(
-        self, *args: Any, relation_field: Optional[str] = ..., **kwargs: Any
+        self, *args: Any, relation_field: str | None = ..., **kwargs: Any,
     ): ...
-    def _get_parent(self, record: Record, keys: List[str]) -> Dict[str, Any]: ...
+    def _get_parent(self, record: Record, keys: list[str]) -> dict[str, Any]: ...
 
 class PKListRelation(ListRelation, PKRelation):
     """Primary-key list relation."""
 
 class NestedListRelation(ListRelation):
-    def exists_many(self, ids: List[List[str]]) -> bool: ...
+    def exists_many(self, ids: list[list[str]]) -> bool: ...
 
 class PKNestedListRelation(NestedListRelation, PKRelation):
     """Primary-key nested list relation."""

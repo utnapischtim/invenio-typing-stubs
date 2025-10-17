@@ -7,9 +7,9 @@ from invenio_requests.views.ui import create_ui_blueprint as create_ui_blueprint
 
 __all__ = [
     "blueprint",
-    "create_ui_blueprint",
-    "create_requests_bp",
     "create_request_events_bp",
+    "create_requests_bp",
+    "create_ui_blueprint",
 ]
 
 blueprint: Blueprint

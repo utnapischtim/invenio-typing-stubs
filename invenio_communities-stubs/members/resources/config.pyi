@@ -21,7 +21,7 @@ class MemberResourceConfig(RecordResourceConfig):
     request_view_args: Mapping[str, ma.fields.Field]
     # Mapping from exception type to an error handler (callable or factory)
     error_handlers: Mapping[
-        int | type[HTTPException] | type[BaseException],
+        type[HTTPException | BaseException] | int,
         Callable[[Exception], Response],
     ]
     response_handlers: Mapping[str, ResponseHandler]

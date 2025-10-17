@@ -12,6 +12,6 @@ from invenio_records_resources.resources.files.config import FileResourceConfig
 from invenio_records_resources.resources.files.resource import FileResource
 
 __all__ = (
-    "FileResourceConfig",
     "FileResource",
+    "FileResourceConfig",
 )

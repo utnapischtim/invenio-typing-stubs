@@ -1,4 +1,4 @@
-from typing import Any, Dict, Generic, List, Tuple, TypeVar
+from typing import Any, Generic, TypeVar
 
 from flask_resources import Resource, response_handler
 from invenio_communities.subcommunities.resources.config import (
@@ -16,8 +16,8 @@ S = TypeVar("S", bound=SubCommunityService)
 class SubCommunityResource(Resource[C], Generic[C, S]):
     service: S
     def __init__(self, config: C, service: S) -> None: ...
-    def create_url_rules(self) -> List[Dict[str, Any]]: ...
+    def create_url_rules(self) -> list[dict[str, Any]]: ...
     @request_view_args
     @response_handler()
     @request_data
-    def join(self) -> Tuple[Dict[str, Any], int]: ...
+    def join(self) -> tuple[dict[str, Any], int]: ...

@@ -22,9 +22,9 @@ from invenio_records_resources.services.records.facets.response import FacetsRes
 
 __all__ = (
     "CFTermsFacet",
+    "CombinedTermsFacet",
     "FacetsResponse",
     "NestedTermsFacet",
     "RecordRelationLabels",
-    "CombinedTermsFacet",
     "TermsFacet",
 )

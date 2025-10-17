@@ -1,10 +1,7 @@
 from abc import ABC, ABCMeta, abstractmethod
+from collections.abc import Callable
 from typing import (
     Any,
-    Callable,
-    Dict,
-    Optional,
-    Type,
 )
 
 from marshmallow.fields import Field
@@ -13,10 +10,10 @@ def ensure_no_field_cls(func: Callable[..., Any]) -> Callable[..., Any]: ...
 
 class BaseCF(ABC):
     name: str
-    _field_args: Dict[str, Any]
+    _field_args: dict[str, Any]
 
     def __init__(
-        self, name: str, field_args: Optional[Dict[str, Any]] = ...
+        self, name: str, field_args: dict[str, Any] | None = ...,
     ) -> None: ...
     @property
     @abstractmethod
@@ -31,10 +28,10 @@ class BaseCF(ABC):
 
 class BaseListCF(BaseCF, metaclass=ABCMeta):
     _multiple: bool
-    _field_cls: Type[Field]
+    _field_cls: type[Field]
 
     def __init__(
-        self, name: str, field_cls: Type[Field], multiple: bool = ..., **kwargs: Any
+        self, name: str, field_cls: type[Field], multiple: bool = ..., **kwargs: Any,
     ) -> None: ...
     @property
     def field(self) -> Field: ...

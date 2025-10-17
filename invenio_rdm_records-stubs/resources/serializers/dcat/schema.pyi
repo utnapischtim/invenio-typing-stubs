@@ -1,6 +1,6 @@
-from __future__ import annotations
 
-from typing import Any, Mapping, Optional
+from collections.abc import Mapping
+from typing import Any
 
 import idutils as idutils
 from invenio_base import invenio_url_for as invenio_url_for
@@ -16,8 +16,8 @@ from marshmallow_utils.html import sanitize_unicode as sanitize_unicode
 class DcatSchema(DataCite43Schema):
     _files: fields.Method
     def get_files(
-        self, obj: Mapping[str, Any]
-    ) -> Optional[list[Mapping[str, Any]]]: ...
+        self, obj: Mapping[str, Any],
+    ) -> list[Mapping[str, Any]] | None: ...
     def get_subjects(
-        self, obj: Mapping[str, Any]
-    ) -> Optional[list[Mapping[str, Any]]]: ...
+        self, obj: Mapping[str, Any],
+    ) -> list[Mapping[str, Any]] | None: ...

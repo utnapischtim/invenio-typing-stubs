@@ -1,4 +1,5 @@
-from typing import Generator, TypedDict
+from collections.abc import Generator
+from typing import TypedDict
 
 from _typeshed import Incomplete
 from marshmallow.exceptions import ValidationError
@@ -10,7 +11,7 @@ class ValidationErrorDict(TypedDict):
 def _iter_errors_dict(
     message_node: dict[str | int, Incomplete] | list[str] | str,
     fieldpath: str = ...,
-) -> Generator[ValidationErrorDict, None, None]: ...
+) -> Generator[ValidationErrorDict]: ...
 def validation_error_to_list_errors(
     exception: ValidationError,
 ) -> list[ValidationErrorDict]: ...

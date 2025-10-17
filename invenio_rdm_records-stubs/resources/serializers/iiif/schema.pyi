@@ -1,6 +1,6 @@
-from __future__ import annotations
 
-from typing import Any, Mapping
+from collections.abc import Mapping
+from typing import Any
 
 from flask import current_app as current_app
 from marshmallow import Schema as Schema
@@ -11,12 +11,12 @@ from marshmallow import pre_dump as pre_dump
 
 class SelfList(fields.List):
     def get_value(
-        self, obj: Mapping[str, Any], attr, accessor=None, default=missing
+        self, obj: Mapping[str, Any], attr, accessor=None, default=...,
     ): ...
 
 class SelfNested(fields.Nested):
     def get_value(
-        self, obj: Mapping[str, Any], attr, accessor=None, default=missing
+        self, obj: Mapping[str, Any], attr, accessor=None, default=...,
     ): ...
 
 class IIIFInfoV2Schema(Schema):

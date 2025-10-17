@@ -1,4 +1,3 @@
-from __future__ import annotations
 
 from invenio_records_resources.records.systemfields.calculated import CalculatedField
 

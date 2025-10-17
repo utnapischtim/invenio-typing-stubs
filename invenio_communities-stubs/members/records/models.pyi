@@ -1,4 +1,4 @@
-from typing import Any, ClassVar, List, Optional, Union
+from typing import Any, ClassVar
 from uuid import UUID
 
 from flask_sqlalchemy.query import Query
@@ -27,13 +27,13 @@ class BaseMemberModel(RecordMetadataBase):
     @classmethod
     def query_memberships(
         cls,
-        user_id: Optional[int] = None,
-        group_ids: Optional[List[Union[Any, str]]] = None,
+        user_id: int | None = None,
+        group_ids: list[Any | str] | None = None,
         active: bool = True,
     ) -> Query: ...
     @classmethod
     def count_members(
-        cls, community_id: UUID, role: Optional[str] = None, active: bool = True
+        cls, community_id: UUID, role: str | None = None, active: bool = True,
     ) -> int: ...
 
 class MemberModel(_Model, BaseMemberModel):
@@ -44,5 +44,5 @@ class ArchivedInvitationModel(_Model, BaseMemberModel):
     __tablename__: ClassVar[str]
     @classmethod
     def from_member_model(
-        cls, member_model: MemberModel
+        cls, member_model: MemberModel,
     ) -> ArchivedInvitationModel: ...

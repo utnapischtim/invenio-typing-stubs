@@ -1,5 +1,6 @@
+from collections.abc import Callable
 from functools import partial
-from typing import Any, Callable
+from typing import Any
 
 from invenio_records_resources.records.systemfields.entity_reference import (
     MultiReferenceEntityField,

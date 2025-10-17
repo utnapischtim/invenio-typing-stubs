@@ -2,8 +2,6 @@ from collections.abc import Iterator, ValuesView
 from io import BufferedReader
 from typing import (
     Any,
-    Dict,
-    Optional,
 )
 
 from flask.wrappers import Response
@@ -28,8 +26,8 @@ class FileItem(RecordItem):
         identity: Identity,
         file_: FileRecord,
         record: Record,
-        errors: Optional[Any] = ...,
-        links_tpl: Optional[LinksTemplate] = ...,
+        errors: Any | None = ...,
+        links_tpl: LinksTemplate | None = ...,
     ) -> None: ...
     @property
     def _obj(self) -> FileRecord: ...  # type: ignore[override]
@@ -38,9 +36,9 @@ class FileItem(RecordItem):
     def get_stream(self, mode: str) -> BufferedReader: ...
     def open_stream(self, mode: str) -> Any: ...
     @property
-    def links(self) -> Dict[str, Any]: ...
+    def links(self) -> dict[str, Any]: ...
     def send_file(
-        self, restricted: bool = ..., as_attachment: bool = ...
+        self, restricted: bool = ..., as_attachment: bool = ...,
     ) -> Response: ...
 
 class FileList(ServiceListResult):
@@ -48,8 +46,8 @@ class FileList(ServiceListResult):
     _record: Record
     _results: ValuesView[FileRecord]
     _service: FileService
-    _links_tpl: Optional[LinksTemplate]
-    _links_item_tpl: Optional[LinksTemplate]
+    _links_tpl: LinksTemplate | None
+    _links_item_tpl: LinksTemplate | None
 
     def __init__(
         self,
@@ -57,9 +55,9 @@ class FileList(ServiceListResult):
         identity: Identity,
         results: ValuesView[FileRecord],
         record: Record,
-        links_tpl: Optional[LinksTemplate] = ...,
-        links_item_tpl: Optional[LinksTemplate] = ...,
+        links_tpl: LinksTemplate | None = ...,
+        links_item_tpl: LinksTemplate | None = ...,
     ) -> None: ...
     @property
-    def entries(self) -> Iterator[Dict[str, Any]]: ...
-    def to_dict(self) -> Dict[str, Any]: ...
+    def entries(self) -> Iterator[dict[str, Any]]: ...
+    def to_dict(self) -> dict[str, Any]: ...

@@ -1,4 +1,4 @@
-from typing import Any, ClassVar, List, Optional, TypedDict
+from typing import Any, ClassVar, TypedDict
 
 from flask_principal import PermissionDenied
 from invenio_records_resources.records.api import Record
@@ -8,13 +8,13 @@ class RecordPermissionDeniedError(PermissionDenied):
     """Record permission denied error."""
 
     description: ClassVar[str]
-    record: Optional[Record]
-    action_name: Optional[str]
+    record: Record | None
+    action_name: str | None
 
     def __init__(
         self,
-        action_name: Optional[str] = ...,
-        record: Optional[Record] = ...,
+        action_name: str | None = ...,
+        record: Record | None = ...,
         *args: Any,
         **kwargs: Any,
     ) -> None: ...
@@ -38,23 +38,21 @@ class RevisionIdMismatchError(Exception):
 class QuerystringValidationError(ValidationError):
     """Error thrown when there is an issue with the querystring."""
 
-    ...
 
 class ValidationErrorGroup(Exception):
     """Error containing multiple validation errors."""
 
     class FieldValidationError(TypedDict):
         field: str
-        messages: List[str]
+        messages: list[str]
 
-    errors: List[FieldValidationError]
+    errors: list[FieldValidationError]
 
-    def __init__(self, errors: List[FieldValidationError]) -> None: ...
+    def __init__(self, errors: list[FieldValidationError]) -> None: ...
 
 class TransferException(Exception):
     """File transfer exception."""
 
-    ...
 
 class FacetNotFoundError(Exception):
     """Facet not found exception."""

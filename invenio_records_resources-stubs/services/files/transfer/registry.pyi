@@ -1,5 +1,4 @@
 from collections.abc import KeysView
-from typing import Type, Union
 
 from invenio_db.uow import UnitOfWork
 from invenio_records_resources.records.api import FileRecord, Record
@@ -19,7 +18,7 @@ from invenio_records_resources.services.files.transfer.providers.remote import (
 )
 
 class TransferRegistry:
-    _transfers: dict[str, Type[Transfer]]
+    _transfers: dict[str, type[Transfer]]
     _default_transfer_type: str
     def __init__(self, default_transfer_type: str): ...
     @property
@@ -33,20 +32,10 @@ class TransferRegistry:
         transfer_type: str | None = ...,
         file_record: FileRecord | None = ...,
         uow: UnitOfWork | None = ...,
-    ) -> Union[MultipartTransfer, RemoteTransfer, LocalTransfer, FetchTransfer]: ...
-    def get_transfer_class(self, transfer_type: str) -> Union[
-        Type[RemoteTransfer],
-        Type[FetchTransfer],
-        Type[LocalTransfer],
-        Type[MultipartTransfer],
-    ]: ...
+    ) -> MultipartTransfer | RemoteTransfer | LocalTransfer | FetchTransfer: ...
+    def get_transfer_class(self, transfer_type: str) -> type[RemoteTransfer | FetchTransfer | LocalTransfer | MultipartTransfer]: ...
     def get_transfer_types(self) -> KeysView[str]: ...
     def register(
         self,
-        transfer_cls: Union[
-            Type[RemoteTransfer],
-            Type[FetchTransfer],
-            Type[LocalTransfer],
-            Type[MultipartTransfer],
-        ],
+        transfer_cls: type[RemoteTransfer | FetchTransfer | LocalTransfer | MultipartTransfer],
     ) -> None: ...

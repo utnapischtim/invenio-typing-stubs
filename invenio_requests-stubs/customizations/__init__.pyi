@@ -37,6 +37,6 @@ __all__ = [
     "RequestActions",
     "RequestState",
     "RequestType",
-    "SubmitAction",
     "ReviewersUpdatedType",
+    "SubmitAction",
 ]

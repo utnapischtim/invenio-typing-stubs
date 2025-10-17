@@ -1,5 +1,6 @@
-from _typeshed import Incomplete
 from collections.abc import Generator
+
+from _typeshed import Incomplete
 from invenio_records_resources.services.records.results import RecordItem, RecordList
 
 class AuditLogItem(RecordItem):

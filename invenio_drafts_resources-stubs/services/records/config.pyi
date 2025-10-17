@@ -1,5 +1,5 @@
-from collections.abc import Mapping
-from typing import Any, Callable
+from collections.abc import Callable, Mapping
+from typing import Any
 
 from invenio_drafts_resources.records.api import Draft, Record
 from invenio_drafts_resources.services.records.components import (
@@ -56,7 +56,7 @@ class RecordServiceConfig(
         RecordSchema,
         RecordIndexer,
         RecordPermissionPolicy,
-    ]
+    ],
 ):
     # NOTE: configs expose immutable defaults so subclasses override safely.
     draft_cls: type[Draft] | None

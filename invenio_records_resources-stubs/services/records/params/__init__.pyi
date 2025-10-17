@@ -22,10 +22,10 @@ from invenio_records_resources.services.records.queryparser import (
 __all__ = (
     "FacetsParam",
     "FilterParam",
-    "SuggestQueryParser",
     "PaginationParam",
     "ParamInterpreter",
     "QueryParser",
     "QueryStrParam",
     "SortParam",
+    "SuggestQueryParser",
 )

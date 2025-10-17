@@ -1,4 +1,3 @@
-from __future__ import annotations
 
 from typing import Any
 
@@ -10,7 +9,7 @@ class CSLCreatorSchema(Schema):
     def update_names(self, data: dict[str, Any], **kwargs: Any) -> dict[str, Any]: ...
 
 def add_if_not_none(
-    year: int | None, month: int | None, day: int | None
+    year: int | None, month: int | None, day: int | None,
 ) -> list[int]: ...
 
 class CSLJSONSchema(BaseSerializerSchema, CommonFieldsMixin):

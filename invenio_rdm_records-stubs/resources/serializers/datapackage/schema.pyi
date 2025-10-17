@@ -1,6 +1,6 @@
-from __future__ import annotations
 
-from typing import Any, Mapping, Optional
+from collections.abc import Mapping
+from typing import Any
 
 from marshmallow import Schema as Schema
 from marshmallow import fields as fields
@@ -22,11 +22,11 @@ class DataPackageSchema(Schema):
     licenses: fields.Method
     contributors: fields.Method
 
-    def get_keywords(self, obj: Mapping[str, Any]) -> Optional[list[str]]: ...
+    def get_keywords(self, obj: Mapping[str, Any]) -> list[str] | None: ...
     def get_resources(self, obj: Mapping[str, Any]) -> list[Mapping[str, Any]]: ...
     def get_licenses(
-        self, obj: Mapping[str, Any]
-    ) -> Optional[list[Mapping[str, Any]]]: ...
+        self, obj: Mapping[str, Any],
+    ) -> list[Mapping[str, Any]] | None: ...
     def get_contributors(
-        self, obj: Mapping[str, Any]
-    ) -> Optional[list[Mapping[str, Any]]]: ...
+        self, obj: Mapping[str, Any],
+    ) -> list[Mapping[str, Any]] | None: ...

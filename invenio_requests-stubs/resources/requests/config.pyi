@@ -34,7 +34,7 @@ class RequestsResourceConfig(RecordResourceConfig, ConfiguratorMixin):
     request_view_args: Mapping[str, fields.Field]
     request_search_args: type[SearchRequestArgsSchema]
     error_handlers: Mapping[
-        int | type[HTTPException] | type[BaseException],
+        type[HTTPException | BaseException] | int,
         Callable[[Exception], Response],
     ]
     response_handlers: Mapping[str, ResponseHandler]

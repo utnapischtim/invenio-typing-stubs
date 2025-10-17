@@ -1,4 +1,3 @@
-from __future__ import annotations
 
 from collections.abc import Callable, Iterable, Mapping, Sequence
 from typing import Any, ClassVar, Generic, TypeVar
@@ -9,8 +8,8 @@ from flask_resources.parsers import RequestBodyParser
 from flask_resources.responses import ResponseHandler, ResponseTuple
 from werkzeug.exceptions import HTTPException
 
-ViewCallable = Callable[..., Response | ResponseTuple]
-Decorator = Callable[[ViewCallable], ViewCallable]
+type ViewCallable = Callable[..., Response | ResponseTuple]
+type Decorator = Callable[[ViewCallable], ViewCallable]
 
 def route(
     method: str,
@@ -27,7 +26,7 @@ class ResourceConfig:
     blueprint_name: str | None
     url_prefix: str | None
     error_handlers: Mapping[
-        int | type[HTTPException] | type[BaseException],
+        type[HTTPException | BaseException] | int,
         Callable[[Exception], Response],
     ]
     request_body_parsers: Mapping[str, RequestBodyParser]
@@ -42,7 +41,7 @@ class Resource(Generic[C]):
     decorators: ClassVar[Sequence[Decorator]]
     error_handlers: ClassVar[
         dict[
-            int | type[HTTPException] | type[BaseException],
+            type[HTTPException | BaseException] | int,
             Callable[[Exception], Response],
         ]
     ]
@@ -55,7 +54,7 @@ class Resource(Generic[C]):
         self,
     ) -> Iterable[
         tuple[
-            int | type[HTTPException] | type[BaseException],
+            type[HTTPException | BaseException] | int,
             Callable[[Exception], Response],
         ]
     ]: ...

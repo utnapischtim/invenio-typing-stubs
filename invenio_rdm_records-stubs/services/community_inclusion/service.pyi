@@ -1,11 +1,11 @@
-from typing import Any, Set
+from typing import Any
 
 from flask_principal import Identity
 from invenio_db.uow import UnitOfWork
 
 class CommunityInclusionService:
     @property
-    def supported_types(self) -> Set[str]: ...
+    def supported_types(self) -> set[str]: ...
     def submit(
         self,
         identity: Identity,
@@ -16,5 +16,5 @@ class CommunityInclusionService:
         uow: UnitOfWork,
     ): ...
     def include(
-        self, identity: Identity, community: Any, request: Any, uow: UnitOfWork
+        self, identity: Identity, community: Any, request: Any, uow: UnitOfWork,
     ): ...

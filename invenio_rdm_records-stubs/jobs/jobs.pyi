@@ -1,4 +1,3 @@
-from __future__ import annotations
 
 from invenio_jobs.jobs import JobType
 

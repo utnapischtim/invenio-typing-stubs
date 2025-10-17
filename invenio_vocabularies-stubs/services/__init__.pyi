@@ -13,7 +13,7 @@ from invenio_vocabularies.services.service import (
 
 __all__ = [
     "VocabulariesService",
-    "VocabularyTypeService",
     "VocabulariesServiceConfig",
+    "VocabularyTypeService",
     "VocabularyTypesServiceConfig",
 ]

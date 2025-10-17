@@ -1,4 +1,5 @@
-from typing import Any, Mapping, Optional
+from collections.abc import Mapping
+from typing import Any
 
 from flask_resources import BaseObjectSchema
 from invenio_vocabularies.resources import VocabularyL10Schema
@@ -9,7 +10,7 @@ from .fields import AccessStatusField
 def current_default_locale() -> str: ...
 def make_affiliation_index(attr: str, obj: Mapping[str, Any], *args: Any) -> Mapping[str, Any] | fields._MissingType: ...  # type: ignore[name-defined]
 def record_version(obj: Mapping[str, Any]) -> str: ...
-def get_coordinates(obj: Mapping[str, Any]) -> Optional[Any]: ...
+def get_coordinates(obj: Mapping[str, Any]) -> Any | None: ...
 
 class RelatedIdentifiersSchema(Schema):
     identifier: fields.String
@@ -105,8 +106,8 @@ class UIRecordSchema(BaseObjectSchema):
     locations: fields.Nested
 
     def add_communities_permissions_and_roles(
-        self, obj: Mapping[str, Any], **kwargs: Any
+        self, obj: Mapping[str, Any], **kwargs: Any,
     ) -> Mapping[str, Any]: ...
     def hide_tombstone(
-        self, obj: Mapping[str, Any], **kwargs: Any
+        self, obj: Mapping[str, Any], **kwargs: Any,
     ) -> Mapping[str, Any]: ...

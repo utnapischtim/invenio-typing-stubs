@@ -1,4 +1,3 @@
-from __future__ import annotations
 
 from typing import Any
 
@@ -23,8 +22,8 @@ class RDMReleaseMetadata:
     def extra_metadata(self) -> dict[str, Any]: ...
     def load_extra_metadata(self) -> dict[str, Any]: ...
     def load_citation_file(
-        self, citation_file_name: str | None
+        self, citation_file_name: str | None,
     ) -> dict[str, Any] | None: ...
     def load_citation_metadata(
-        self, citation_data: dict[str, Any] | None
+        self, citation_data: dict[str, Any] | None,
     ) -> dict[str, Any]: ...

@@ -1,4 +1,5 @@
-from typing import Any, Callable, Iterable, Self
+from collections.abc import Callable, Iterable
+from typing import Any, Self
 
 from invenio_search.engine import dsl
 
@@ -36,20 +37,20 @@ class BaseRecordsSearch(dsl.Search):
         cls,
         query: Any | None = ...,
         filters: dict[str, Any] | None = ...,
-        search: "BaseRecordsSearch" | None = ...,
+        search: BaseRecordsSearch | None = ...,
     ) -> dsl.FacetedSearch: ...
     def with_preference_param(self) -> Self: ...
     def _get_user_agent(self) -> str: ...
     def _get_user_hash(self) -> str | None: ...
 
 class PrefixedIndexList(list[str]):
-    pass
+    ...
 
 class PrefixedSearchMixin:
     _original_index: str | list[str]
 
     def prefix_index(
-        self, index: str | list[str] | tuple[str, ...]
+        self, index: str | list[str] | tuple[str, ...],
     ) -> str | list[str]: ...
     def _clone(self) -> Self: ...
 

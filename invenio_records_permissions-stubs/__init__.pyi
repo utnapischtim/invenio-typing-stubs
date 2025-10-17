@@ -11,8 +11,8 @@ from invenio_records_permissions.policies import (
 __version__: str
 
 __all__: tuple[str, ...] = (
-    "__version__",
     "BasePermissionPolicy",
     "InvenioRecordsPermissions",
     "RecordPermissionPolicy",
+    "__version__",
 )

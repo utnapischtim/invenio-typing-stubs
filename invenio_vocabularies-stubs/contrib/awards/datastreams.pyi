@@ -24,7 +24,7 @@ class OpenAIREProjectTransformer(BaseTransformer):
     def apply(self, stream_entry, **kwargs) -> StreamEntry: ...
 
 class CORDISProjectHTTPReader(BaseReader):
-    def read(self, item=None, *args, **kwargs) -> Generator[Any, None, None]: ...
+    def read(self, item=None, *args, **kwargs) -> Generator[Any]: ...
 
 class CORDISProjectTransformer(BaseTransformer):
     def apply(self, stream_entry, **kwargs) -> StreamEntry: ...
@@ -35,10 +35,10 @@ class CORDISAwardsServiceWriter(ServiceWriter):
 
 VOCABULARIES_DATASTREAM_READERS: dict[str, type[CORDISProjectHTTPReader]]
 VOCABULARIES_DATASTREAM_TRANSFORMERS: dict[
-    str, type[OpenAIREProjectTransformer | CORDISProjectTransformer]
+    str, type[OpenAIREProjectTransformer | CORDISProjectTransformer],
 ]
 VOCABULARIES_DATASTREAM_WRITERS: dict[
-    str, type[AwardsServiceWriter | CORDISAwardsServiceWriter]
+    str, type[AwardsServiceWriter | CORDISAwardsServiceWriter],
 ]
 DATASTREAM_CONFIG_CORDIS: dict[str, Any]
 DATASTREAM_CONFIG: dict[str, Any]

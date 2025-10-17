@@ -13,7 +13,7 @@ class SQLAlchemy(FlaskSQLAlchemy):
     Model: Any
 
     def apply_driver_hacks(
-        self, app: Flask, sa_url: URL, options: dict[str, Any]
+        self, app: Flask, sa_url: URL, options: dict[str, Any],
     ) -> tuple[URL, dict[str, Any]]: ...
     @property
     def session(self) -> Session: ...  # type: ignore[override]

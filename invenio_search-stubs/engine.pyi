@@ -1,4 +1,4 @@
-from typing import Callable
+from collections.abc import Callable
 
 # note: the actual implementation uses dynamic imports, here we just import
 # the opensearch libraries directly for typing purposes
@@ -12,7 +12,7 @@ OS: str
 SEARCH_DISTRIBUTION: str
 
 def check_search_version(
-    distribution: str, version: int | Callable[[int], bool]
+    distribution: str, version: int | Callable[[int], bool],
 ) -> bool: ...
 def check_es_version(version: int | Callable[[int], bool]) -> bool: ...
 def check_os_version(version: int | Callable[[int], bool]) -> bool: ...

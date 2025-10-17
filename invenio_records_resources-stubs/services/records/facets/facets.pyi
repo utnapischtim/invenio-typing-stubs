@@ -9,8 +9,8 @@
 
 """Facets types defined."""
 
-from collections.abc import Iterable
-from typing import Any, Callable
+from collections.abc import Callable, Iterable
+from typing import Any
 
 from flask_babel.speaklater import LazyString
 from invenio_search.engine import dsl  # type: ignore[import-untyped]
@@ -36,7 +36,7 @@ class LabelledFacetMixin:
     def get_label_mapping(self, buckets: list[FieldBucket]) -> dict[str, str]: ...
     def get_values(self, data: Any, filter_values: list[Any]) -> dict[str, Any]: ...
     def get_labelled_values(
-        self, data: Any, filter_values: list[Any]
+        self, data: Any, filter_values: list[Any],
     ) -> dict[str, Any]: ...
 
 class TermsFacet(LabelledFacetMixin, dsl.TermsFacet):
@@ -63,7 +63,7 @@ class NestedTermsFacet(TermsFacet):
     def get_value_filter(self, parsed_value: tuple[str, list[str]]) -> Any: ...  # type: ignore[override]
     def add_filter(self, filter_values: list[str]) -> Any: ...
     def get_values(
-        self, data: Any, filter_values: list[Any], key_prefix: str | None = None
+        self, data: Any, filter_values: list[Any], key_prefix: str | None = None,
     ) -> dict[str, Any]: ...
     def get_labelled_values(
         self,

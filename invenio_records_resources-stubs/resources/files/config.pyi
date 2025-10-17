@@ -10,7 +10,7 @@
 
 """File resource configuration."""
 
-from typing import Callable, Mapping
+from collections.abc import Callable, Mapping
 
 from flask import Response
 from flask_resources import ResourceConfig
@@ -25,6 +25,6 @@ class FileResourceConfig(ResourceConfig):
     url_prefix: str | None = "/records/<pid_value>"
     routes: Mapping[str, str]
     error_handlers: Mapping[
-        int | type[HTTPException] | type[BaseException],
+        type[HTTPException | BaseException] | int,
         Callable[[Exception], Response],
     ]

@@ -1,4 +1,4 @@
-from typing import ClassVar, Self, Type
+from typing import ClassVar, Self
 
 from invenio_pidstore.providers.base import BaseProvider
 
@@ -29,4 +29,4 @@ class CustomVocabularyPIDProvider(BaseProvider):
 
 class PIDProviderFactory:
     @staticmethod
-    def create(pid_type: str, base_cls=...) -> Type[CustomVocabularyPIDProvider]: ...
+    def create(pid_type: str, base_cls=...) -> type[CustomVocabularyPIDProvider]: ...

@@ -1,4 +1,3 @@
-from __future__ import annotations
 
 from typing import Any, ClassVar
 from uuid import UUID
