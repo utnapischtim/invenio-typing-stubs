@@ -5,7 +5,7 @@ from flask_principal import (
     Identity,
 )
 from invenio_db.uow import UnitOfWork
-from invenio_indexer.api import RecordIndexer  # type: ignore[import-untyped]
+from invenio_indexer.api import RecordIndexer
 from invenio_records_resources.records.api import (
     Record,
 )
@@ -22,8 +22,9 @@ from invenio_records_resources.services.records.results import (
     RecordList,
 )
 from invenio_records_resources.services.records.schema import ServiceSchemaWrapper
-from invenio_search import RecordsSearchV2  # type: ignore[import-untyped]
-from opensearch_dsl.response import Response  # type: ignore[import-untyped]
+from invenio_search import RecordsSearchV2
+from opensearch_dsl.response import Response
+
 
 class RecordIndexerMixin:
     @property
@@ -125,7 +126,11 @@ class RecordService(Service[C], RecordIndexerMixin, Generic[C]):
         action: str = ...,
     ) -> RecordItem: ...
     def read_all(
-        self, identity: Identity, fields: list[str], max_records: int = ..., **kwargs,
+        self,
+        identity: Identity,
+        fields: list[str],
+        max_records: int = ...,
+        **kwargs,
     ) -> RecordList: ...
     def read_many(
         self,
