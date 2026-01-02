@@ -1,0 +1,6 @@
+from flask import Blueprint, Flask
+from flask.typing import ResponseValue
+
+
+def login(*args: tuple, **kwargs: dict) -> ResponseValue: ...
+def create_settings_blueprint(app: Flask) -> Blueprint: ...

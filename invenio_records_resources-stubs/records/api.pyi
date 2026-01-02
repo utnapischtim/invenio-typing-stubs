@@ -8,18 +8,19 @@ from invenio_files_rest.models import (
     ObjectVersion,
 )
 from invenio_records.api import Record as RecordBase
-from invenio_records.dumpers import Dumper
+from invenio_records.dumpers import SearchDumper
 from invenio_records.models import RecordMetadata
 from invenio_records.systemfields import DictField, SystemField, SystemFieldsMixin
 from invenio_records.systemfields.model import ModelField
 from invenio_records_resources.records.systemfields import PIDField
 from invenio_records_resources.records.transfer import TransferField
 
+
 class Record(RecordBase, SystemFieldsMixin):
     send_signals: ClassVar[bool]
     enable_jsonref: ClassVar[bool]
     model_cls: ClassVar[type[RecordMetadata]]
-    dumper: ClassVar[Dumper]
+    dumper: ClassVar[SearchDumper]
     metadata: ClassVar[DictField]
     pid: ClassVar[
         PIDField
@@ -64,7 +65,7 @@ class FileRecord(RecordBase, SystemFieldsMixin):
     enable_jsonref: ClassVar[bool]
     model_cls: ClassVar[type[RecordMetadata]]
     record_cls: ClassVar[type[Record] | None]
-    dumper: ClassVar[Dumper]
+    dumper: ClassVar[SearchDumper]
     metadata: ClassVar[DictField]
     access: ClassVar[FileAccessField]
     key: ClassVar[ModelField]

@@ -12,6 +12,7 @@ from invenio_records_resources.services.records.links import (
     RecordLink,
 )
 
+
 def preprocess_vars(vars: dict[str, Any]) -> dict[str, Any]: ...
 
 class EndpointLink:
@@ -44,7 +45,7 @@ class ExternalLink:
     ): ...
 
 class Link:
-    def __init__(self, *args, **kwargs): ...
+    def __init__(self, *args, **kwargs) -> None: ...
 
 class LinksTemplate:
     def __init__(
@@ -76,14 +77,20 @@ class ConditionalLink:
     def __init__(
         self,
         cond: Callable | None = None,
-        if_: Link | EndpointLink | None = None,  # keep typing as there are two different link classes
+        if_: (
+            Link | EndpointLink | None
+        ) = None,  # keep typing as there are two different link classes
         else_: Link | EndpointLink | None = None,
     ): ...
     def should_render(
-        self, obj: Record | FileRecord | Pagination | Any, ctx: dict[str, Any],
+        self,
+        obj: Record | FileRecord | Pagination | Any,
+        ctx: dict[str, Any],
     ) -> bool: ...
     def expand(
-        self, obj: Record | FileRecord | Pagination | Any, ctx: dict[str, Any],
+        self,
+        obj: Record | FileRecord | Pagination | Any,
+        ctx: dict[str, Any],
     ) -> str: ...
 
 class NestedLinks:
@@ -99,8 +106,15 @@ class NestedLinks:
         context_func: Any | None = None,
     ): ...
     def context(
-        self, identity: Identity, record: Record, key: str, value: Any,
+        self,
+        identity: Identity,
+        record: Record,
+        key: str,
+        value: Any,
     ) -> dict[str, Any]: ...
     def expand(
-        self, identity: Identity, record: Record, data: dict[str, Any],
+        self,
+        identity: Identity,
+        record: Record,
+        data: dict[str, Any],
     ) -> Any: ...
