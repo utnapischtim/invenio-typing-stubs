@@ -1,8 +1,9 @@
 from collections.abc import Callable
 from types import TracebackType
-from typing import Any
+from typing import Any, TypedDict, Unpack
 
 from sqlalchemy.orm import Session
+
 
 class Operation:
     def on_register(self, uow: UnitOfWork) -> None: ...
@@ -40,8 +41,9 @@ class UnitOfWork:
     def rollback(self, exception: BaseException | None = ...) -> None: ...
     def register(self, op: Operation) -> None: ...
 
-def unit_of_work(
-    **kwargs: Any,
-) -> Callable[[Callable[..., Any]], Callable[..., Any]]: ...
+class UOWKwargs(TypedDict):
+    uow: UnitOfWork
+
+def unit_of_work() -> Callable[[Callable[..., Any]], Callable[..., Any]]: ...
 
 dummy_uow: UnitOfWork

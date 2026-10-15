@@ -46,15 +46,23 @@ dev = [
 
 [tool.hatch.build.targets.wheel]
 packages = [
+    "datacite-stubs",
+    "flask_login-stubs",
     "flask_principal-stubs",
     "flask_resources-stubs",
+    "flask_security-stubs",
     "invenio_access-stubs",
+    "invenio_accounts-stubs",
+    "invenio_app-stubs",
+    "invenio_assets-stubs",
     "invenio_audit_logs-stubs",
     "invenio_communities-stubs",
     "invenio_db-stubs",
     "invenio_drafts_resources-stubs",
     "invenio_files_rest-stubs",
+    "invenio_i18n-stubs",
     "invenio_indexer-stubs",
+    "invenio_jobs-stubs",
     "invenio_jsonschemas-stubs",
     "invenio_pidstore-stubs",
     "invenio_rdm_records-stubs",
@@ -63,6 +71,7 @@ packages = [
     "invenio_records-stubs",
     "invenio_requests-stubs",
     "invenio_search-stubs",
+    "invenio_stats-stubs",
     "invenio_vocabularies-stubs",
 ]
 
@@ -75,9 +84,9 @@ add_ignore = [
     "D403",
 ]
 
-[tool.pytest.ini_options]
-addopts = "--black --isort --cov=invenio_catalogue_marc21 --cov-report=term-missing"
-testpaths = "tests invenio_catalogue_marc21"
+# [tool.pytest.ini_options]
+# addopts = "--black --isort --cov=invenio_typing_s --cov-report=term-missing"
+# testpaths = "tests invenio_catalogue_marc21"
 
 [tool.ruff.lint]
 select = ["ALL"]

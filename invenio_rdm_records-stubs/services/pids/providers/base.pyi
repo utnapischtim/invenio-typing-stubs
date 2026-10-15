@@ -5,9 +5,8 @@ from flask import Flask
 from invenio_pidstore.models import PersistentIdentifier, PIDStatus
 from invenio_rdm_records.records.api import RDMDraft, RDMRecord
 
-class PIDProvider:
-    """Base class for PID providers."""
 
+class PIDProvider:
     name: str
     label: str
     client: Any | None
@@ -26,14 +25,18 @@ class PIDProvider:
         *kwargs: Any,
     ) -> None: ...
     def generate_id(
-        self, record: RDMRecord | RDMDraft | dict[str, Any], **kwargs: Any,
+        self,
+        record: RDMRecord | RDMDraft | dict[str, Any],
+        **kwargs: Any,
     ) -> str: ...
     @classmethod
-    def is_enabled(cls, app: Flask | None = ...) -> bool: ...
+    def is_enabled(cls, app: Flask | None) -> bool: ...
     def is_managed(self) -> bool: ...
     def can_modify(self, pid: PersistentIdentifier, **kwargs: Any) -> bool: ...
     def get(
-        self, pid_value: str | int, pid_provider: str | None = ...,
+        self,
+        pid_value: str | int,
+        pid_provider: str | None = ...,
     ) -> PersistentIdentifier: ...
     def create(
         self,
@@ -76,7 +79,9 @@ class PIDProvider:
         **kwargs: Any,
     ) -> tuple[bool, list[dict[str, Any]]]: ...
     def _insert_pid_type_error_msg(
-        self, errors: list[dict[str, Any]], error_msg: str | Sequence[str],
+        self,
+        errors: list[dict[str, Any]],
+        error_msg: str | Sequence[str],
     ) -> None: ...
     def validate_restriction_level(
         self,
@@ -85,5 +90,7 @@ class PIDProvider:
         **kwargs: Any,
     ) -> None: ...
     def create_and_reserve(
-        self, record: RDMRecord | RDMDraft | dict[str, Any], **kwargs: Any,
+        self,
+        record: RDMRecord | RDMDraft | dict[str, Any],
+        **kwargs: Any,
     ) -> None: ...

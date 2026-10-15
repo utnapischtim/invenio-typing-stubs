@@ -10,6 +10,7 @@ from typing import ClassVar
 
 from flask_babel import LazyString
 from sqlalchemy import Column, Index
+from sqlalchemy.orm import Mapped, mapped_column
 from sqlalchemy_utils.models import Timestamp
 
 PID_STATUS_TITLES: dict[str, LazyString]
@@ -42,8 +43,12 @@ class PersistentIdentifier(_Model, Timestamp):
     pid_value: Column[str]
     pid_provider: Column[str | None]
     status: Column[PIDStatus]
-    object_type: Column[str | None]
-    object_uuid: Column[uuid.UUID | None]
+    object_type: Mapped[
+        uuid.UUID
+    ]  # Column[str | None] Column is a problem in get_by_object with id_ UUID | str
+    object_uuid: Mapped[
+        uuid.UUID
+    ]  # Column[uuid.UUID | None] Column is a problem in get_record with id_ UUID | str
 
     @classmethod
     def create(
@@ -66,12 +71,13 @@ class PersistentIdentifier(_Model, Timestamp):
     def get_by_object(
         cls,
         pid_type: str,
-        object_type: str,
+        object_type: str | uuid.UUID,
         object_uuid: str | uuid.UUID,
     ) -> PersistentIdentifier: ...
     def has_object(self) -> bool: ...
     def get_assigned_object(
-        self, object_type: str | None = None,
+        self,
+        object_type: str | None = None,
     ) -> uuid.UUID | None: ...
     def assign(
         self,

@@ -43,6 +43,18 @@ class ExternalLink:
         when: Callable | None = ...,
         vars: Callable | None = ...,
     ): ...
+    def should_render(
+        self,
+        obj: Record | FileRecord | Pagination | Any,
+        ctx: dict[str, Any],
+    ) -> bool: ...
+    @staticmethod
+    def vars(obj: Any) -> None: ...
+    def expand(
+        self,
+        obj: Record | FileRecord | Pagination | Any,
+        context: dict[str, Any],
+    ) -> str: ...
 
 class Link:
     def __init__(self, *args, **kwargs) -> None: ...

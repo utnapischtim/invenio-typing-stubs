@@ -24,17 +24,24 @@ from invenio_drafts_resources.services.records.uow import (
     ParentRecordCommitOp as ParentRecordCommitOp,
 )
 from invenio_records_resources.services import RecordService as RecordServiceBase
+from invenio_records_resources.services.files import FileService
+from invenio_records_resources.services.records.results import RecordItem
 
-C = TypeVar("C", bound=RecordServiceConfig)
 
-class RecordService(RecordServiceBase[C], Generic[C]):
+class RecordService[C: RecordServiceConfig](RecordServiceBase[C]):
+    _files: FileService
+    _draft_files: FileService
+
     def __init__(
-        self, config, files_service=None, draft_files_service=None,
+        self,
+        config,
+        files_service: FileService | None = None,
+        draft_files_service: FileService | None = None,
     ) -> None: ...
     @property
-    def files(self): ...
+    def files(self) -> FileService: ...
     @property
-    def draft_files(self): ...
+    def draft_files(self) -> FileService: ...
     @property
     def schema_parent(self): ...
     @property
@@ -71,18 +78,32 @@ class RecordService(RecordServiceBase[C], Generic[C]):
         uow=None,
         expand: bool = False,
     ): ...
-    def edit(self, identity: Identity, id_, uow=None, expand: bool = False): ...
-    def publish(self, identity: Identity, id_, uow=None, expand: bool = False): ...
+    def edit(
+        self, identity: Identity, id_, uow=None, expand: bool = False
+    ) -> RecordItem: ...
+    def publish(
+        self, identity: Identity, id_, uow=None, expand: bool = False
+    ) -> RecordItem: ...
     def new_version(self, identity: Identity, id_, uow=None, expand: bool = False): ...
     def delete_draft(self, identity: Identity, id_, revision_id=None, uow=None): ...
     def import_files(self, identity: Identity, id_, uow=None): ...
     def validate_draft(
-        self, identity: Identity, id_, ignore_field_permissions: bool = False,
+        self,
+        identity: Identity,
+        id_,
+        ignore_field_permissions: bool = False,
     ) -> None: ...
     def cleanup_drafts(
-        self, timedelta, uow=None, search_gc_deletes: int = 60,
+        self,
+        timedelta,
+        uow=None,
+        search_gc_deletes: int = 60,
     ) -> None: ...
     def reindex_latest_first(
-        self, identity: Identity, search_preference=None, extra_filter=None, uow=None,
+        self,
+        identity: Identity,
+        search_preference=None,
+        extra_filter=None,
+        uow=None,
     ): ...
     def rebuild_index(self, identity: Identity) -> bool: ...  # type: ignore[override]
